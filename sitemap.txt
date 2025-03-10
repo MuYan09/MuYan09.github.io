@@ -5,10 +5,6 @@ https://blog.3ms.run/categories/index.html
 https://blog.3ms.run/shuoshuo/index.html
 https://blog.3ms.run/tags/index.html
 https://blog.3ms.run/
-https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/
-https://blog.3ms.run/tags/Hexo/
-https://blog.3ms.run/tags/Hexo-Blog/
-https://blog.3ms.run/tags/%E4%B8%BB%E9%A2%98/
 https://blog.3ms.run/tags/%E5%85%A8%E7%90%83%E5%85%AC%E5%85%B1DNS/
 https://blog.3ms.run/tags/%E5%8A%A0%E5%AF%86DNS/
 https://blog.3ms.run/tags/%E5%9B%BD%E5%86%85%E5%8A%A0%E5%AF%86DNS/
@@ -20,5 +16,9 @@ https://blog.3ms.run/tags/%E5%AE%89%E5%85%A8DNS/
 https://blog.3ms.run/tags/CloudflareDNS/
 https://blog.3ms.run/tags/GoogleDNS/
 https://blog.3ms.run/tags/360DNS/
-https://blog.3ms.run/categories/Hexo/
+https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/
+https://blog.3ms.run/tags/Hexo/
+https://blog.3ms.run/tags/Hexo-Blog/
+https://blog.3ms.run/tags/%E4%B8%BB%E9%A2%98/
 https://blog.3ms.run/categories/%E6%8A%80%E6%9C%AF%E5%B9%B2%E8%B4%A7/
+https://blog.3ms.run/categories/Hexo/

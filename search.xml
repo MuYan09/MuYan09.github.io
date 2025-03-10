@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>国内外 DoT/DoH 加密 DNS 服务器地址大全</title>
+    <url>/archives/%E5%9B%BD%E5%86%85%E5%A4%96-DoT-DoH-%E5%8A%A0%E5%AF%86-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E5%A4%A7%E5%85%A8/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>全球公共DNS</tag>
+        <tag>加密DNS</tag>
+        <tag>国内加密DNS</tag>
+        <tag>国外加密DNS</tag>
+        <tag>国外DNS</tag>
+        <tag>国内DNS</tag>
+        <tag>公共DNS</tag>
+        <tag>安全DNS</tag>
+        <tag>CloudflareDNS</tag>
+        <tag>GoogleDNS</tag>
+        <tag>360DNS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Butterfly 主题标签外挂</title>
     <url>/archives/Hexo%20Butterfly%20%E4%B8%BB%E9%A2%98%E6%A0%87%E7%AD%BE%E5%A4%96%E6%8C%82/</url>
     <content><![CDATA[<blockquote>
@@ -427,7 +448,33 @@
 
 <div class="gallery-container" data-type="data" data-button="" data-limit="10" data-first="10">
     <div class="gallery-items">[{"url":"https://i.loli.net/2019/12/25/Fze9jchtnyJXMHN.jpg","alt":"","title":""},{"url":"https://i.loli.net/2019/12/25/ryLVePaqkYm4TEK.jpg","alt":"","title":""},{"url":"https://i.loli.net/2019/12/25/gEy5Zc1Ai6VuO4N.jpg","alt":"","title":""},{"url":"https://i.loli.net/2019/12/25/d6QHbytlSYO4FBG.jpg","alt":"","title":""},{"url":"https://i.loli.net/2019/12/25/6nepIJ1xTgufatZ.jpg","alt":"","title":""},{"url":"https://i.loli.net/2019/12/25/E7Jvr4eIPwUNmzq.jpg","alt":"","title":""},{"url":"https://i.loli.net/2019/12/25/mh19anwBSWIkGlH.jpg","alt":"","title":""},{"url":"https://i.loli.net/2019/12/25/2tu9JC8ewpBFagv.jpg","alt":"","title":""}]</div>
-  </div></div><div class="tab-item-content"><p>写法：</p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+  </div></div><div class="tab-item-content"><p>写法：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;% gallery url,[link],[button] %&#125;</span><br><span class="line">&#123;% endgallery %&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>【必须】 识别词</td>
+</tr>
+<tr>
+<td>link</td>
+<td>【必须】远程的 json 链接</td>
+</tr>
+<tr>
+<td>button</td>
+<td>【可选】点击按钮加载更多图片，填写 true&#x2F;false。默认为 false。</td>
+</tr>
+</tbody></table>
+<h3 id="远程链接-Json-的例子："><a href="#远程链接-Json-的例子：" class="headerlink" title="远程链接 Json 的例子："></a>远程链接 Json 的例子：</h3><p>有三个参数，<code>url</code>是必须<strong>存在</strong>的，<code>alt</code> 和 <code>title</code> 可有可无。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/IMG_0556.jpg&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;alt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;IMG_0556.jpg&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;这是title&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/IMG_0472.jpg&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;alt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;IMG_0472.jpg&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/IMG_0453.jpg&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;alt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/IMG_0931.jpg&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;alt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;% gallery url,https://xxxx.com/sss.json %&#125;</span><br><span class="line">&#123;% endgallery %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% gallery url,https://xxxx.com/sss.json,true,220,10 %&#125;</span><br><span class="line">&#123;% endgallery %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% gallery url,https://xxxx.com/sss.json,true,,10 %&#125;</span><br><span class="line">&#123;% endgallery %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
 
 
 
@@ -460,27 +507,6 @@
         <tag>Hexo</tag>
         <tag>Hexo Blog</tag>
         <tag>主题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>国内外 DoT/DoH 加密 DNS 服务器地址大全</title>
-    <url>/archives/%E5%9B%BD%E5%86%85%E5%A4%96-DoT-DoH-%E5%8A%A0%E5%AF%86-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E5%A4%A7%E5%85%A8/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>全球公共DNS</tag>
-        <tag>加密DNS</tag>
-        <tag>国内加密DNS</tag>
-        <tag>国外加密DNS</tag>
-        <tag>国外DNS</tag>
-        <tag>国内DNS</tag>
-        <tag>公共DNS</tag>
-        <tag>安全DNS</tag>
-        <tag>CloudflareDNS</tag>
-        <tag>GoogleDNS</tag>
-        <tag>360DNS</tag>
       </tags>
   </entry>
 </search>
