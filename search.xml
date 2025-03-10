@@ -1,29 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>国内外 DoT/DoH 加密 DNS 服务器地址大全</title>
-    <url>/archives/%E5%9B%BD%E5%86%85%E5%A4%96-DoT-DoH-%E5%8A%A0%E5%AF%86-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E5%A4%A7%E5%85%A8/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>全球公共DNS</tag>
-        <tag>加密DNS</tag>
-        <tag>国内加密DNS</tag>
-        <tag>国外加密DNS</tag>
-        <tag>国外DNS</tag>
-        <tag>国内DNS</tag>
-        <tag>公共DNS</tag>
-        <tag>安全DNS</tag>
-        <tag>CloudflareDNS</tag>
-        <tag>GoogleDNS</tag>
-        <tag>360DNS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo Butterfly 主题标签外挂</title>
-    <url>/archives/Hexo%20Butterfly%20%E4%B8%BB%E9%A2%98%E6%A0%87%E7%AD%BE%E5%A4%96%E6%8C%82/</url>
+    <url>/archives/hexo-Butterfly-bqwg.html</url>
     <content><![CDATA[<blockquote>
 <p>标签外挂是 Hexo 独有的功能，并不是标准的 Markdown 格式。</p>
 <p>以下的写法，只适用于 Butterfly 主题，用在其它主题上不会有效果，甚至可能会报错。使用前请留意</p>
@@ -507,6 +486,27 @@
         <tag>Hexo</tag>
         <tag>Hexo Blog</tag>
         <tag>主题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>国内外 DoT/DoH 加密 DNS 服务器地址大全</title>
+    <url>/archives/12986.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>全球公共DNS</tag>
+        <tag>加密DNS</tag>
+        <tag>国内加密DNS</tag>
+        <tag>国外加密DNS</tag>
+        <tag>国外DNS</tag>
+        <tag>国内DNS</tag>
+        <tag>公共DNS</tag>
+        <tag>安全DNS</tag>
+        <tag>CloudflareDNS</tag>
+        <tag>GoogleDNS</tag>
+        <tag>360DNS</tag>
       </tags>
   </entry>
 </search>
