@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://blog.3ms.run/archives/Hexo%20Butterfly%20%E4%B8%BB%E9%A2%98%E6%A0%87%E7%AD%BE%E5%A4%96%E6%8C%82/</loc>
+    
+    <lastmod>2025-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/link/index.html</loc>
+    
+    <lastmod>2025-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/archives/%E5%9B%BD%E5%86%85%E5%A4%96-DoT-DoH-%E5%8A%A0%E5%AF%86-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E5%A4%A7%E5%85%A8/</loc>
+    
+    <lastmod>2025-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/categories/index.html</loc>
+    
+    <lastmod>2025-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/shuoshuo/index.html</loc>
+    
+    <lastmod>2025-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/index.html</loc>
+    
+    <lastmod>2025-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://blog.3ms.run/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/Hexo/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/Hexo-Blog/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E4%B8%BB%E9%A2%98/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E5%85%A8%E7%90%83%E5%85%AC%E5%85%B1DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E5%8A%A0%E5%AF%86DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E5%9B%BD%E5%86%85%E5%8A%A0%E5%AF%86DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E5%9B%BD%E5%A4%96%E5%8A%A0%E5%AF%86DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E5%9B%BD%E5%A4%96DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E5%9B%BD%E5%86%85DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E5%85%AC%E5%85%B1DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/%E5%AE%89%E5%85%A8DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/CloudflareDNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/GoogleDNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/360DNS/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://blog.3ms.run/categories/Hexo/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/categories/%E6%8A%80%E6%9C%AF%E5%B9%B2%E8%B4%A7/</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>

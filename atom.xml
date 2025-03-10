@@ -6,7 +6,7 @@
   <link href="https://blog.3ms.run/atom.xml" rel="self"/>
   
   <link href="https://blog.3ms.run/"/>
-  <updated>2025-03-09T05:34:30.133Z</updated>
+  <updated>2025-03-10T13:58:57.553Z</updated>
   <id>https://blog.3ms.run/</id>
   
   <author>
@@ -17,22 +17,73 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://blog.3ms.run/archives/hello-world/"/>
-    <id>https://blog.3ms.run/archives/hello-world/</id>
-    <published>2025-03-09T05:34:30.133Z</published>
-    <updated>2025-03-09T05:34:30.133Z</updated>
+    <title>Hexo Butterfly 主题标签外挂</title>
+    <link href="https://blog.3ms.run/archives/Hexo%20Butterfly%20%E4%B8%BB%E9%A2%98%E6%A0%87%E7%AD%BE%E5%A4%96%E6%8C%82/"/>
+    <id>https://blog.3ms.run/archives/Hexo%20Butterfly%20%E4%B8%BB%E9%A2%98%E6%A0%87%E7%AD%BE%E5%A4%96%E6%8C%82/</id>
+    <published>2025-03-10T13:13:45.000Z</published>
+    <updated>2025-03-10T13:58:57.553Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>标签外挂是 Hexo 独有的功能，并不是标准的 Markdown 格式。</p><p>以下的写法，只适用于 Butterfly 主题，用在其它主题上不会有效果，甚至可能会报错。使用前请留意</p></blockquote><p><code>标签外挂虽然能为主题带来一些额外的功能和 UI 方面的强化，但是，标签外挂也有明显的限制，使用时请留意。</code></p><h2 id="Note-Bootstrap-Callout"><a href="#Note-Bootstrap-Callout" class="headerlink" title="Note (Bootstrap Callout)"></a>Note (Bootstrap Callout)</h2><h3 id="通用设置"><a href="#通用设置" class="headerlink" title="通用设置"></a>通用设置</h3><p>主题配置文件：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Note - Bootstrap 提示框</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note 标签样式值:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout 旧警告样式。默认。</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout 新 (v2-v3) 警告样式。</span></span><br><span class="line">  <span class="comment">#  - flat      扁平提示框样式，带背景，如 Mozilla 或 StackOverflow。</span></span><br><span class="line">  <span class="comment">#  - disabled  禁用所有 Note 标签的 CSS 样式。</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span></span><br><span class="line">  <span class="comment"># 是否显示图标</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 边框半径</span></span><br><span class="line">  <span class="attr">border_radius:</span> <span class="number">3</span></span><br><span class="line">  <span class="comment"># 背景颜色偏移百分比 (modern: -12 | 12; flat: -18 | 6)。</span></span><br><span class="line">  <span class="comment"># 也应用于标签变量。此选项可与禁用的 Note 标签一起使用。</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure><h3 id="用法1"><a href="#用法1" class="headerlink" title="用法1"></a>用法1</h3>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;标签外挂是 Hexo 独有的功能，并不是标准的 Markdown 格式。&lt;/p&gt;
+&lt;p&gt;以下的写法，只适用于 Butterfly 主题，用在其它主题上不会有效果，甚至可能会报错。使用前请留意&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;标</summary>
       
     
     
     
+    <category term="Hexo" scheme="https://blog.3ms.run/categories/Hexo/"/>
+    
+    
+    <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
+    
+    <category term="Hexo Blog" scheme="https://blog.3ms.run/tags/Hexo-Blog/"/>
+    
+    <category term="主题" scheme="https://blog.3ms.run/tags/%E4%B8%BB%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>国内外 DoT/DoH 加密 DNS 服务器地址大全</title>
+    <link href="https://blog.3ms.run/archives/%E5%9B%BD%E5%86%85%E5%A4%96-DoT-DoH-%E5%8A%A0%E5%AF%86-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E5%A4%A7%E5%85%A8/"/>
+    <id>https://blog.3ms.run/archives/%E5%9B%BD%E5%86%85%E5%A4%96-DoT-DoH-%E5%8A%A0%E5%AF%86-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E5%A4%A7%E5%85%A8/</id>
+    <published>2025-03-10T13:01:24.000Z</published>
+    <updated>2025-03-10T13:16:58.097Z</updated>
+    
+    
+    
+    
+    <category term="技术干货" scheme="https://blog.3ms.run/categories/%E6%8A%80%E6%9C%AF%E5%B9%B2%E8%B4%A7/"/>
+    
+    
+    <category term="全球公共DNS" scheme="https://blog.3ms.run/tags/%E5%85%A8%E7%90%83%E5%85%AC%E5%85%B1DNS/"/>
+    
+    <category term="加密DNS" scheme="https://blog.3ms.run/tags/%E5%8A%A0%E5%AF%86DNS/"/>
+    
+    <category term="国内加密DNS" scheme="https://blog.3ms.run/tags/%E5%9B%BD%E5%86%85%E5%8A%A0%E5%AF%86DNS/"/>
+    
+    <category term="国外加密DNS" scheme="https://blog.3ms.run/tags/%E5%9B%BD%E5%A4%96%E5%8A%A0%E5%AF%86DNS/"/>
+    
+    <category term="国外DNS" scheme="https://blog.3ms.run/tags/%E5%9B%BD%E5%A4%96DNS/"/>
+    
+    <category term="国内DNS" scheme="https://blog.3ms.run/tags/%E5%9B%BD%E5%86%85DNS/"/>
+    
+    <category term="公共DNS" scheme="https://blog.3ms.run/tags/%E5%85%AC%E5%85%B1DNS/"/>
+    
+    <category term="安全DNS" scheme="https://blog.3ms.run/tags/%E5%AE%89%E5%85%A8DNS/"/>
+    
+    <category term="CloudflareDNS" scheme="https://blog.3ms.run/tags/CloudflareDNS/"/>
+    
+    <category term="GoogleDNS" scheme="https://blog.3ms.run/tags/GoogleDNS/"/>
+    
+    <category term="360DNS" scheme="https://blog.3ms.run/tags/360DNS/"/>
     
   </entry>
   
