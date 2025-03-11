@@ -1,6 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
+    <url>/archives/12986.html</url>
+    <content><![CDATA[<blockquote>
+<p>在当今数字化时代，网络安全已成为我们每个人关心的重点。域名系统（DNS）作为互联网的电话簿，其安全性至关重要。传统的DNS查询缺乏加密保护，容易遭受各种形式的网络攻击，如DNS劫持和DNS污染。为了解决这些问题，DoT（DNS over TLS）和DoH（DNS over HTTPS）应运而生，它们通过加密技术来确保DNS查询的安全性和隐私性。</p>
+</blockquote>
+<p>今天给大家分享一些国内知名免费公共DoT&#x2F;DoH加密DNS服务器。</p>
+<h2 id="国内主流DNS服务器"><a href="#国内主流DNS服务器" class="headerlink" title="国内主流DNS服务器"></a>国内主流DNS服务器</h2><h3 id="1-腾讯-DNS-DNSPod"><a href="#1-腾讯-DNS-DNSPod" class="headerlink" title="1.腾讯 DNS (DNSPod)"></a>1.<strong>腾讯 DNS (DNSPod)</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoH地址(国密SM2)基于腾讯云政企国密解决方案</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.pub/dns-query</code></li>
+<li><code>https://1.12.12.12/dns-query</code></li>
+<li><code>https://120.53.53.53/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>https://sm2.doh.pub/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.pub</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>1.12.12.12</code></li>
+<li><code>120.53.53.53</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="阿里云公共-DNS"><a href="#阿里云公共-DNS" class="headerlink" title="阿里云公共 DNS"></a><strong>阿里云公共 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.alidns.com/dns-query</code></li>
+<li><code>https://223.5.5.5/dns-query</code></li>
+<li><code>https://223.6.6.6/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.alidns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>223.5.5.5</code></li>
+<li><code>223.6.6.6</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="360-Secure-安全-DNS"><a href="#360-Secure-安全-DNS" class="headerlink" title="360 Secure(安全) DNS"></a><strong>360 Secure(安全) DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.360.cn/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.360.cn</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>101.226.4.6</code></li>
+<li><code>218.30.118.6</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="信风公共-DNS"><a href="#信风公共-DNS" class="headerlink" title="信风公共 DNS"></a>信风公共 DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.114dns.com/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>tls.dns114.cn</code></li>
+</ul></div><div class="tab-item-content"><p><code>114.11.114.114</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="TWNIC-DNS-Quad-101"><a href="#TWNIC-DNS-Quad-101" class="headerlink" title="TWNIC DNS Quad 101"></a>TWNIC DNS Quad 101</h3><p>由台湾网络资讯中心提供的免费公共 DNS 服务，以台湾地区为人熟悉的地标 台北 101 作为地址。</p>
+<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.twnic.tw/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.twnic.tw</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h2 id="国外主流DNS服务器"><a href="#国外主流DNS服务器" class="headerlink" title="国外主流DNS服务器"></a>国外主流DNS服务器</h2><h3 id="Google-Public-DNS"><a href="#Google-Public-DNS" class="headerlink" title="Google Public DNS"></a>Google Public DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.google/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.google</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>8.8.8.8</code></li>
+<li><code>8.8.4.4</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Cloudflare-DNS"><a href="#Cloudflare-DNS" class="headerlink" title="Cloudflare DNS"></a>Cloudflare DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">安全版 (拦截恶意代码)</button><button type="button" class="tab">家庭版(拦截恶意代码和成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://cloudflare-dns.com/dns-query</code></li>
+<li><code>https://dns.cloudflare.com/dns-query</code></li>
+<li><code>https://1.1.1.1/dns-query</code></li>
+<li><code>https://1.0.0.1/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>cloudflare-dns.com</code></li>
+<li><code>dns.cloudflare.com</code></li>
+<li><code>one.one.one.one</code></li>
+<li><code>1dot1dot1dot1.cloudflare-dns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>1.1.1.1</code></li>
+<li><code>1.0.0.1</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
+<ul>
+<li><code>https://security.cloudflare-dns.com/dns-query</code></li>
+</ul>
+<p><strong>DoT：</strong></p>
+<ul>
+<li><code>security.cloudflare-dns.com</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
+<ul>
+<li><code>https://family.cloudflare-dns.com/dns-query</code></li>
+</ul>
+<p><strong>DoT:</strong></p>
+<ul>
+<li><code>family.cloudflare-dns.com</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Quad9-DNS"><a href="#Quad9-DNS" class="headerlink" title="Quad9 DNS"></a><strong>Quad9 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.quad9.net/dns-query</code></li>
+<li><code>https://dns9.quad9.net/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.quad9.net</code></li>
+<li><code>dns9.quad9.net</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>9.9.9.9</code></li>
+<li><code>149.112.112.112</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="AdGuard-DNS"><a href="#AdGuard-DNS" class="headerlink" title="AdGuard DNS"></a><strong>AdGuard DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">家庭保护服务器 (拦截成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.adguard.com/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.adguard-dns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>94.140.14.14</code></li>
+<li><code>94.140.15.15</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoT</strong>：</p>
+<ul>
+<li><code>family.adguard.com</code></li>
+</ul>
+<p><strong>DoH</strong>：</p>
+<ul>
+<li><code>https://family.adguard.com/dns-query</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="NextDNS"><a href="#NextDNS" class="headerlink" title="NextDNS"></a><strong>NextDNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.nextdns.io</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.nextdns.io</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="DNS-SB"><a href="#DNS-SB" class="headerlink" title="DNS.SB"></a><strong>DNS.SB</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.dns.sb/dns-query</code></li>
+<li><code>https://doh.sb/dns-query</code></li>
+<li><code>https://dns.sb/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.sb</code></li>
+<li><code>dns.sb</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Cisco-OpenDNS-Cisco-Umbrella"><a href="#Cisco-OpenDNS-Cisco-Umbrella" class="headerlink" title="Cisco OpenDNS&#x2F;Cisco Umbrella"></a><strong>Cisco OpenDNS&#x2F;Cisco Umbrella</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">OpenDNS FamilyShield</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><a href="https://doh.opendns.com/dns-query">https://doh.opendns.com/dns-query</a></li>
+<li><a href="https://dns.opendns.com/dns-query">https://dns.opendns.com/dns-query</a></li>
+<li><a href="https://doh.umbrella.com/dns-query">https://doh.umbrella.com/dns-query</a></li>
+<li><a href="https://dns.umbrella.com/dns-query">https://dns.umbrella.com/dns-query</a></li>
+<li><a href="https://dns.sse.cisco.com/dns-query">https://dns.sse.cisco.com/dns-query</a></li>
+</ul></div><div class="tab-item-content"><ul>
+<li>dns.opendns.com</li>
+<li>dns.umbrella.com</li>
+<li>dns.sse.cisco.com</li>
+</ul></div><div class="tab-item-content"><p><strong>OpenDNS 家庭盾版 DNS，官方介绍是 block adult content 阻止成人内容。</strong><br><strong>DoH:</strong></p>
+<ul>
+<li><code>https://familyshield.opendns.com/dns-query</code></li>
+<li><code>https://doh.familyshield.opendns.com/dns-query</code></li>
+<li><code>https://familyshield.sse.cisco.com/dns-query</code></li>
+</ul>
+<p><strong>DoT:</strong></p>
+<ul>
+<li><code>familyshield.opendns.com</code></li>
+<li><code>familyshield.sse.cisco.com</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+
+
+<h3 id="Yandex-DNS"><a href="#Yandex-DNS" class="headerlink" title="Yandex DNS"></a>Yandex DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">安全版（病毒和钓鱼防御）</button><button type="button" class="tab">家庭版（拦截成人内容）</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://common.dot.dns.yandex.net</code></li>
+<li><code>https://77.88.8.8</code></li>
+<li><code>https://2a02:6b8::feed:0ff</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>common.dot.dns.yandex.net</code></li>
+<li><code>77.88.8.8</code></li>
+<li><code>2a02:6b8::feed:0ff</code></li>
+</ul></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://safe.dot.dns.yandex.net</code></p>
+<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>safe.dot.dns.yandex.net</code></p></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://family.dot.dns.yandex.net</code></p>
+<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>family.dot.dns.yandex.net</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>全球公共DNS</tag>
+        <tag>加密DNS</tag>
+        <tag>国内加密DNS</tag>
+        <tag>国外加密DNS</tag>
+        <tag>国外DNS</tag>
+        <tag>国内DNS</tag>
+        <tag>公共DNS</tag>
+        <tag>安全DNS</tag>
+        <tag>CloudflareDNS</tag>
+        <tag>GoogleDNS</tag>
+        <tag>360DNS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo+Butterfly主题更详细的Front-matter</title>
     <url>/archives/d2f6e5e8.html</url>
     <content><![CDATA[<blockquote>
@@ -208,192 +394,6 @@
         <tag>主题</tag>
         <tag>Butterfly</tag>
         <tag>Butterfly主题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
-    <url>/archives/12986.html</url>
-    <content><![CDATA[<blockquote>
-<p>在当今数字化时代，网络安全已成为我们每个人关心的重点。域名系统（DNS）作为互联网的电话簿，其安全性至关重要。传统的DNS查询缺乏加密保护，容易遭受各种形式的网络攻击，如DNS劫持和DNS污染。为了解决这些问题，DoT（DNS over TLS）和DoH（DNS over HTTPS）应运而生，它们通过加密技术来确保DNS查询的安全性和隐私性。</p>
-</blockquote>
-<p>今天给大家分享一些国内知名免费公共DoT&#x2F;DoH加密DNS服务器。</p>
-<h2 id="国内主流DNS服务器"><a href="#国内主流DNS服务器" class="headerlink" title="国内主流DNS服务器"></a>国内主流DNS服务器</h2><h3 id="1-腾讯-DNS-DNSPod"><a href="#1-腾讯-DNS-DNSPod" class="headerlink" title="1.腾讯 DNS (DNSPod)"></a>1.<strong>腾讯 DNS (DNSPod)</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoH地址(国密SM2)基于腾讯云政企国密解决方案</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.pub/dns-query</code></li>
-<li><code>https://1.12.12.12/dns-query</code></li>
-<li><code>https://120.53.53.53/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>https://sm2.doh.pub/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.pub</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>1.12.12.12</code></li>
-<li><code>120.53.53.53</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="阿里云公共-DNS"><a href="#阿里云公共-DNS" class="headerlink" title="阿里云公共 DNS"></a><strong>阿里云公共 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.alidns.com/dns-query</code></li>
-<li><code>https://223.5.5.5/dns-query</code></li>
-<li><code>https://223.6.6.6/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.alidns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>223.5.5.5</code></li>
-<li><code>223.6.6.6</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="360-Secure-安全-DNS"><a href="#360-Secure-安全-DNS" class="headerlink" title="360 Secure(安全) DNS"></a><strong>360 Secure(安全) DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.360.cn/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.360.cn</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>101.226.4.6</code></li>
-<li><code>218.30.118.6</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="信风公共-DNS"><a href="#信风公共-DNS" class="headerlink" title="信风公共 DNS"></a>信风公共 DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.114dns.com/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>tls.dns114.cn</code></li>
-</ul></div><div class="tab-item-content"><p><code>114.11.114.114</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="TWNIC-DNS-Quad-101"><a href="#TWNIC-DNS-Quad-101" class="headerlink" title="TWNIC DNS Quad 101"></a>TWNIC DNS Quad 101</h3><p>由台湾网络资讯中心提供的免费公共 DNS 服务，以台湾地区为人熟悉的地标 台北 101 作为地址。</p>
-<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.twnic.tw/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.twnic.tw</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h2 id="国外主流DNS服务器"><a href="#国外主流DNS服务器" class="headerlink" title="国外主流DNS服务器"></a>国外主流DNS服务器</h2><h3 id="Google-Public-DNS"><a href="#Google-Public-DNS" class="headerlink" title="Google Public DNS"></a>Google Public DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.google/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.google</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>8.8.8.8</code></li>
-<li><code>8.8.4.4</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Cloudflare-DNS"><a href="#Cloudflare-DNS" class="headerlink" title="Cloudflare DNS"></a>Cloudflare DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">安全版 (拦截恶意代码)</button><button type="button" class="tab">家庭版(拦截恶意代码和成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://cloudflare-dns.com/dns-query</code></li>
-<li><code>https://dns.cloudflare.com/dns-query</code></li>
-<li><code>https://1.1.1.1/dns-query</code></li>
-<li><code>https://1.0.0.1/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>cloudflare-dns.com</code></li>
-<li><code>dns.cloudflare.com</code></li>
-<li><code>one.one.one.one</code></li>
-<li><code>1dot1dot1dot1.cloudflare-dns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>1.1.1.1</code></li>
-<li><code>1.0.0.1</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
-<ul>
-<li><code>https://security.cloudflare-dns.com/dns-query</code></li>
-</ul>
-<p><strong>DoT：</strong></p>
-<ul>
-<li><code>security.cloudflare-dns.com</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
-<ul>
-<li><code>https://family.cloudflare-dns.com/dns-query</code></li>
-</ul>
-<p><strong>DoT:</strong></p>
-<ul>
-<li><code>family.cloudflare-dns.com</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Quad9-DNS"><a href="#Quad9-DNS" class="headerlink" title="Quad9 DNS"></a><strong>Quad9 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.quad9.net/dns-query</code></li>
-<li><code>https://dns9.quad9.net/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.quad9.net</code></li>
-<li><code>dns9.quad9.net</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>9.9.9.9</code></li>
-<li><code>149.112.112.112</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="AdGuard-DNS"><a href="#AdGuard-DNS" class="headerlink" title="AdGuard DNS"></a><strong>AdGuard DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">家庭保护服务器 (拦截成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.adguard.com/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.adguard-dns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>94.140.14.14</code></li>
-<li><code>94.140.15.15</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoT</strong>：</p>
-<ul>
-<li><code>family.adguard.com</code></li>
-</ul>
-<p><strong>DoH</strong>：</p>
-<ul>
-<li><code>https://family.adguard.com/dns-query</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="NextDNS"><a href="#NextDNS" class="headerlink" title="NextDNS"></a><strong>NextDNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.nextdns.io</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.nextdns.io</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="DNS-SB"><a href="#DNS-SB" class="headerlink" title="DNS.SB"></a><strong>DNS.SB</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.dns.sb/dns-query</code></li>
-<li><code>https://doh.sb/dns-query</code></li>
-<li><code>https://dns.sb/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.sb</code></li>
-<li><code>dns.sb</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Cisco-OpenDNS-Cisco-Umbrella"><a href="#Cisco-OpenDNS-Cisco-Umbrella" class="headerlink" title="Cisco OpenDNS&#x2F;Cisco Umbrella"></a><strong>Cisco OpenDNS&#x2F;Cisco Umbrella</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">OpenDNS FamilyShield</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><a href="https://doh.opendns.com/dns-query">https://doh.opendns.com/dns-query</a></li>
-<li><a href="https://dns.opendns.com/dns-query">https://dns.opendns.com/dns-query</a></li>
-<li><a href="https://doh.umbrella.com/dns-query">https://doh.umbrella.com/dns-query</a></li>
-<li><a href="https://dns.umbrella.com/dns-query">https://dns.umbrella.com/dns-query</a></li>
-<li><a href="https://dns.sse.cisco.com/dns-query">https://dns.sse.cisco.com/dns-query</a></li>
-</ul></div><div class="tab-item-content"><ul>
-<li>dns.opendns.com</li>
-<li>dns.umbrella.com</li>
-<li>dns.sse.cisco.com</li>
-</ul></div><div class="tab-item-content"><p><strong>OpenDNS 家庭盾版 DNS，官方介绍是 block adult content 阻止成人内容。</strong><br><strong>DoH:</strong></p>
-<ul>
-<li><code>https://familyshield.opendns.com/dns-query</code></li>
-<li><code>https://doh.familyshield.opendns.com/dns-query</code></li>
-<li><code>https://familyshield.sse.cisco.com/dns-query</code></li>
-</ul>
-<p><strong>DoT:</strong></p>
-<ul>
-<li><code>familyshield.opendns.com</code></li>
-<li><code>familyshield.sse.cisco.com</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-
-
-<h3 id="Yandex-DNS"><a href="#Yandex-DNS" class="headerlink" title="Yandex DNS"></a>Yandex DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">安全版（病毒和钓鱼防御）</button><button type="button" class="tab">家庭版（拦截成人内容）</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://common.dot.dns.yandex.net</code></li>
-<li><code>https://77.88.8.8</code></li>
-<li><code>https://2a02:6b8::feed:0ff</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>common.dot.dns.yandex.net</code></li>
-<li><code>77.88.8.8</code></li>
-<li><code>2a02:6b8::feed:0ff</code></li>
-</ul></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://safe.dot.dns.yandex.net</code></p>
-<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>safe.dot.dns.yandex.net</code></p></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://family.dot.dns.yandex.net</code></p>
-<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>family.dot.dns.yandex.net</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>全球公共DNS</tag>
-        <tag>加密DNS</tag>
-        <tag>国内加密DNS</tag>
-        <tag>国外加密DNS</tag>
-        <tag>国外DNS</tag>
-        <tag>国内DNS</tag>
-        <tag>公共DNS</tag>
-        <tag>安全DNS</tag>
-        <tag>CloudflareDNS</tag>
-        <tag>GoogleDNS</tag>
-        <tag>360DNS</tag>
       </tags>
   </entry>
   <entry>
