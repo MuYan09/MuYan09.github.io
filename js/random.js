@@ -1,0 +1,1 @@
+"use strict";var posts=["archives/hexo-Butterfly-bqwg.html","archives/d2f6e5e8.html","archives/Hexo-Github-Vercel-DeploymentTutorial.html","archives/12986.html"];function toRandomPost(){pjax.loadUrl("/"+posts[Math.floor(Math.random()*posts.length)])}
