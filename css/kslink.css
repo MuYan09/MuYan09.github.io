@@ -10,10 +10,10 @@
     transition: .2s;
     display: flex;
     margin: 5px auto;
-    color: var(--global-bg);
+    color: #fff;
     padding: 15px;
     border-radius: 40px;
-    background: var(--search-result-title);
+    background: #1f1f1f;
     align-items: center;
 }
 
@@ -38,6 +38,6 @@ button {
 }
 
 .addBtn button:hover {
-    background: var(--theme-color);
+    background: #39c5bbb3;
     color: #fff;
 }
