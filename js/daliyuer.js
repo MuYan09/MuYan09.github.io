@@ -30,6 +30,8 @@ function owoBig() {
             if (document.body.clientWidth <= 768) owo_body.addEventListener('contextmenu', e => e.preventDefault());
             // 鼠标移入
             owo_body.onmouseover = (e) => {
+                // 检查父元素的 className 是否包含 'OwO-packages'
+                if (e.target.parentElement.parentElement.parentElement && e.target.parentElement.parentElement.parentElement.className.includes('OwO-packages')) return;
                 if (flag && e.target.tagName == 'IMG') {
                     flag = 0;
                     // 移入300毫秒后显示盒子
