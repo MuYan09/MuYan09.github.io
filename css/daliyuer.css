@@ -1,7 +1,53 @@
+:root {
+    /* 自定义全局变量 */
+    --font-color: #4c4948;
+    --daliyuer-bd-rd: 6px;
+    --daliyuer-border: #e3e3e3;
+    --daliyuer-white: #fff;
+    --daliyuer-theme: #49b1f5;
+    --daliyuer-theme-op: #9999992b;
+    --font-bg: #fff;
+
+
+    --ichika-color: #49A6E9;
+    --ichika-hover-color: #ECAFFF;
+    --ichika-widget-hover: #CFF0FF;
+    --ichika-font-white: #FDFDFD;
+    --ichika-light-green: #B2FFCA;
+    --ichika-light-purple: #F6B9FF;
+    --ichika-green: #11D991;
+    --ichika-purple: #E764FF;
+    --ichika-light-grey: #F2F2F2;
+    --ichika-card-bg: rgba(255, 255, 255, 0.45);
+    --ichika-emphasis-color: #F7F81A;
+    --ichika-bgblur: blur(10px);
+    --ichika-footer-bg: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.7) 40%);
+    --ichika-font-grey: #888888;
+    --ichika-categorycard-bg: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)) --icat-fontcolor: black;
+    --icat-background: #fff;
+}
+
+[data-theme='dark'] {
+    --daliyuer-border: #e3e3e3;
+    --font-bg: #0d0d0d;
+    --font-color: rgba(255, 255, 255, 0.7);
+    --icat-fontcolor: #F7F7FA;
+    --icat-background: #18171d;
+    --global-bg: black;
+    --ichika-color: #1688C9;
+    --ichika-widget-hover: #1B6587;
+    --ichika-card-bg: rgba(0, 0, 0, 0.7);
+    --ichika-footer-bg: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 40%);
+    --ichika-font-grey: #BBBBBB;
+    --ichika-categorycard-bg: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1))
+}
+
+/* 自定义全局变量end */
+
 @font-face {
-    font-family: 'tzy';
+    font-family: 'daliyuer';
     /* 字体名自定义即可 */
-    /* src: url('https://cdn.jsdelivr.net/gh/tzy13755126023/BLOG_SOURCE/font/ZhuZiAWan.woff2'); */
+    /* src: url('https://cdn.jsdelivr.net/gh/daliyuer13755126023/BLOG_SOURCE/font/ZhuZiAWan.woff2'); */
     src: url('https://npm.elemecdn.com/ethan4116-blog/lib/font/ZhuZiAWan.ttf');
     /* 字体文件路径 */
     font-display: swap;
@@ -9,7 +55,7 @@
 
 body,
 .gitcalendar {
-    font-family: tzy !important;
+    font-family: daliyuer !important;
 }
 
 /* 自定义字体 */
@@ -703,14 +749,17 @@ body,
 /* 页脚 */
 /* 自定义底部  start */
 
-#footer-wrap {
-    background-color: #fff;
+#footer {
+    border-top: 1px solid var(--daliyuer-border);
+    background-color: var(--font-bg) !important;
 }
 
-#footer-wrap {
-    color: var(--font-color)
-}
+/* #footer-wrap {
+    background-color: var(--font-bg);
+} */
 
+
+#footer-wrap,
 #footer-wrap a {
     color: var(--font-color)
 }
@@ -765,12 +814,12 @@ body,
 .btn-xz {
     display: block;
     background-color: var(--btn-bg);
-    color: var(--tzy-white) !important;
+    color: var(--daliyuer-white) !important;
     text-align: center;
     line-height: 2.4;
     margin: 8px 0;
     cursor: pointer !important;
-    border-radius: var(--tzy-bd-rd);
+    border-radius: var(--daliyuer-bd-rd);
 }
 
 .btn-xz:hover {
