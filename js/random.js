@@ -1,1 +1,1 @@
-var posts=["archives/c920ed04.html","archives/d2f6e5e8.html","archives/12986.html","archives/Hexo-Github-Vercel-DeploymentTutorial.html","archives/hexo-Butterfly-bqwg.html"];function toRandomPost(){window.open('/'+posts[Math.floor(Math.random() * posts.length)],"_self");};
+var posts=["archives/d2f6e5e8.html","archives/Hexo-Github-Vercel-DeploymentTutorial.html","archives/12986.html","archives/c920ed04.html","archives/hexo-Butterfly-bqwg.html"];function toRandomPost(){window.open('/'+posts[Math.floor(Math.random() * posts.length)],"_self");};
