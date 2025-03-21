@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>ZeroLatency</title>
   
-  <subtitle>探索科技与生活的交汇 | 3MS &#39; Blog</subtitle>
+  <subtitle>探索科技与生活的交汇</subtitle>
   <link href="https://blog.3ms.run/atom.xml" rel="self"/>
   
   <link href="https://blog.3ms.run/"/>
