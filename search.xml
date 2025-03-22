@@ -28,37 +28,6 @@
       </tags>
   </entry>
   <entry>
-    <title>给Butterfly主题文章顶部添加波浪效果</title>
-    <url>/archives/f9a47848.html</url>
-    <content><![CDATA[<p>本文简要介绍如何在Hexo博客的Butterfly主题中，为每篇文章顶部添加一个动态波浪效果。</p>
-<p>效果图：</p>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.22/img/archives/20250322001104.png"></p>
-<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>修改主题目录： <code>themes/butterfly/layout/includes/header/index.pug</code> 在：</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br></pre></td></tr></table></figure>
-
-<p>代码后面添加如下代码，<code>+</code>是要添加的部分，记得删除前面的<code>+</code>号。</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br><span class="line"><span class="addition">+   section.main-hero-waves-area.waves-area</span></span><br><span class="line"><span class="addition">+     svg.waves-svg(xmlns=&#x27;http://www.w3.org/2000/svg&#x27;, xlink=&#x27;http://www.w3.org/1999/xlink&#x27;, viewBox=&#x27;0 24 150 28&#x27;, preserveAspectRatio=&#x27;none&#x27;, shape-rendering=&#x27;auto&#x27;)</span></span><br><span class="line"><span class="addition">+       defs</span></span><br><span class="line"><span class="addition">+         path#gentle-wave(d=&#x27;M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z&#x27;)</span></span><br><span class="line"><span class="addition">+       g.parallax</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;0&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;3&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;5&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;7&#x27;)</span></span><br><span class="line">    #post-top-cover</span><br><span class="line">      img#post-top-bg(class=&#x27;nolazyload&#x27; src=bg_img)</span><br><span class="line">  else if is_home()</span><br><span class="line">    #site-info</span><br><span class="line">      h1#site-title=site_title</span><br><span class="line">      if theme.subtitle.enable</span><br></pre></td></tr></table></figure>
-
-<p>然后在<code>_config.butterfly.yml</code>配置文件中的 <code>[inject.head]</code> 或者自定义 css 中 引入以下 css</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 波浪css */</span></span><br><span class="line"><span class="selector-class">.main-hero-waves-area</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Animation */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: move-forever <span class="number">25s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.55</span>, <span class="number">0.5</span>, <span class="number">0.45</span>, <span class="number">0.5</span>) infinite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9febd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe82</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe36</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 黑色模式背景 */</span></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171dc8</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d80</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d3e</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move-forever &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-<span class="number">90px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">85px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Shrinking for mobile*/</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">40px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="comment"># 自定义css</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/style.css&quot;&gt;</span> <span class="comment">#改成自己的css地址</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-<div class="note primary flat"><p>需要注意的是 css 中<code>fill属性</code>可以控制波浪颜色，最好使其中一个颜色与背景颜色一致，否则会显的有点奇怪。</p>
-</div>
-
-]]></content>
-      <categories>
-        <category>技术教程</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Butterfly</tag>
-        <tag>Butterfly魔改</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Hexo+Github搭建个人博客部署到Vercel并使用Github Action自动化编译部署</title>
     <url>/archives/Hexo-Github-Vercel-DeploymentTutorial.html</url>
     <content><![CDATA[<div class="note green icon-padding flat"><i class="note-icon fas fa-rocket"></i><p>这篇文章将教大家如何搭建Hexo博客程序，并部署到Github Pages+Vercel并通过Github Action自动化部署编译。</p>
@@ -340,192 +309,6 @@
       </tags>
   </entry>
   <entry>
-    <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
-    <url>/archives/12986.html</url>
-    <content><![CDATA[<blockquote>
-<p>在当今数字化时代，网络安全已成为我们每个人关心的重点。域名系统（DNS）作为互联网的电话簿，其安全性至关重要。传统的DNS查询缺乏加密保护，容易遭受各种形式的网络攻击，如DNS劫持和DNS污染。为了解决这些问题，DoT（DNS over TLS）和DoH（DNS over HTTPS）应运而生，它们通过加密技术来确保DNS查询的安全性和隐私性。</p>
-</blockquote>
-<p>今天给大家分享一些国内知名免费公共DoT&#x2F;DoH加密DNS服务器。</p>
-<h2 id="国内主流DNS服务器"><a href="#国内主流DNS服务器" class="headerlink" title="国内主流DNS服务器"></a>国内主流DNS服务器</h2><h3 id="1-腾讯-DNS-DNSPod"><a href="#1-腾讯-DNS-DNSPod" class="headerlink" title="1.腾讯 DNS (DNSPod)"></a>1.<strong>腾讯 DNS (DNSPod)</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoH地址(国密SM2)基于腾讯云政企国密解决方案</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.pub/dns-query</code></li>
-<li><code>https://1.12.12.12/dns-query</code></li>
-<li><code>https://120.53.53.53/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>https://sm2.doh.pub/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.pub</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>1.12.12.12</code></li>
-<li><code>120.53.53.53</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="阿里云公共-DNS"><a href="#阿里云公共-DNS" class="headerlink" title="阿里云公共 DNS"></a><strong>阿里云公共 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.alidns.com/dns-query</code></li>
-<li><code>https://223.5.5.5/dns-query</code></li>
-<li><code>https://223.6.6.6/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.alidns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>223.5.5.5</code></li>
-<li><code>223.6.6.6</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="360-Secure-安全-DNS"><a href="#360-Secure-安全-DNS" class="headerlink" title="360 Secure(安全) DNS"></a><strong>360 Secure(安全) DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.360.cn/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.360.cn</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>101.226.4.6</code></li>
-<li><code>218.30.118.6</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="信风公共-DNS"><a href="#信风公共-DNS" class="headerlink" title="信风公共 DNS"></a>信风公共 DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.114dns.com/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>tls.dns114.cn</code></li>
-</ul></div><div class="tab-item-content"><p><code>114.11.114.114</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="TWNIC-DNS-Quad-101"><a href="#TWNIC-DNS-Quad-101" class="headerlink" title="TWNIC DNS Quad 101"></a>TWNIC DNS Quad 101</h3><p>由台湾网络资讯中心提供的免费公共 DNS 服务，以台湾地区为人熟悉的地标 台北 101 作为地址。</p>
-<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.twnic.tw/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.twnic.tw</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h2 id="国外主流DNS服务器"><a href="#国外主流DNS服务器" class="headerlink" title="国外主流DNS服务器"></a>国外主流DNS服务器</h2><h3 id="Google-Public-DNS"><a href="#Google-Public-DNS" class="headerlink" title="Google Public DNS"></a>Google Public DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.google/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.google</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>8.8.8.8</code></li>
-<li><code>8.8.4.4</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Cloudflare-DNS"><a href="#Cloudflare-DNS" class="headerlink" title="Cloudflare DNS"></a>Cloudflare DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">安全版 (拦截恶意代码)</button><button type="button" class="tab">家庭版(拦截恶意代码和成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://cloudflare-dns.com/dns-query</code></li>
-<li><code>https://dns.cloudflare.com/dns-query</code></li>
-<li><code>https://1.1.1.1/dns-query</code></li>
-<li><code>https://1.0.0.1/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>cloudflare-dns.com</code></li>
-<li><code>dns.cloudflare.com</code></li>
-<li><code>one.one.one.one</code></li>
-<li><code>1dot1dot1dot1.cloudflare-dns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>1.1.1.1</code></li>
-<li><code>1.0.0.1</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
-<ul>
-<li><code>https://security.cloudflare-dns.com/dns-query</code></li>
-</ul>
-<p><strong>DoT：</strong></p>
-<ul>
-<li><code>security.cloudflare-dns.com</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
-<ul>
-<li><code>https://family.cloudflare-dns.com/dns-query</code></li>
-</ul>
-<p><strong>DoT:</strong></p>
-<ul>
-<li><code>family.cloudflare-dns.com</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Quad9-DNS"><a href="#Quad9-DNS" class="headerlink" title="Quad9 DNS"></a><strong>Quad9 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.quad9.net/dns-query</code></li>
-<li><code>https://dns9.quad9.net/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.quad9.net</code></li>
-<li><code>dns9.quad9.net</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>9.9.9.9</code></li>
-<li><code>149.112.112.112</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="AdGuard-DNS"><a href="#AdGuard-DNS" class="headerlink" title="AdGuard DNS"></a><strong>AdGuard DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">家庭保护服务器 (拦截成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.adguard.com/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.adguard-dns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>94.140.14.14</code></li>
-<li><code>94.140.15.15</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoT</strong>：</p>
-<ul>
-<li><code>family.adguard.com</code></li>
-</ul>
-<p><strong>DoH</strong>：</p>
-<ul>
-<li><code>https://family.adguard.com/dns-query</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="NextDNS"><a href="#NextDNS" class="headerlink" title="NextDNS"></a><strong>NextDNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.nextdns.io</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.nextdns.io</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="DNS-SB"><a href="#DNS-SB" class="headerlink" title="DNS.SB"></a><strong>DNS.SB</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.dns.sb/dns-query</code></li>
-<li><code>https://doh.sb/dns-query</code></li>
-<li><code>https://dns.sb/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.sb</code></li>
-<li><code>dns.sb</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Cisco-OpenDNS-Cisco-Umbrella"><a href="#Cisco-OpenDNS-Cisco-Umbrella" class="headerlink" title="Cisco OpenDNS&#x2F;Cisco Umbrella"></a><strong>Cisco OpenDNS&#x2F;Cisco Umbrella</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">OpenDNS FamilyShield</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><a href="https://doh.opendns.com/dns-query" rel="external nofollow noreferrer">https://doh.opendns.com/dns-query</a></li>
-<li><a href="https://dns.opendns.com/dns-query" rel="external nofollow noreferrer">https://dns.opendns.com/dns-query</a></li>
-<li><a href="https://doh.umbrella.com/dns-query" rel="external nofollow noreferrer">https://doh.umbrella.com/dns-query</a></li>
-<li><a href="https://dns.umbrella.com/dns-query" rel="external nofollow noreferrer">https://dns.umbrella.com/dns-query</a></li>
-<li><a href="https://dns.sse.cisco.com/dns-query" rel="external nofollow noreferrer">https://dns.sse.cisco.com/dns-query</a></li>
-</ul></div><div class="tab-item-content"><ul>
-<li>dns.opendns.com</li>
-<li>dns.umbrella.com</li>
-<li>dns.sse.cisco.com</li>
-</ul></div><div class="tab-item-content"><p><strong>OpenDNS 家庭盾版 DNS，官方介绍是 block adult content 阻止成人内容。</strong><br><strong>DoH:</strong></p>
-<ul>
-<li><code>https://familyshield.opendns.com/dns-query</code></li>
-<li><code>https://doh.familyshield.opendns.com/dns-query</code></li>
-<li><code>https://familyshield.sse.cisco.com/dns-query</code></li>
-</ul>
-<p><strong>DoT:</strong></p>
-<ul>
-<li><code>familyshield.opendns.com</code></li>
-<li><code>familyshield.sse.cisco.com</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-
-
-<h3 id="Yandex-DNS"><a href="#Yandex-DNS" class="headerlink" title="Yandex DNS"></a>Yandex DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">安全版（病毒和钓鱼防御）</button><button type="button" class="tab">家庭版（拦截成人内容）</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://common.dot.dns.yandex.net</code></li>
-<li><code>https://77.88.8.8</code></li>
-<li><code>https://2a02:6b8::feed:0ff</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>common.dot.dns.yandex.net</code></li>
-<li><code>77.88.8.8</code></li>
-<li><code>2a02:6b8::feed:0ff</code></li>
-</ul></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://safe.dot.dns.yandex.net</code></p>
-<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>safe.dot.dns.yandex.net</code></p></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://family.dot.dns.yandex.net</code></p>
-<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>family.dot.dns.yandex.net</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>全球公共DNS</tag>
-        <tag>加密DNS</tag>
-        <tag>国内加密DNS</tag>
-        <tag>国外加密DNS</tag>
-        <tag>国外DNS</tag>
-        <tag>国内DNS</tag>
-        <tag>公共DNS</tag>
-        <tag>安全DNS</tag>
-        <tag>CloudflareDNS</tag>
-        <tag>GoogleDNS</tag>
-        <tag>360DNS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo+Butterfly主题更详细的Front-matter</title>
     <url>/archives/d2f6e5e8.html</url>
     <content><![CDATA[<blockquote>
@@ -732,11 +515,228 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>Butterfly</tag>
         <tag>教程</tag>
         <tag>Hexo Blog</tag>
         <tag>主题</tag>
+        <tag>Butterfly</tag>
         <tag>Butterfly主题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
+    <url>/archives/12986.html</url>
+    <content><![CDATA[<blockquote>
+<p>在当今数字化时代，网络安全已成为我们每个人关心的重点。域名系统（DNS）作为互联网的电话簿，其安全性至关重要。传统的DNS查询缺乏加密保护，容易遭受各种形式的网络攻击，如DNS劫持和DNS污染。为了解决这些问题，DoT（DNS over TLS）和DoH（DNS over HTTPS）应运而生，它们通过加密技术来确保DNS查询的安全性和隐私性。</p>
+</blockquote>
+<p>今天给大家分享一些国内知名免费公共DoT&#x2F;DoH加密DNS服务器。</p>
+<h2 id="国内主流DNS服务器"><a href="#国内主流DNS服务器" class="headerlink" title="国内主流DNS服务器"></a>国内主流DNS服务器</h2><h3 id="1-腾讯-DNS-DNSPod"><a href="#1-腾讯-DNS-DNSPod" class="headerlink" title="1.腾讯 DNS (DNSPod)"></a>1.<strong>腾讯 DNS (DNSPod)</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoH地址(国密SM2)基于腾讯云政企国密解决方案</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.pub/dns-query</code></li>
+<li><code>https://1.12.12.12/dns-query</code></li>
+<li><code>https://120.53.53.53/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>https://sm2.doh.pub/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.pub</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>1.12.12.12</code></li>
+<li><code>120.53.53.53</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="阿里云公共-DNS"><a href="#阿里云公共-DNS" class="headerlink" title="阿里云公共 DNS"></a><strong>阿里云公共 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.alidns.com/dns-query</code></li>
+<li><code>https://223.5.5.5/dns-query</code></li>
+<li><code>https://223.6.6.6/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.alidns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>223.5.5.5</code></li>
+<li><code>223.6.6.6</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="360-Secure-安全-DNS"><a href="#360-Secure-安全-DNS" class="headerlink" title="360 Secure(安全) DNS"></a><strong>360 Secure(安全) DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.360.cn/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.360.cn</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>101.226.4.6</code></li>
+<li><code>218.30.118.6</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="信风公共-DNS"><a href="#信风公共-DNS" class="headerlink" title="信风公共 DNS"></a>信风公共 DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.114dns.com/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>tls.dns114.cn</code></li>
+</ul></div><div class="tab-item-content"><p><code>114.11.114.114</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="TWNIC-DNS-Quad-101"><a href="#TWNIC-DNS-Quad-101" class="headerlink" title="TWNIC DNS Quad 101"></a>TWNIC DNS Quad 101</h3><p>由台湾网络资讯中心提供的免费公共 DNS 服务，以台湾地区为人熟悉的地标 台北 101 作为地址。</p>
+<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.twnic.tw/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.twnic.tw</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h2 id="国外主流DNS服务器"><a href="#国外主流DNS服务器" class="headerlink" title="国外主流DNS服务器"></a>国外主流DNS服务器</h2><h3 id="Google-Public-DNS"><a href="#Google-Public-DNS" class="headerlink" title="Google Public DNS"></a>Google Public DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.google/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.google</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>8.8.8.8</code></li>
+<li><code>8.8.4.4</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Cloudflare-DNS"><a href="#Cloudflare-DNS" class="headerlink" title="Cloudflare DNS"></a>Cloudflare DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">安全版 (拦截恶意代码)</button><button type="button" class="tab">家庭版(拦截恶意代码和成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://cloudflare-dns.com/dns-query</code></li>
+<li><code>https://dns.cloudflare.com/dns-query</code></li>
+<li><code>https://1.1.1.1/dns-query</code></li>
+<li><code>https://1.0.0.1/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>cloudflare-dns.com</code></li>
+<li><code>dns.cloudflare.com</code></li>
+<li><code>one.one.one.one</code></li>
+<li><code>1dot1dot1dot1.cloudflare-dns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>1.1.1.1</code></li>
+<li><code>1.0.0.1</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
+<ul>
+<li><code>https://security.cloudflare-dns.com/dns-query</code></li>
+</ul>
+<p><strong>DoT：</strong></p>
+<ul>
+<li><code>security.cloudflare-dns.com</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
+<ul>
+<li><code>https://family.cloudflare-dns.com/dns-query</code></li>
+</ul>
+<p><strong>DoT:</strong></p>
+<ul>
+<li><code>family.cloudflare-dns.com</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Quad9-DNS"><a href="#Quad9-DNS" class="headerlink" title="Quad9 DNS"></a><strong>Quad9 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.quad9.net/dns-query</code></li>
+<li><code>https://dns9.quad9.net/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.quad9.net</code></li>
+<li><code>dns9.quad9.net</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>9.9.9.9</code></li>
+<li><code>149.112.112.112</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="AdGuard-DNS"><a href="#AdGuard-DNS" class="headerlink" title="AdGuard DNS"></a><strong>AdGuard DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">家庭保护服务器 (拦截成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.adguard.com/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.adguard-dns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>94.140.14.14</code></li>
+<li><code>94.140.15.15</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoT</strong>：</p>
+<ul>
+<li><code>family.adguard.com</code></li>
+</ul>
+<p><strong>DoH</strong>：</p>
+<ul>
+<li><code>https://family.adguard.com/dns-query</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="NextDNS"><a href="#NextDNS" class="headerlink" title="NextDNS"></a><strong>NextDNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.nextdns.io</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.nextdns.io</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="DNS-SB"><a href="#DNS-SB" class="headerlink" title="DNS.SB"></a><strong>DNS.SB</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.dns.sb/dns-query</code></li>
+<li><code>https://doh.sb/dns-query</code></li>
+<li><code>https://dns.sb/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.sb</code></li>
+<li><code>dns.sb</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Cisco-OpenDNS-Cisco-Umbrella"><a href="#Cisco-OpenDNS-Cisco-Umbrella" class="headerlink" title="Cisco OpenDNS&#x2F;Cisco Umbrella"></a><strong>Cisco OpenDNS&#x2F;Cisco Umbrella</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">OpenDNS FamilyShield</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><a href="https://doh.opendns.com/dns-query" rel="external nofollow noreferrer">https://doh.opendns.com/dns-query</a></li>
+<li><a href="https://dns.opendns.com/dns-query" rel="external nofollow noreferrer">https://dns.opendns.com/dns-query</a></li>
+<li><a href="https://doh.umbrella.com/dns-query" rel="external nofollow noreferrer">https://doh.umbrella.com/dns-query</a></li>
+<li><a href="https://dns.umbrella.com/dns-query" rel="external nofollow noreferrer">https://dns.umbrella.com/dns-query</a></li>
+<li><a href="https://dns.sse.cisco.com/dns-query" rel="external nofollow noreferrer">https://dns.sse.cisco.com/dns-query</a></li>
+</ul></div><div class="tab-item-content"><ul>
+<li>dns.opendns.com</li>
+<li>dns.umbrella.com</li>
+<li>dns.sse.cisco.com</li>
+</ul></div><div class="tab-item-content"><p><strong>OpenDNS 家庭盾版 DNS，官方介绍是 block adult content 阻止成人内容。</strong><br><strong>DoH:</strong></p>
+<ul>
+<li><code>https://familyshield.opendns.com/dns-query</code></li>
+<li><code>https://doh.familyshield.opendns.com/dns-query</code></li>
+<li><code>https://familyshield.sse.cisco.com/dns-query</code></li>
+</ul>
+<p><strong>DoT:</strong></p>
+<ul>
+<li><code>familyshield.opendns.com</code></li>
+<li><code>familyshield.sse.cisco.com</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+
+
+<h3 id="Yandex-DNS"><a href="#Yandex-DNS" class="headerlink" title="Yandex DNS"></a>Yandex DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">安全版（病毒和钓鱼防御）</button><button type="button" class="tab">家庭版（拦截成人内容）</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://common.dot.dns.yandex.net</code></li>
+<li><code>https://77.88.8.8</code></li>
+<li><code>https://2a02:6b8::feed:0ff</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>common.dot.dns.yandex.net</code></li>
+<li><code>77.88.8.8</code></li>
+<li><code>2a02:6b8::feed:0ff</code></li>
+</ul></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://safe.dot.dns.yandex.net</code></p>
+<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>safe.dot.dns.yandex.net</code></p></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://family.dot.dns.yandex.net</code></p>
+<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>family.dot.dns.yandex.net</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>全球公共DNS</tag>
+        <tag>加密DNS</tag>
+        <tag>国内加密DNS</tag>
+        <tag>国外加密DNS</tag>
+        <tag>国外DNS</tag>
+        <tag>国内DNS</tag>
+        <tag>公共DNS</tag>
+        <tag>安全DNS</tag>
+        <tag>CloudflareDNS</tag>
+        <tag>GoogleDNS</tag>
+        <tag>360DNS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>给Butterfly主题文章顶部添加波浪效果</title>
+    <url>/archives/f9a47848.html</url>
+    <content><![CDATA[<p>本文简要介绍如何在Hexo博客的Butterfly主题中，为每篇文章顶部添加一个动态波浪效果。</p>
+<p>效果图：</p>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.22/img/archives/20250322001104.png"></p>
+<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>修改主题目录： <code>themes/butterfly/layout/includes/header/index.pug</code> 在：</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br></pre></td></tr></table></figure>
+
+<p>代码后面添加如下代码，<code>+</code>是要添加的部分，记得删除前面的<code>+</code>号。</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br><span class="line"><span class="addition">+   section.main-hero-waves-area.waves-area</span></span><br><span class="line"><span class="addition">+     svg.waves-svg(xmlns=&#x27;http://www.w3.org/2000/svg&#x27;, xlink=&#x27;http://www.w3.org/1999/xlink&#x27;, viewBox=&#x27;0 24 150 28&#x27;, preserveAspectRatio=&#x27;none&#x27;, shape-rendering=&#x27;auto&#x27;)</span></span><br><span class="line"><span class="addition">+       defs</span></span><br><span class="line"><span class="addition">+         path#gentle-wave(d=&#x27;M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z&#x27;)</span></span><br><span class="line"><span class="addition">+       g.parallax</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;0&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;3&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;5&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;7&#x27;)</span></span><br><span class="line">    #post-top-cover</span><br><span class="line">      img#post-top-bg(class=&#x27;nolazyload&#x27; src=bg_img)</span><br><span class="line">  else if is_home()</span><br><span class="line">    #site-info</span><br><span class="line">      h1#site-title=site_title</span><br><span class="line">      if theme.subtitle.enable</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>_config.butterfly.yml</code>配置文件中的 <code>[inject.head]</code> 或者自定义 css 中 引入以下 css</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 波浪css */</span></span><br><span class="line"><span class="selector-class">.main-hero-waves-area</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Animation */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: move-forever <span class="number">25s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.55</span>, <span class="number">0.5</span>, <span class="number">0.45</span>, <span class="number">0.5</span>) infinite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9febd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe82</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe36</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 黑色模式背景 */</span></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171dc8</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d80</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d3e</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move-forever &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-<span class="number">90px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">85px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Shrinking for mobile*/</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">40px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="comment"># 自定义css</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/style.css&quot;&gt;</span> <span class="comment">#改成自己的css地址</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<div class="note primary flat"><p>需要注意的是 css 中<code>fill属性</code>可以控制波浪颜色，最好使其中一个颜色与背景颜色一致，否则会显的有点奇怪。</p>
+</div>
+
+]]></content>
+      <categories>
+        <category>技术教程</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Butterfly</tag>
+        <tag>Butterfly魔改</tag>
       </tags>
   </entry>
   <entry>
