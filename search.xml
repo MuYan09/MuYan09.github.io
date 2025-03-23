@@ -255,6 +255,192 @@
       </tags>
   </entry>
   <entry>
+    <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
+    <url>/archives/12986.html</url>
+    <content><![CDATA[<blockquote>
+<p>在当今数字化时代，网络安全已成为我们每个人关心的重点。域名系统（DNS）作为互联网的电话簿，其安全性至关重要。传统的DNS查询缺乏加密保护，容易遭受各种形式的网络攻击，如DNS劫持和DNS污染。为了解决这些问题，DoT（DNS over TLS）和DoH（DNS over HTTPS）应运而生，它们通过加密技术来确保DNS查询的安全性和隐私性。</p>
+</blockquote>
+<p>今天给大家分享一些国内知名免费公共DoT&#x2F;DoH加密DNS服务器。</p>
+<h2 id="国内主流DNS服务器"><a href="#国内主流DNS服务器" class="headerlink" title="国内主流DNS服务器"></a>国内主流DNS服务器</h2><h3 id="1-腾讯-DNS-DNSPod"><a href="#1-腾讯-DNS-DNSPod" class="headerlink" title="1.腾讯 DNS (DNSPod)"></a>1.<strong>腾讯 DNS (DNSPod)</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoH地址(国密SM2)基于腾讯云政企国密解决方案</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.pub/dns-query</code></li>
+<li><code>https://1.12.12.12/dns-query</code></li>
+<li><code>https://120.53.53.53/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>https://sm2.doh.pub/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.pub</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>1.12.12.12</code></li>
+<li><code>120.53.53.53</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="阿里云公共-DNS"><a href="#阿里云公共-DNS" class="headerlink" title="阿里云公共 DNS"></a><strong>阿里云公共 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.alidns.com/dns-query</code></li>
+<li><code>https://223.5.5.5/dns-query</code></li>
+<li><code>https://223.6.6.6/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.alidns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>223.5.5.5</code></li>
+<li><code>223.6.6.6</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="360-Secure-安全-DNS"><a href="#360-Secure-安全-DNS" class="headerlink" title="360 Secure(安全) DNS"></a><strong>360 Secure(安全) DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.360.cn/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.360.cn</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>101.226.4.6</code></li>
+<li><code>218.30.118.6</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="信风公共-DNS"><a href="#信风公共-DNS" class="headerlink" title="信风公共 DNS"></a>信风公共 DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.114dns.com/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>tls.dns114.cn</code></li>
+</ul></div><div class="tab-item-content"><p><code>114.11.114.114</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="TWNIC-DNS-Quad-101"><a href="#TWNIC-DNS-Quad-101" class="headerlink" title="TWNIC DNS Quad 101"></a>TWNIC DNS Quad 101</h3><p>由台湾网络资讯中心提供的免费公共 DNS 服务，以台湾地区为人熟悉的地标 台北 101 作为地址。</p>
+<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.twnic.tw/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.twnic.tw</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h2 id="国外主流DNS服务器"><a href="#国外主流DNS服务器" class="headerlink" title="国外主流DNS服务器"></a>国外主流DNS服务器</h2><h3 id="Google-Public-DNS"><a href="#Google-Public-DNS" class="headerlink" title="Google Public DNS"></a>Google Public DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.google/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.google</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>8.8.8.8</code></li>
+<li><code>8.8.4.4</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Cloudflare-DNS"><a href="#Cloudflare-DNS" class="headerlink" title="Cloudflare DNS"></a>Cloudflare DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">安全版 (拦截恶意代码)</button><button type="button" class="tab">家庭版(拦截恶意代码和成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://cloudflare-dns.com/dns-query</code></li>
+<li><code>https://dns.cloudflare.com/dns-query</code></li>
+<li><code>https://1.1.1.1/dns-query</code></li>
+<li><code>https://1.0.0.1/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>cloudflare-dns.com</code></li>
+<li><code>dns.cloudflare.com</code></li>
+<li><code>one.one.one.one</code></li>
+<li><code>1dot1dot1dot1.cloudflare-dns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>1.1.1.1</code></li>
+<li><code>1.0.0.1</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
+<ul>
+<li><code>https://security.cloudflare-dns.com/dns-query</code></li>
+</ul>
+<p><strong>DoT：</strong></p>
+<ul>
+<li><code>security.cloudflare-dns.com</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
+<ul>
+<li><code>https://family.cloudflare-dns.com/dns-query</code></li>
+</ul>
+<p><strong>DoT:</strong></p>
+<ul>
+<li><code>family.cloudflare-dns.com</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Quad9-DNS"><a href="#Quad9-DNS" class="headerlink" title="Quad9 DNS"></a><strong>Quad9 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.quad9.net/dns-query</code></li>
+<li><code>https://dns9.quad9.net/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.quad9.net</code></li>
+<li><code>dns9.quad9.net</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>9.9.9.9</code></li>
+<li><code>149.112.112.112</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="AdGuard-DNS"><a href="#AdGuard-DNS" class="headerlink" title="AdGuard DNS"></a><strong>AdGuard DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">家庭保护服务器 (拦截成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.adguard.com/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.adguard-dns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>94.140.14.14</code></li>
+<li><code>94.140.15.15</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoT</strong>：</p>
+<ul>
+<li><code>family.adguard.com</code></li>
+</ul>
+<p><strong>DoH</strong>：</p>
+<ul>
+<li><code>https://family.adguard.com/dns-query</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="NextDNS"><a href="#NextDNS" class="headerlink" title="NextDNS"></a><strong>NextDNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.nextdns.io</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.nextdns.io</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="DNS-SB"><a href="#DNS-SB" class="headerlink" title="DNS.SB"></a><strong>DNS.SB</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.dns.sb/dns-query</code></li>
+<li><code>https://doh.sb/dns-query</code></li>
+<li><code>https://dns.sb/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.sb</code></li>
+<li><code>dns.sb</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Cisco-OpenDNS-Cisco-Umbrella"><a href="#Cisco-OpenDNS-Cisco-Umbrella" class="headerlink" title="Cisco OpenDNS&#x2F;Cisco Umbrella"></a><strong>Cisco OpenDNS&#x2F;Cisco Umbrella</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">OpenDNS FamilyShield</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><a href="https://doh.opendns.com/dns-query" rel="external nofollow noreferrer">https://doh.opendns.com/dns-query</a></li>
+<li><a href="https://dns.opendns.com/dns-query" rel="external nofollow noreferrer">https://dns.opendns.com/dns-query</a></li>
+<li><a href="https://doh.umbrella.com/dns-query" rel="external nofollow noreferrer">https://doh.umbrella.com/dns-query</a></li>
+<li><a href="https://dns.umbrella.com/dns-query" rel="external nofollow noreferrer">https://dns.umbrella.com/dns-query</a></li>
+<li><a href="https://dns.sse.cisco.com/dns-query" rel="external nofollow noreferrer">https://dns.sse.cisco.com/dns-query</a></li>
+</ul></div><div class="tab-item-content"><ul>
+<li>dns.opendns.com</li>
+<li>dns.umbrella.com</li>
+<li>dns.sse.cisco.com</li>
+</ul></div><div class="tab-item-content"><p><strong>OpenDNS 家庭盾版 DNS，官方介绍是 block adult content 阻止成人内容。</strong><br><strong>DoH:</strong></p>
+<ul>
+<li><code>https://familyshield.opendns.com/dns-query</code></li>
+<li><code>https://doh.familyshield.opendns.com/dns-query</code></li>
+<li><code>https://familyshield.sse.cisco.com/dns-query</code></li>
+</ul>
+<p><strong>DoT:</strong></p>
+<ul>
+<li><code>familyshield.opendns.com</code></li>
+<li><code>familyshield.sse.cisco.com</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+
+
+<h3 id="Yandex-DNS"><a href="#Yandex-DNS" class="headerlink" title="Yandex DNS"></a>Yandex DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">安全版（病毒和钓鱼防御）</button><button type="button" class="tab">家庭版（拦截成人内容）</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://common.dot.dns.yandex.net</code></li>
+<li><code>https://77.88.8.8</code></li>
+<li><code>https://2a02:6b8::feed:0ff</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>common.dot.dns.yandex.net</code></li>
+<li><code>77.88.8.8</code></li>
+<li><code>2a02:6b8::feed:0ff</code></li>
+</ul></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://safe.dot.dns.yandex.net</code></p>
+<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>safe.dot.dns.yandex.net</code></p></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://family.dot.dns.yandex.net</code></p>
+<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>family.dot.dns.yandex.net</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>全球公共DNS</tag>
+        <tag>加密DNS</tag>
+        <tag>国内加密DNS</tag>
+        <tag>国外加密DNS</tag>
+        <tag>国外DNS</tag>
+        <tag>国内DNS</tag>
+        <tag>公共DNS</tag>
+        <tag>安全DNS</tag>
+        <tag>CloudflareDNS</tag>
+        <tag>GoogleDNS</tag>
+        <tag>360DNS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Hexo+Github搭建个人博客部署到Vercel并使用Github Action自动化编译部署</title>
     <url>/archives/Hexo-Github-Vercel-DeploymentTutorial.html</url>
     <content><![CDATA[<div class="note green icon-padding flat"><i class="note-icon fas fa-rocket"></i><p>这篇文章将教大家如何搭建Hexo博客程序，并部署到Github Pages+Vercel并通过Github Action自动化部署编译。</p>
@@ -564,6 +750,33 @@
         <tag>Hexo</tag>
         <tag>Butterfly</tag>
         <tag>Butterfly魔改</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
+    <url>/archives/c920ed04.html</url>
+    <content><![CDATA[<blockquote>
+<p>由于某些原因，jsdelivr项目的中国域名cdn.jsdelivr.net经历了备案注销，这直接导致了国内用户访问该服务时线路质量变得极不稳定。对于众多依赖jsdelivr作为静态资源加速服务的网站和应用而言，这意味着加载速度显著下降，稳定性也大打折扣。相比备案期间的表现，当前的服务水平确实难以匹敌。</p>
+<p>值得注意的是，在构建自己的jsdelivr镜像时，建议同时配置防盗链措施，以保护您的资源免受未经授权的使用，从而确保仅限内部或授权用户能够享受加速服务。通过这样的策略，不仅能够有效提升用户体验，还能在一定程度上减轻原服务的压力，促进网络资源的合理分配与利用。</p>
+<p>实施上述解决方案不仅能为您的用户提供更加流畅、稳定的访问体验，而且从长远来看，有助于提高您网站的整体性能表现及搜索引擎排名，进而吸引更多的流量与关注。</p>
+</blockquote>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318230931.png"></p>
+<h2 id="Nginx反代配置文件"><a href="#Nginx反代配置文件" class="headerlink" title="Nginx反代配置文件"></a>Nginx反代配置文件</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> cdn.yourdomain.com;</span><br><span class="line">    </span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /npm/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/npm/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /gh/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/gh/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	 </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#WP可选</span></span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /wp/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/wp/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用的是宝塔或者1Panel等其他面板程序可直接在<strong>反向代理</strong>中添加一条配置即可，如图下（以宝塔为例），发域名必备设置为<code>cdn.jsdelivr.net</code>：</p>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318224800.png"></p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将项目引用链接中的cdn.jsdelivr.net替换为你绑定的反代域名即可</p>
+]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>Npm镜像</tag>
+        <tag>Github镜像</tag>
+        <tag>Jsdelivr</tag>
+        <tag>自建Npm镜像</tag>
+        <tag>Jsdelivr反代</tag>
+        <tag>Jsdelivr加速</tag>
       </tags>
   </entry>
   <entry>
@@ -1976,219 +2189,6 @@ title 产品X的关键要素
         <tag>教程</tag>
         <tag>Hexo Blog</tag>
         <tag>主题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
-    <url>/archives/c920ed04.html</url>
-    <content><![CDATA[<blockquote>
-<p>由于某些原因，jsdelivr项目的中国域名cdn.jsdelivr.net经历了备案注销，这直接导致了国内用户访问该服务时线路质量变得极不稳定。对于众多依赖jsdelivr作为静态资源加速服务的网站和应用而言，这意味着加载速度显著下降，稳定性也大打折扣。相比备案期间的表现，当前的服务水平确实难以匹敌。</p>
-<p>值得注意的是，在构建自己的jsdelivr镜像时，建议同时配置防盗链措施，以保护您的资源免受未经授权的使用，从而确保仅限内部或授权用户能够享受加速服务。通过这样的策略，不仅能够有效提升用户体验，还能在一定程度上减轻原服务的压力，促进网络资源的合理分配与利用。</p>
-<p>实施上述解决方案不仅能为您的用户提供更加流畅、稳定的访问体验，而且从长远来看，有助于提高您网站的整体性能表现及搜索引擎排名，进而吸引更多的流量与关注。</p>
-</blockquote>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318230931.png"></p>
-<h2 id="Nginx反代配置文件"><a href="#Nginx反代配置文件" class="headerlink" title="Nginx反代配置文件"></a>Nginx反代配置文件</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> cdn.yourdomain.com;</span><br><span class="line">    </span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /npm/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/npm/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /gh/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/gh/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	 </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#WP可选</span></span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /wp/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/wp/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果你使用的是宝塔或者1Panel等其他面板程序可直接在<strong>反向代理</strong>中添加一条配置即可，如图下（以宝塔为例），发域名必备设置为<code>cdn.jsdelivr.net</code>：</p>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318224800.png"></p>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将项目引用链接中的cdn.jsdelivr.net替换为你绑定的反代域名即可</p>
-]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>Npm镜像</tag>
-        <tag>Github镜像</tag>
-        <tag>Jsdelivr</tag>
-        <tag>自建Npm镜像</tag>
-        <tag>Jsdelivr反代</tag>
-        <tag>Jsdelivr加速</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
-    <url>/archives/12986.html</url>
-    <content><![CDATA[<blockquote>
-<p>在当今数字化时代，网络安全已成为我们每个人关心的重点。域名系统（DNS）作为互联网的电话簿，其安全性至关重要。传统的DNS查询缺乏加密保护，容易遭受各种形式的网络攻击，如DNS劫持和DNS污染。为了解决这些问题，DoT（DNS over TLS）和DoH（DNS over HTTPS）应运而生，它们通过加密技术来确保DNS查询的安全性和隐私性。</p>
-</blockquote>
-<p>今天给大家分享一些国内知名免费公共DoT&#x2F;DoH加密DNS服务器。</p>
-<h2 id="国内主流DNS服务器"><a href="#国内主流DNS服务器" class="headerlink" title="国内主流DNS服务器"></a>国内主流DNS服务器</h2><h3 id="1-腾讯-DNS-DNSPod"><a href="#1-腾讯-DNS-DNSPod" class="headerlink" title="1.腾讯 DNS (DNSPod)"></a>1.<strong>腾讯 DNS (DNSPod)</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoH地址(国密SM2)基于腾讯云政企国密解决方案</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.pub/dns-query</code></li>
-<li><code>https://1.12.12.12/dns-query</code></li>
-<li><code>https://120.53.53.53/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>https://sm2.doh.pub/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.pub</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>1.12.12.12</code></li>
-<li><code>120.53.53.53</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="阿里云公共-DNS"><a href="#阿里云公共-DNS" class="headerlink" title="阿里云公共 DNS"></a><strong>阿里云公共 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.alidns.com/dns-query</code></li>
-<li><code>https://223.5.5.5/dns-query</code></li>
-<li><code>https://223.6.6.6/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.alidns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>223.5.5.5</code></li>
-<li><code>223.6.6.6</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="360-Secure-安全-DNS"><a href="#360-Secure-安全-DNS" class="headerlink" title="360 Secure(安全) DNS"></a><strong>360 Secure(安全) DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.360.cn/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.360.cn</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>101.226.4.6</code></li>
-<li><code>218.30.118.6</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="信风公共-DNS"><a href="#信风公共-DNS" class="headerlink" title="信风公共 DNS"></a>信风公共 DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.114dns.com/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>tls.dns114.cn</code></li>
-</ul></div><div class="tab-item-content"><p><code>114.11.114.114</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="TWNIC-DNS-Quad-101"><a href="#TWNIC-DNS-Quad-101" class="headerlink" title="TWNIC DNS Quad 101"></a>TWNIC DNS Quad 101</h3><p>由台湾网络资讯中心提供的免费公共 DNS 服务，以台湾地区为人熟悉的地标 台北 101 作为地址。</p>
-<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.twnic.tw/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.twnic.tw</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h2 id="国外主流DNS服务器"><a href="#国外主流DNS服务器" class="headerlink" title="国外主流DNS服务器"></a>国外主流DNS服务器</h2><h3 id="Google-Public-DNS"><a href="#Google-Public-DNS" class="headerlink" title="Google Public DNS"></a>Google Public DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.google/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.google</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>8.8.8.8</code></li>
-<li><code>8.8.4.4</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Cloudflare-DNS"><a href="#Cloudflare-DNS" class="headerlink" title="Cloudflare DNS"></a>Cloudflare DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">安全版 (拦截恶意代码)</button><button type="button" class="tab">家庭版(拦截恶意代码和成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://cloudflare-dns.com/dns-query</code></li>
-<li><code>https://dns.cloudflare.com/dns-query</code></li>
-<li><code>https://1.1.1.1/dns-query</code></li>
-<li><code>https://1.0.0.1/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>cloudflare-dns.com</code></li>
-<li><code>dns.cloudflare.com</code></li>
-<li><code>one.one.one.one</code></li>
-<li><code>1dot1dot1dot1.cloudflare-dns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>1.1.1.1</code></li>
-<li><code>1.0.0.1</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
-<ul>
-<li><code>https://security.cloudflare-dns.com/dns-query</code></li>
-</ul>
-<p><strong>DoT：</strong></p>
-<ul>
-<li><code>security.cloudflare-dns.com</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
-<ul>
-<li><code>https://family.cloudflare-dns.com/dns-query</code></li>
-</ul>
-<p><strong>DoT:</strong></p>
-<ul>
-<li><code>family.cloudflare-dns.com</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Quad9-DNS"><a href="#Quad9-DNS" class="headerlink" title="Quad9 DNS"></a><strong>Quad9 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.quad9.net/dns-query</code></li>
-<li><code>https://dns9.quad9.net/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.quad9.net</code></li>
-<li><code>dns9.quad9.net</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>9.9.9.9</code></li>
-<li><code>149.112.112.112</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="AdGuard-DNS"><a href="#AdGuard-DNS" class="headerlink" title="AdGuard DNS"></a><strong>AdGuard DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">家庭保护服务器 (拦截成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.adguard.com/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.adguard-dns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>94.140.14.14</code></li>
-<li><code>94.140.15.15</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoT</strong>：</p>
-<ul>
-<li><code>family.adguard.com</code></li>
-</ul>
-<p><strong>DoH</strong>：</p>
-<ul>
-<li><code>https://family.adguard.com/dns-query</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="NextDNS"><a href="#NextDNS" class="headerlink" title="NextDNS"></a><strong>NextDNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.nextdns.io</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.nextdns.io</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="DNS-SB"><a href="#DNS-SB" class="headerlink" title="DNS.SB"></a><strong>DNS.SB</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.dns.sb/dns-query</code></li>
-<li><code>https://doh.sb/dns-query</code></li>
-<li><code>https://dns.sb/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.sb</code></li>
-<li><code>dns.sb</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Cisco-OpenDNS-Cisco-Umbrella"><a href="#Cisco-OpenDNS-Cisco-Umbrella" class="headerlink" title="Cisco OpenDNS&#x2F;Cisco Umbrella"></a><strong>Cisco OpenDNS&#x2F;Cisco Umbrella</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">OpenDNS FamilyShield</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><a href="https://doh.opendns.com/dns-query" rel="external nofollow noreferrer">https://doh.opendns.com/dns-query</a></li>
-<li><a href="https://dns.opendns.com/dns-query" rel="external nofollow noreferrer">https://dns.opendns.com/dns-query</a></li>
-<li><a href="https://doh.umbrella.com/dns-query" rel="external nofollow noreferrer">https://doh.umbrella.com/dns-query</a></li>
-<li><a href="https://dns.umbrella.com/dns-query" rel="external nofollow noreferrer">https://dns.umbrella.com/dns-query</a></li>
-<li><a href="https://dns.sse.cisco.com/dns-query" rel="external nofollow noreferrer">https://dns.sse.cisco.com/dns-query</a></li>
-</ul></div><div class="tab-item-content"><ul>
-<li>dns.opendns.com</li>
-<li>dns.umbrella.com</li>
-<li>dns.sse.cisco.com</li>
-</ul></div><div class="tab-item-content"><p><strong>OpenDNS 家庭盾版 DNS，官方介绍是 block adult content 阻止成人内容。</strong><br><strong>DoH:</strong></p>
-<ul>
-<li><code>https://familyshield.opendns.com/dns-query</code></li>
-<li><code>https://doh.familyshield.opendns.com/dns-query</code></li>
-<li><code>https://familyshield.sse.cisco.com/dns-query</code></li>
-</ul>
-<p><strong>DoT:</strong></p>
-<ul>
-<li><code>familyshield.opendns.com</code></li>
-<li><code>familyshield.sse.cisco.com</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-
-
-<h3 id="Yandex-DNS"><a href="#Yandex-DNS" class="headerlink" title="Yandex DNS"></a>Yandex DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">安全版（病毒和钓鱼防御）</button><button type="button" class="tab">家庭版（拦截成人内容）</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://common.dot.dns.yandex.net</code></li>
-<li><code>https://77.88.8.8</code></li>
-<li><code>https://2a02:6b8::feed:0ff</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>common.dot.dns.yandex.net</code></li>
-<li><code>77.88.8.8</code></li>
-<li><code>2a02:6b8::feed:0ff</code></li>
-</ul></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://safe.dot.dns.yandex.net</code></p>
-<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>safe.dot.dns.yandex.net</code></p></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://family.dot.dns.yandex.net</code></p>
-<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>family.dot.dns.yandex.net</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>全球公共DNS</tag>
-        <tag>加密DNS</tag>
-        <tag>国内加密DNS</tag>
-        <tag>国外加密DNS</tag>
-        <tag>国外DNS</tag>
-        <tag>国内DNS</tag>
-        <tag>公共DNS</tag>
-        <tag>安全DNS</tag>
-        <tag>CloudflareDNS</tag>
-        <tag>GoogleDNS</tag>
-        <tag>360DNS</tag>
       </tags>
   </entry>
 </search>
