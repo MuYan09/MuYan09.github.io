@@ -6,7 +6,7 @@
   <link href="https://blog.3ms.run/atom.xml" rel="self"/>
   
   <link href="https://blog.3ms.run/"/>
-  <updated>2025-03-22T08:03:38.247Z</updated>
+  <updated>2025-03-22T15:00:32.566Z</updated>
   <id>https://blog.3ms.run/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Butterfly主题博客魔改美化教程总览（一）</title>
+    <link href="https://blog.3ms.run/archives/2fff1258.html"/>
+    <id>https://blog.3ms.run/archives/2fff1258.html</id>
+    <published>2025-03-22T13:51:54.000Z</published>
+    <updated>2025-03-22T15:00:32.566Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note orange no-icon modern"><p>本帖教程基于<strong>Hexo博客</strong>程序的 <strong>Butterfly主题</strong>编写 ，其中魔改&#x2F;美化内容大部分收集至各位大神的博客以及网络。</p><p>由于每位用户的根目录名称各不相同，本文中博客的根目录将统一使用<code>[BlogRoot]</code>这一标识符表示。</p><p>其中配置文件<code>_config.yml</code>，其路径为【BlogRoot&#x2F;_config.yml】。</p><p>主题的配置文件<code>_config.butterfly.yml</code>进行相应修改，该文件位于【BlogRoot&#x2F;_config.butterfly.yml】路径下。</p></div><div class="note warning flat"><p>本文包含有关修改源代码的内容，将会使用<code>diff</code>代码块来标记变更。在复制这些代码段时，请记得移除前面的加号（+）和减号（-）符号，其中（+）号代码添加的代码，（-）代表这整行代码需要删除。</p></div><h2 id="自定义CSS-JS方法"><a href="#自定义CSS-JS方法" class="headerlink" title="自定义CSS&#x2F;JS方法"></a>自定义CSS&#x2F;JS方法</h2><p>CSS：在<code>[BlogRoot]/source/css/</code>目录下新建：daliyuer.css，名称可自定义。</p><p>JS：在<code>[BlogRoot]/source/js/</code>目录下新建：daliyuer.js，名称可自定义。</p><p>如没有 <strong>css</strong>跟 <strong>js</strong> 目录需自建。</p><details class="toggle" ><summary class="toggle-button" style="">点击查看教程</summary><div class="toggle-content"><p>编辑主题配置文件<code>_config.butterfly.yml</code>在<code>inject-&gt;head</code> or <code>inject-&gt;bottom</code>添加如下两行。</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/daliyuer.css&quot;&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">bottom:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">type=&quot;text/javascript&quot;</span> <span class="string">src=&quot;/js/daliyuer.js&quot;&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></div></details><h2 id="文章页调整"><a href="#文章页调整" class="headerlink" title="文章页调整"></a>文章页调整</h2><h3 id="文章顶部添加波浪效果"><a href="#文章顶部添加波浪效果" class="headerlink" title="文章顶部添加波浪效果"></a>文章顶部添加波浪效果</h3><p>教程地址：</p><a href="https://blog.3ms.run/archives/f9a47848.html" target="_blank" title="给Butterfly主题文章顶部添加波浪效果" referrerPolicy="no-referrer" class="yqlink_card"><div class="yqlink_icon"><img src="https://blog.3ms.run/img/avatar-icon.jpg" class="no-lightbox"></div><div class="yqlink_content"><div class="yqlink_title">给Butterfly主题文章顶部添加波浪效果</div><div class="yqlink_desc">ZeroLatency</div></div></a><h3 id="文章版权样式微调"><a href="#文章版权样式微调" class="headerlink" title="文章版权样式微调"></a>文章版权样式微调</h3><p>在自建的CSS文件内 [blogRoot]&#x2F;source&#x2F;css&#x2F;daliyuer.css 里新增如下内容</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 版权样式调整 */</span></span><br><span class="line"><span class="selector-id">#post</span> <span class="selector-class">.post-copyright</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--daliyuer-card-bg);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1rem</span> <span class="number">1.3rem</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border);</span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">transition</span>: <span class="number">0.3s</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">1.5rem</span> <span class="number">0px</span> <span class="number">0.5rem</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#post</span> <span class="selector-class">.post-copyright</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">22px</span>;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">77px</span>;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;\e039&quot;</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">180px</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;iconfont&quot;</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--icat-fontcolor);</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0.1</span>;</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">7px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 版权样式调整end */</span></span><br></pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">       <span class="attr">--daliyuer-card-bg</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&#x27;dark&#x27;</span>]</span> &#123;</span><br><span class="line">       <span class="attr">--daliyuer-card-bg</span>: <span class="number">#1b1c20</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;div class=&quot;note orange no-icon modern&quot;&gt;&lt;p&gt;本帖教程基于&lt;strong&gt;Hexo博客&lt;/strong&gt;程序的 &lt;strong&gt;Butterfly主题&lt;/strong&gt;编写 ，其中魔改&amp;#x2F;美化内容大部分收集至各位大神的博客以及网络。</summary>
+      
+    
+    
+    
+    <category term="技术教程" scheme="https://blog.3ms.run/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Hexo" scheme="https://blog.3ms.run/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
+    
+    <category term="Butterfly" scheme="https://blog.3ms.run/tags/Butterfly/"/>
+    
+    <category term="Butterfly魔改" scheme="https://blog.3ms.run/tags/Butterfly%E9%AD%94%E6%94%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>给Butterfly主题文章顶部添加波浪效果</title>
@@ -141,13 +171,13 @@
     
     <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
     
+    <category term="Butterfly" scheme="https://blog.3ms.run/tags/Butterfly/"/>
+    
     <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
     
     <category term="Hexo Blog" scheme="https://blog.3ms.run/tags/Hexo-Blog/"/>
     
     <category term="主题" scheme="https://blog.3ms.run/tags/%E4%B8%BB%E9%A2%98/"/>
-    
-    <category term="Butterfly" scheme="https://blog.3ms.run/tags/Butterfly/"/>
     
     <category term="Butterfly主题" scheme="https://blog.3ms.run/tags/Butterfly%E4%B8%BB%E9%A2%98/"/>
     
