@@ -1,6 +1,7 @@
 # hexo robots.txt
 User-agent: *
 Allow: /
+Disallow: /go.html?u=
 
 Sitemap: https://blog.3ms.run/sitemap.xml
 Sitemap: https://blog.3ms.run/sitemap.txt
