@@ -102,33 +102,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
-    <url>/archives/c920ed04.html</url>
-    <content><![CDATA[<blockquote>
-<p>由于某些原因，jsdelivr项目的中国域名cdn.jsdelivr.net经历了备案注销，这直接导致了国内用户访问该服务时线路质量变得极不稳定。对于众多依赖jsdelivr作为静态资源加速服务的网站和应用而言，这意味着加载速度显著下降，稳定性也大打折扣。相比备案期间的表现，当前的服务水平确实难以匹敌。</p>
-<p>值得注意的是，在构建自己的jsdelivr镜像时，建议同时配置防盗链措施，以保护您的资源免受未经授权的使用，从而确保仅限内部或授权用户能够享受加速服务。通过这样的策略，不仅能够有效提升用户体验，还能在一定程度上减轻原服务的压力，促进网络资源的合理分配与利用。</p>
-<p>实施上述解决方案不仅能为您的用户提供更加流畅、稳定的访问体验，而且从长远来看，有助于提高您网站的整体性能表现及搜索引擎排名，进而吸引更多的流量与关注。</p>
-</blockquote>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318230931.png"></p>
-<h2 id="Nginx反代配置文件"><a href="#Nginx反代配置文件" class="headerlink" title="Nginx反代配置文件"></a>Nginx反代配置文件</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> cdn.yourdomain.com;</span><br><span class="line">    </span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /npm/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/npm/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /gh/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/gh/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	 </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#WP可选</span></span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /wp/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/wp/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果你使用的是宝塔或者1Panel等其他面板程序可直接在<strong>反向代理</strong>中添加一条配置即可，如图下（以宝塔为例），发域名必备设置为<code>cdn.jsdelivr.net</code>：</p>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318224800.png"></p>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将项目引用链接中的cdn.jsdelivr.net替换为你绑定的反代域名即可</p>
-]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>Npm镜像</tag>
-        <tag>Github镜像</tag>
-        <tag>Jsdelivr</tag>
-        <tag>自建Npm镜像</tag>
-        <tag>Jsdelivr反代</tag>
-        <tag>Jsdelivr加速</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
     <url>/archives/12986.html</url>
     <content><![CDATA[<blockquote>
@@ -315,217 +288,61 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo+Butterfly主题更详细的Front-matter</title>
-    <url>/archives/d2f6e5e8.html</url>
-    <content><![CDATA[<blockquote>
-<p>Front-matter 是文件开头的 YAML 或 JSON 代码块，用于配置写作设置。 以 YAML 格式书写时，Front-matter 以三个破折号结束；以 JSON 格式书写时，Front-matter 以三个分号结束。</p>
-</blockquote>
-<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+    <title>给Butterfly主题文章顶部添加波浪效果</title>
+    <url>/archives/f9a47848.html</url>
+    <content><![CDATA[<p>本文简要介绍如何在Hexo博客的Butterfly主题中，为每篇文章顶部添加一个动态波浪效果。</p>
+<p>效果图：</p>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.22/img/archives/20250322001104.png"></p>
+<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>修改主题目录： <code>themes/butterfly/layout/includes/header/index.pug</code> 在：</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br></pre></td></tr></table></figure>
 
-<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;title&quot;: &quot;Hello World&quot;,</span><br><span class="line">&quot;date&quot;: &quot;2013/7/13 20:46:25&quot;</span><br><span class="line">;;;</span><br></pre></td></tr></table></figure>
+<p>代码后面添加如下代码，<code>+</code>是要添加的部分，记得删除前面的<code>+</code>号。</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br><span class="line"><span class="addition">+   section.main-hero-waves-area.waves-area</span></span><br><span class="line"><span class="addition">+     svg.waves-svg(xmlns=&#x27;http://www.w3.org/2000/svg&#x27;, xlink=&#x27;http://www.w3.org/1999/xlink&#x27;, viewBox=&#x27;0 24 150 28&#x27;, preserveAspectRatio=&#x27;none&#x27;, shape-rendering=&#x27;auto&#x27;)</span></span><br><span class="line"><span class="addition">+       defs</span></span><br><span class="line"><span class="addition">+         path#gentle-wave(d=&#x27;M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z&#x27;)</span></span><br><span class="line"><span class="addition">+       g.parallax</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;0&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;3&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;5&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;7&#x27;)</span></span><br><span class="line">    #post-top-cover</span><br><span class="line">      img#post-top-bg(class=&#x27;nolazyload&#x27; src=bg_img)</span><br><span class="line">  else if is_home()</span><br><span class="line">    #site-info</span><br><span class="line">      h1#site-title=site_title</span><br><span class="line">      if theme.subtitle.enable</span><br></pre></td></tr></table></figure>
 
-<h2 id="文章的-Front-matter"><a href="#文章的-Front-matter" class="headerlink" title="文章的 Front-matter"></a>文章的 Front-matter</h2><table>
-<thead>
-<tr>
-<th>写法</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>title</td>
-<td>【必需】文章标题 文章的文件名</td>
-</tr>
-<tr>
-<td>date</td>
-<td>【必需】文章创建日期</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>【可选】文章更新日期</td>
-</tr>
-<tr>
-<td>tags</td>
-<td>【可选】文章标签</td>
-</tr>
-<tr>
-<td>categories</td>
-<td>【可选】文章分类</td>
-</tr>
-<tr>
-<td>sticky</td>
-<td>【可选】文章置顶，sticky: 1属性来把这篇文章置顶。数值越大，置顶的优先级越大。</td>
-</tr>
-<tr>
-<td>keywords</td>
-<td>【可选】文章关键字</td>
-</tr>
-<tr>
-<td>description</td>
-<td>【可选】文章描述</td>
-</tr>
-<tr>
-<td>top_img</td>
-<td>【可选】文章顶部图片</td>
-</tr>
-<tr>
-<td>cover</td>
-<td>【可选】文章缩略图(如果没有设置 top_img,文章页顶部将显示缩略图，可设为 false&#x2F;图片地址&#x2F;留空)</td>
-</tr>
-<tr>
-<td>comments</td>
-<td>【可选】显示文章评论模块(默认 true)</td>
-</tr>
-<tr>
-<td>toc</td>
-<td>【可选】显示文章 TOC(默认为设置中 toc 的 enable 配置)</td>
-</tr>
-<tr>
-<td>toc_number</td>
-<td>【可选】显示 toc_number(默认为设置中 toc 的 number 配置)</td>
-</tr>
-<tr>
-<td>toc_style_simple</td>
-<td>【可选】显示 toc 简洁模式</td>
-</tr>
-<tr>
-<td>copyright</td>
-<td>【可选】显示文章版权模块(默认为设置中 post_copyright 的 enable 配置)</td>
-</tr>
-<tr>
-<td>copyright_author</td>
-<td>【可选】文章版权模块的<code>文章作者</code></td>
-</tr>
-<tr>
-<td>copyright_author_href</td>
-<td>【可选】文章版权模块的<code>文章作者</code>链接</td>
-</tr>
-<tr>
-<td>copyright_url</td>
-<td>【可选】文章版权模块的<code>文章连结</code>链接</td>
-</tr>
-<tr>
-<td>copyright_info</td>
-<td>【可选】文章版权模块的<code>版权声明</code>文字</td>
-</tr>
-<tr>
-<td>mathjax</td>
-<td>【可选】显示 mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false )</td>
-</tr>
-<tr>
-<td>katex</td>
-<td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false )</td>
-</tr>
-<tr>
-<td>aplayer</td>
-<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的<code>音乐</code> 配置</td>
-</tr>
-<tr>
-<td>highlight_shrink</td>
-<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中 highlight_shrink 的配置)</td>
-</tr>
-<tr>
-<td>aside</td>
-<td>【可选】显示侧边栏 (默认 true)</td>
-</tr>
-<tr>
-<td>abcjs</td>
-<td>【可选】加载 abcjs (当设置 abcjs 的 per_page: false 时，才需要配置，默认 false )</td>
-</tr>
-<tr>
-<td>noticeOutdate</td>
-<td>【可选】文章过期提醒 (默认为设置中 noticeOutdate 的 enable 配置)</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>然后在<code>_config.butterfly.yml</code>配置文件中的 <code>[inject.head]</code> 或者自定义 css 中 引入以下 css</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 波浪css */</span></span><br><span class="line"><span class="selector-class">.main-hero-waves-area</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Animation */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: move-forever <span class="number">25s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.55</span>, <span class="number">0.5</span>, <span class="number">0.45</span>, <span class="number">0.5</span>) infinite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9febd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe82</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe36</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 黑色模式背景 */</span></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171dc8</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d80</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d3e</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move-forever &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-<span class="number">90px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">85px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Shrinking for mobile*/</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">40px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="页面的-Front-matter"><a href="#页面的-Front-matter" class="headerlink" title="页面的 Front-matter"></a>页面的 Front-matter</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>title</td>
-<td>【必需】页面标题</td>
-</tr>
-<tr>
-<td>date</td>
-<td>【必需】页面创建日期</td>
-</tr>
-<tr>
-<td>type</td>
-<td>【必需】标签、分类和友情链接三个页面需要配置</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>【可选】页面更新日期</td>
-</tr>
-<tr>
-<td>description</td>
-<td>【可选】页面描述</td>
-</tr>
-<tr>
-<td>keywords</td>
-<td>【可选】页面关键字</td>
-</tr>
-<tr>
-<td>comments</td>
-<td>【可选】显示页面评论模块 (默认 true)</td>
-</tr>
-<tr>
-<td>top_img</td>
-<td>【可选】页面顶部图片</td>
-</tr>
-<tr>
-<td>mathjax</td>
-<td>【可选】显示 mathjax (当设置 mathjax 的 per_page: false 时，才需要配置，默认 false)</td>
-</tr>
-<tr>
-<td>katex</td>
-<td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false)</td>
-</tr>
-<tr>
-<td>aside</td>
-<td>【可选】显示侧边栏 (默认 true)</td>
-</tr>
-<tr>
-<td>aplayer</td>
-<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的<code>音乐</code> 配置</td>
-</tr>
-<tr>
-<td>highlight_shrink</td>
-<td>【可选】配置代码框是否展开 (true&#x2F;false) (默认为设置中 highlight_shrink 的配置)</td>
-</tr>
-<tr>
-<td>random</td>
-<td>【可选】配置友情链接是否随机排序（默认为 false）</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>【可选】配置説説显示数量</td>
-</tr>
-<tr>
-<td>limit.type</td>
-<td>【可选】配置説説显示数量的类型 （date 或者 num）</td>
-</tr>
-<tr>
-<td>limit.value</td>
-<td>【可选】配置説説显示数量的值</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2018-01-05 00:00:00</span><br><span class="line">type: &#x27;tags&#x27;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="comment"># 自定义css</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/style.css&quot;&gt;</span> <span class="comment">#改成自己的css地址</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<div class="note primary flat"><p>需要注意的是 css 中<code>fill属性</code>可以控制波浪颜色，最好使其中一个颜色与背景颜色一致，否则会显的有点奇怪。</p>
+</div>
+
 ]]></content>
       <categories>
-        <category>Hexo</category>
+        <category>技术教程</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
         <tag>Butterfly</tag>
-        <tag>教程</tag>
-        <tag>Hexo Blog</tag>
-        <tag>主题</tag>
-        <tag>Butterfly主题</tag>
+        <tag>Butterfly魔改</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
+    <url>/archives/c920ed04.html</url>
+    <content><![CDATA[<blockquote>
+<p>由于某些原因，jsdelivr项目的中国域名cdn.jsdelivr.net经历了备案注销，这直接导致了国内用户访问该服务时线路质量变得极不稳定。对于众多依赖jsdelivr作为静态资源加速服务的网站和应用而言，这意味着加载速度显著下降，稳定性也大打折扣。相比备案期间的表现，当前的服务水平确实难以匹敌。</p>
+<p>值得注意的是，在构建自己的jsdelivr镜像时，建议同时配置防盗链措施，以保护您的资源免受未经授权的使用，从而确保仅限内部或授权用户能够享受加速服务。通过这样的策略，不仅能够有效提升用户体验，还能在一定程度上减轻原服务的压力，促进网络资源的合理分配与利用。</p>
+<p>实施上述解决方案不仅能为您的用户提供更加流畅、稳定的访问体验，而且从长远来看，有助于提高您网站的整体性能表现及搜索引擎排名，进而吸引更多的流量与关注。</p>
+</blockquote>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318230931.png"></p>
+<h2 id="Nginx反代配置文件"><a href="#Nginx反代配置文件" class="headerlink" title="Nginx反代配置文件"></a>Nginx反代配置文件</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> cdn.yourdomain.com;</span><br><span class="line">    </span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /npm/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/npm/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /gh/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/gh/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	 </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#WP可选</span></span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /wp/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/wp/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用的是宝塔或者1Panel等其他面板程序可直接在<strong>反向代理</strong>中添加一条配置即可，如图下（以宝塔为例），发域名必备设置为<code>cdn.jsdelivr.net</code>：</p>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318224800.png"></p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将项目引用链接中的cdn.jsdelivr.net替换为你绑定的反代域名即可</p>
+]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>Npm镜像</tag>
+        <tag>Github镜像</tag>
+        <tag>Jsdelivr</tag>
+        <tag>自建Npm镜像</tag>
+        <tag>Jsdelivr反代</tag>
+        <tag>Jsdelivr加速</tag>
       </tags>
   </entry>
   <entry>
@@ -810,34 +627,217 @@
       </tags>
   </entry>
   <entry>
-    <title>给Butterfly主题文章顶部添加波浪效果</title>
-    <url>/archives/f9a47848.html</url>
-    <content><![CDATA[<p>本文简要介绍如何在Hexo博客的Butterfly主题中，为每篇文章顶部添加一个动态波浪效果。</p>
-<p>效果图：</p>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.22/img/archives/20250322001104.png"></p>
-<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>修改主题目录： <code>themes/butterfly/layout/includes/header/index.pug</code> 在：</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br></pre></td></tr></table></figure>
+    <title>Hexo+Butterfly主题更详细的Front-matter</title>
+    <url>/archives/d2f6e5e8.html</url>
+    <content><![CDATA[<blockquote>
+<p>Front-matter 是文件开头的 YAML 或 JSON 代码块，用于配置写作设置。 以 YAML 格式书写时，Front-matter 以三个破折号结束；以 JSON 格式书写时，Front-matter 以三个分号结束。</p>
+</blockquote>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
-<p>代码后面添加如下代码，<code>+</code>是要添加的部分，记得删除前面的<code>+</code>号。</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br><span class="line"><span class="addition">+   section.main-hero-waves-area.waves-area</span></span><br><span class="line"><span class="addition">+     svg.waves-svg(xmlns=&#x27;http://www.w3.org/2000/svg&#x27;, xlink=&#x27;http://www.w3.org/1999/xlink&#x27;, viewBox=&#x27;0 24 150 28&#x27;, preserveAspectRatio=&#x27;none&#x27;, shape-rendering=&#x27;auto&#x27;)</span></span><br><span class="line"><span class="addition">+       defs</span></span><br><span class="line"><span class="addition">+         path#gentle-wave(d=&#x27;M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z&#x27;)</span></span><br><span class="line"><span class="addition">+       g.parallax</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;0&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;3&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;5&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;7&#x27;)</span></span><br><span class="line">    #post-top-cover</span><br><span class="line">      img#post-top-bg(class=&#x27;nolazyload&#x27; src=bg_img)</span><br><span class="line">  else if is_home()</span><br><span class="line">    #site-info</span><br><span class="line">      h1#site-title=site_title</span><br><span class="line">      if theme.subtitle.enable</span><br></pre></td></tr></table></figure>
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;title&quot;: &quot;Hello World&quot;,</span><br><span class="line">&quot;date&quot;: &quot;2013/7/13 20:46:25&quot;</span><br><span class="line">;;;</span><br></pre></td></tr></table></figure>
 
-<p>然后在<code>_config.butterfly.yml</code>配置文件中的 <code>[inject.head]</code> 或者自定义 css 中 引入以下 css</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 波浪css */</span></span><br><span class="line"><span class="selector-class">.main-hero-waves-area</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Animation */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: move-forever <span class="number">25s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.55</span>, <span class="number">0.5</span>, <span class="number">0.45</span>, <span class="number">0.5</span>) infinite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9febd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe82</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe36</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 黑色模式背景 */</span></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171dc8</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d80</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d3e</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move-forever &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-<span class="number">90px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">85px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Shrinking for mobile*/</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">40px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="文章的-Front-matter"><a href="#文章的-Front-matter" class="headerlink" title="文章的 Front-matter"></a>文章的 Front-matter</h2><table>
+<thead>
+<tr>
+<th>写法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>【必需】文章标题 文章的文件名</td>
+</tr>
+<tr>
+<td>date</td>
+<td>【必需】文章创建日期</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>【可选】文章更新日期</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>【可选】文章标签</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>【可选】文章分类</td>
+</tr>
+<tr>
+<td>sticky</td>
+<td>【可选】文章置顶，sticky: 1属性来把这篇文章置顶。数值越大，置顶的优先级越大。</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>【可选】文章关键字</td>
+</tr>
+<tr>
+<td>description</td>
+<td>【可选】文章描述</td>
+</tr>
+<tr>
+<td>top_img</td>
+<td>【可选】文章顶部图片</td>
+</tr>
+<tr>
+<td>cover</td>
+<td>【可选】文章缩略图(如果没有设置 top_img,文章页顶部将显示缩略图，可设为 false&#x2F;图片地址&#x2F;留空)</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>【可选】显示文章评论模块(默认 true)</td>
+</tr>
+<tr>
+<td>toc</td>
+<td>【可选】显示文章 TOC(默认为设置中 toc 的 enable 配置)</td>
+</tr>
+<tr>
+<td>toc_number</td>
+<td>【可选】显示 toc_number(默认为设置中 toc 的 number 配置)</td>
+</tr>
+<tr>
+<td>toc_style_simple</td>
+<td>【可选】显示 toc 简洁模式</td>
+</tr>
+<tr>
+<td>copyright</td>
+<td>【可选】显示文章版权模块(默认为设置中 post_copyright 的 enable 配置)</td>
+</tr>
+<tr>
+<td>copyright_author</td>
+<td>【可选】文章版权模块的<code>文章作者</code></td>
+</tr>
+<tr>
+<td>copyright_author_href</td>
+<td>【可选】文章版权模块的<code>文章作者</code>链接</td>
+</tr>
+<tr>
+<td>copyright_url</td>
+<td>【可选】文章版权模块的<code>文章连结</code>链接</td>
+</tr>
+<tr>
+<td>copyright_info</td>
+<td>【可选】文章版权模块的<code>版权声明</code>文字</td>
+</tr>
+<tr>
+<td>mathjax</td>
+<td>【可选】显示 mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false )</td>
+</tr>
+<tr>
+<td>katex</td>
+<td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false )</td>
+</tr>
+<tr>
+<td>aplayer</td>
+<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的<code>音乐</code> 配置</td>
+</tr>
+<tr>
+<td>highlight_shrink</td>
+<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中 highlight_shrink 的配置)</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>【可选】显示侧边栏 (默认 true)</td>
+</tr>
+<tr>
+<td>abcjs</td>
+<td>【可选】加载 abcjs (当设置 abcjs 的 per_page: false 时，才需要配置，默认 false )</td>
+</tr>
+<tr>
+<td>noticeOutdate</td>
+<td>【可选】文章过期提醒 (默认为设置中 noticeOutdate 的 enable 配置)</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
-
-
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="comment"># 自定义css</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/style.css&quot;&gt;</span> <span class="comment">#改成自己的css地址</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-<div class="note primary flat"><p>需要注意的是 css 中<code>fill属性</code>可以控制波浪颜色，最好使其中一个颜色与背景颜色一致，否则会显的有点奇怪。</p>
-</div>
-
+<h2 id="页面的-Front-matter"><a href="#页面的-Front-matter" class="headerlink" title="页面的 Front-matter"></a>页面的 Front-matter</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>【必需】页面标题</td>
+</tr>
+<tr>
+<td>date</td>
+<td>【必需】页面创建日期</td>
+</tr>
+<tr>
+<td>type</td>
+<td>【必需】标签、分类和友情链接三个页面需要配置</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>【可选】页面更新日期</td>
+</tr>
+<tr>
+<td>description</td>
+<td>【可选】页面描述</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>【可选】页面关键字</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>【可选】显示页面评论模块 (默认 true)</td>
+</tr>
+<tr>
+<td>top_img</td>
+<td>【可选】页面顶部图片</td>
+</tr>
+<tr>
+<td>mathjax</td>
+<td>【可选】显示 mathjax (当设置 mathjax 的 per_page: false 时，才需要配置，默认 false)</td>
+</tr>
+<tr>
+<td>katex</td>
+<td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false)</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>【可选】显示侧边栏 (默认 true)</td>
+</tr>
+<tr>
+<td>aplayer</td>
+<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的<code>音乐</code> 配置</td>
+</tr>
+<tr>
+<td>highlight_shrink</td>
+<td>【可选】配置代码框是否展开 (true&#x2F;false) (默认为设置中 highlight_shrink 的配置)</td>
+</tr>
+<tr>
+<td>random</td>
+<td>【可选】配置友情链接是否随机排序（默认为 false）</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>【可选】配置説説显示数量</td>
+</tr>
+<tr>
+<td>limit.type</td>
+<td>【可选】配置説説显示数量的类型 （date 或者 num）</td>
+</tr>
+<tr>
+<td>limit.value</td>
+<td>【可选】配置説説显示数量的值</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2018-01-05 00:00:00</span><br><span class="line">type: &#x27;tags&#x27;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>技术教程</category>
+        <category>Hexo</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
         <tag>Butterfly</tag>
-        <tag>Butterfly魔改</tag>
+        <tag>教程</tag>
+        <tag>Hexo Blog</tag>
+        <tag>主题</tag>
+        <tag>Butterfly主题</tag>
       </tags>
   </entry>
   <entry>
