@@ -1,6 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Butterfly主题博客魔改美化教程总览（一）</title>
+    <url>/archives/2fff1258.html</url>
+    <content><![CDATA[<div class="note orange no-icon modern"><p>本帖教程基于<strong>Hexo博客</strong>程序的 <strong>Butterfly主题</strong>编写 ，其中魔改&#x2F;美化内容大部分收集至各位大神的博客以及网络。</p>
+<p>由于每位用户的根目录名称各不相同，本文中博客的根目录将统一使用<code>[BlogRoot]</code>这一标识符表示。</p>
+<p>其中配置文件<code>_config.yml</code>，其路径为【BlogRoot&#x2F;_config.yml】。</p>
+<p>主题的配置文件<code>_config.butterfly.yml</code>进行相应修改，该文件位于【BlogRoot&#x2F;_config.butterfly.yml】路径下。</p>
+</div>
+
+<div class="note warning flat"><p>本文包含有关修改源代码的内容，将会使用<code>diff</code>代码块来标记变更。在复制这些代码段时，请记得移除前面的加号（+）和减号（-）符号，其中（+）号代码添加的代码，（-）代表这整行代码需要删除。</p>
+</div>
+
+<h2 id="自定义CSS-JS方法"><a href="#自定义CSS-JS方法" class="headerlink" title="自定义CSS&#x2F;JS方法"></a>自定义CSS&#x2F;JS方法</h2><p>CSS：在<code>[BlogRoot]/source/css/</code>目录下新建：daliyuer.css，名称可自定义。</p>
+<p>JS：在<code>[BlogRoot]/source/js/</code>目录下新建：daliyuer.js，名称可自定义。</p>
+<p>如没有 <strong>css</strong>跟 <strong>js</strong> 目录需自建。</p>
+<details class="toggle" ><summary class="toggle-button" style="">点击查看教程</summary><div class="toggle-content"><p>编辑主题配置文件<code>_config.butterfly.yml</code>在<code>inject-&gt;head</code> or <code>inject-&gt;bottom</code>添加如下两行。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/daliyuer.css&quot;&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">bottom:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">type=&quot;text/javascript&quot;</span> <span class="string">src=&quot;/js/daliyuer.js&quot;&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+</div></details>
+
+<h2 id="文章页调整"><a href="#文章页调整" class="headerlink" title="文章页调整"></a>文章页调整</h2><h3 id="文章顶部添加波浪效果"><a href="#文章顶部添加波浪效果" class="headerlink" title="文章顶部添加波浪效果"></a>文章顶部添加波浪效果</h3><p>教程地址：</p>
+<a href="https://blog.3ms.run/archives/f9a47848.html" target="_blank" title="给Butterfly主题文章顶部添加波浪效果" referrerPolicy="no-referrer" class="yqlink_card"><div class="yqlink_icon"><img src="https://blog.3ms.run/img/avatar-icon.jpg" class="no-lightbox"></div><div class="yqlink_content"><div class="yqlink_title">给Butterfly主题文章顶部添加波浪效果</div><div class="yqlink_desc">ZeroLatency</div></div></a>
+
+<h3 id="文章版权样式微调"><a href="#文章版权样式微调" class="headerlink" title="文章版权样式微调"></a>文章版权样式微调</h3><p>在自建的CSS文件内 [blogRoot]&#x2F;source&#x2F;css&#x2F;daliyuer.css 里新增如下内容</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 版权样式调整 */</span></span><br><span class="line"><span class="selector-id">#post</span> <span class="selector-class">.post-copyright</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--daliyuer-card-bg);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1rem</span> <span class="number">1.3rem</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border);</span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">transition</span>: <span class="number">0.3s</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">1.5rem</span> <span class="number">0px</span> <span class="number">0.5rem</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#post</span> <span class="selector-class">.post-copyright</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">22px</span>;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">77px</span>;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;\e039&quot;</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">180px</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;iconfont&quot;</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--icat-fontcolor);</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0.1</span>;</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">7px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 版权样式调整end */</span></span><br></pre></td></tr></table></figure>
+
+<p>全局Css变量：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">       <span class="attr">--daliyuer-card-bg</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&#x27;dark&#x27;</span>]</span> &#123;</span><br><span class="line">       <span class="attr">--daliyuer-card-bg</span>: <span class="number">#1b1c20</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Twikoo评论表情包放大效果"><a href="#Twikoo评论表情包放大效果" class="headerlink" title="Twikoo评论表情包放大效果"></a>Twikoo评论表情包放大效果</h3><p><strong>效果图：</strong></p>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.25/image/2025/an1/20250325133103.png"></p>
+<details class="toggle" style="border: 1px solid #49b1f5"><summary class="toggle-button" style="background-color: #49b1f5;color: #fff">点击查看教程</summary><div class="toggle-content"><ol>
+<li><p>粘贴以下js内容到自定义js文件内即可</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 表情包放大 end */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果当前页有评论就执行函数</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;post-comment&#x27;</span>)) <span class="title function_">owoBig</span>();</span><br><span class="line"><span class="comment">// 表情放大</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">owoBig</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> flag = <span class="number">1</span>, <span class="comment">// 设置节流阀</span></span><br><span class="line">        owo_time = <span class="string">&#x27;&#x27;</span>, <span class="comment">// 设置计时器</span></span><br><span class="line">        m = <span class="number">3</span>; <span class="comment">// 设置放大倍数</span></span><br><span class="line">    <span class="comment">// 创建盒子</span></span><br><span class="line">    <span class="keyword">let</span> div = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>),</span><br><span class="line">        body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;body&#x27;</span>);</span><br><span class="line">    <span class="comment">// 设置ID</span></span><br><span class="line">    div.<span class="property">id</span> = <span class="string">&#x27;owo-big&#x27;</span>;</span><br><span class="line">    <span class="comment">// 插入盒子</span></span><br><span class="line">    body.<span class="title function_">appendChild</span>(div)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造observer</span></span><br><span class="line">    <span class="keyword">let</span> observer = <span class="keyword">new</span> <span class="title class_">MutationObserver</span>(<span class="function"><span class="params">mutations</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; mutations.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">let</span> dom = mutations[i].<span class="property">addedNodes</span>,</span><br><span class="line">                owo_body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (dom.<span class="property">length</span> == <span class="number">2</span> &amp;&amp; dom[<span class="number">1</span>].<span class="property">className</span> == <span class="string">&#x27;OwO-body&#x27;</span>) owo_body = dom[<span class="number">1</span>];</span><br><span class="line">            <span class="comment">// 如果需要在评论内容中启用此功能请解除下面的注释</span></span><br><span class="line">            <span class="comment">// else if (dom.length == 1 &amp;&amp; dom[0].className == &#x27;tk-comment&#x27;) owo_body = dom[0];</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 禁用右键（手机端长按会出现右键菜单，为了体验给禁用掉）</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientWidth</span> &lt;= <span class="number">768</span>) owo_body.<span class="title function_">addEventListener</span>(<span class="string">&#x27;contextmenu&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> e.<span class="title function_">preventDefault</span>());</span><br><span class="line">            <span class="comment">// 鼠标移入</span></span><br><span class="line">            owo_body.<span class="property">onmouseover</span> = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="comment">// 检查父元素的 className 是否包含 &#x27;OwO-packages&#x27;</span></span><br><span class="line">                <span class="keyword">if</span> (e.<span class="property">target</span>.<span class="property">parentElement</span>.<span class="property">parentElement</span>.<span class="property">parentElement</span> &amp;&amp; e.<span class="property">target</span>.<span class="property">parentElement</span>.<span class="property">parentElement</span>.<span class="property">parentElement</span>.<span class="property">className</span>.<span class="title function_">includes</span>(<span class="string">&#x27;OwO-packages&#x27;</span>)) <span class="keyword">return</span>;</span><br><span class="line">                <span class="keyword">if</span> (flag &amp;&amp; e.<span class="property">target</span>.<span class="property">tagName</span> == <span class="string">&#x27;IMG&#x27;</span>) &#123;</span><br><span class="line">                    flag = <span class="number">0</span>;</span><br><span class="line">                    <span class="comment">// 移入300毫秒后显示盒子</span></span><br><span class="line">                    owo_time = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                        <span class="keyword">let</span> height = e.<span class="property">target</span>.<span class="property">clientHeight</span> * m, <span class="comment">// 盒子高 2023-02-16更新</span></span><br><span class="line">                            width = e.<span class="property">target</span>.<span class="property">clientWidth</span> * m, <span class="comment">// 盒子宽 2023-02-16更新</span></span><br><span class="line">                            left = (e.<span class="property">x</span> - e.<span class="property">offsetX</span>) - (width - e.<span class="property">target</span>.<span class="property">clientWidth</span>) / <span class="number">2</span>, <span class="comment">// 盒子与屏幕左边距离 2023-02-16更新</span></span><br><span class="line">                            top = e.<span class="property">y</span> - e.<span class="property">offsetY</span>; <span class="comment">// 盒子与屏幕顶部距离</span></span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> ((left + width) &gt; body.<span class="property">clientWidth</span>) left -= ((left + width) - body.<span class="property">clientWidth</span> + <span class="number">10</span>); <span class="comment">// 右边缘检测，防止超出屏幕</span></span><br><span class="line">                        <span class="keyword">if</span> (left &lt; <span class="number">0</span>) left = <span class="number">10</span>; <span class="comment">// 左边缘检测，防止超出屏幕</span></span><br><span class="line">                        <span class="comment">// 设置盒子样式</span></span><br><span class="line">                        div.<span class="property">style</span>.<span class="property">cssText</span> = <span class="string">`display:flex; height:<span class="subst">$&#123;height&#125;</span>px; width:<span class="subst">$&#123;width&#125;</span>px; left:<span class="subst">$&#123;left&#125;</span>px; top:<span class="subst">$&#123;top&#125;</span>px;`</span>;</span><br><span class="line">                        <span class="comment">// 在盒子中插入图片</span></span><br><span class="line">                        div.<span class="property">innerHTML</span> = <span class="string">`&lt;img src=&quot;<span class="subst">$&#123;e.target.src&#125;</span>&quot;&gt;`</span></span><br><span class="line">                    &#125;, <span class="number">300</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="comment">// 鼠标移出隐藏盒子</span></span><br><span class="line">            owo_body.<span class="property">onmouseout</span> = <span class="function">() =&gt;</span> &#123; div.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>, flag = <span class="number">1</span>, <span class="built_in">clearTimeout</span>(owo_time); &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">    observer.<span class="title function_">observe</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;post-comment&#x27;</span>), &#123; <span class="attr">subtree</span>: <span class="literal">true</span>, <span class="attr">childList</span>: <span class="literal">true</span> &#125;) <span class="comment">// 监听的 元素 和 配置项</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 表情包放大 end */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在将以下CSS内容粘贴到自定义CSS中即可</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#owo-big</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>);</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaa</span> solid;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">9999</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>, -<span class="number">105%</span>);</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">animation</span>: owoIn <span class="number">0.3s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.42</span>, <span class="number">0</span>, <span class="number">0.3</span>, <span class="number">1.11</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[data-theme=dark]</span> <span class="selector-id">#owo-big</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#4a4a4a</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#owo-big</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 动画效果代码由 Heo：https://blog.zhheo.com/ 提供 */</span></span><br><span class="line"><span class="keyword">@keyframes</span> owoIn &#123;</span><br><span class="line">    <span class="number">0%</span> &#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>, -<span class="number">95%</span>);</span><br><span class="line">        <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>, -<span class="number">105%</span>);</span><br><span class="line">        <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>参考文章：</p>
+<a class="tag-Link" target="_blank" href="https://blog.leonus.cn/2022/owo-big.html" rel="external nofollow noreferrer">
+    <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/blog.leonus.cn/2022/owo-big.html.png);"><i class="iconfont icon-link"></i></div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">评论表情包放大功能，超实用</div>
+            <div class="tag-link-sitename">Leonus</div>
+        </div>
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
+    </a>
+
+   
+
+</div></details>
+
+<h3 id="本站同款Twikoo自定义表情包（持续更新）"><a href="#本站同款Twikoo自定义表情包（持续更新）" class="headerlink" title="本站同款Twikoo自定义表情包（持续更新）"></a>本站同款Twikoo自定义表情包（持续更新）</h3><p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.25/image/2025/an1/20250325134646.png"></p>
+<details class="toggle" style="border: 1px solid #49b1f5"><summary class="toggle-button" style="background-color: #49b1f5;color: #fff">点击查看详细教程</summary><div class="toggle-content"><ol>
+<li>输入暗号进入评论<code>管理界面</code>-&gt;<code>配置管理</code>-&gt;<code>插件</code>-&gt;<code>EMOTION_CDN</code>将<code>EMOTION_CDN</code>内的内容替换成：<code>https://cdn.cbd.int/daliyuer-static@latest/bq/twikoo.json</code> <img src="https://jsd.gog.email/npm/daliyuer-static@1.0.25/image/2025/an1/20250325135418.png"></li>
+<li>如果你想自定义自己的表情包可参考：<a class="tag-Link" target="_blank" href="https://github.com/noionion/Twikoo-Magic" rel="external nofollow noreferrer"> <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
+ <div class="tag-link-bottom">
+     <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/github.com/noionion/Twikoo-Magic.png);"><i class="iconfont icon-link"></i></div>
+     <div class="tag-link-right">
+         <div class="tag-link-title">Twikoo自定义表情列表 |HexoPlusPlus自定义表情列表（其实基于OwO的项目都可以用的啦</div>
+         <div class="tag-link-sitename">GitHub</div>
+     </div>
+     <i class="fa-solid fa-angle-right"></i>
+ </div>
+ </a><a class="tag-Link" target="_blank" href="https://emotion.xiaokang.me" rel="external nofollow noreferrer">
+ <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
+ <div class="tag-link-bottom">
+     <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/emotion.xiaokang.me.png);"><i class="iconfont icon-link"></i></div>
+     <div class="tag-link-right">
+         <div class="tag-link-title">表情速查</div>
+         <div class="tag-link-sitename">Twikoo</div>
+     </div>
+     <i class="fa-solid fa-angle-right"></i>
+ </div>
+ </a></li>
+</ol>
+</div></details>
+
+
+
+<h3 id="Twikoo评论区美化"><a href="#Twikoo评论区美化" class="headerlink" title="Twikoo评论区美化"></a>Twikoo评论区美化</h3><p>自定义css中添加以下内容即可：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Twikoo 评论美化 */</span></span><br><span class="line"><span class="selector-id">#post-comment</span> <span class="selector-class">.comment-privacy</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#409eff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#post-comment</span> <span class="selector-class">.comment-headline</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#post-comment</span> <span class="selector-class">.comment-headline</span>&gt;<span class="selector-tag">i</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">blockquote</span>&gt; <span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-input--small</span> <span class="selector-class">.el-input__inner</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-input-group__prepend</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">8px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-input__inner</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">8px</span> <span class="number">0</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-textarea__inner</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-textarea</span>&gt;<span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">120px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-button--small</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 评论编辑块调整 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* .tk-submit-action-icon.__markdown &#123;</span></span><br><span class="line"><span class="comment">    display: none;</span></span><br><span class="line"><span class="comment">&#125; */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* markdown编辑快隐藏 */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-avatar</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-comment</span> <span class="selector-class">.tk-submit</span> <span class="selector-class">.tk-avatar</span>,</span><br><span class="line"><span class="selector-class">.tk-replies</span> <span class="selector-class">.tk-avatar</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2.5rem</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">2.5rem</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-comment</span> <span class="selector-class">.tk-submit</span> <span class="selector-class">.tk-avatar</span> <span class="selector-class">.tk-avatar-img</span>,</span><br><span class="line"><span class="selector-class">.tk-replies</span> <span class="selector-class">.tk-avatar</span> <span class="selector-class">.tk-avatar-img</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2.5rem</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-ruser</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#409eff</span>;</span><br><span class="line">    <span class="attribute">opacity</span>: .<span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.tk-comment</span> <span class="selector-class">.tk-submit</span> <span class="selector-class">.tk-avatar</span>,</span><br><span class="line">    <span class="selector-class">.tk-replies</span> <span class="selector-class">.tk-avatar</span> &#123;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">2rem</span> <span class="meta">!important</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">2rem</span> <span class="meta">!important</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.tk-comment</span> <span class="selector-class">.tk-submit</span> <span class="selector-class">.tk-avatar</span> <span class="selector-class">.tk-avatar-img</span>,</span><br><span class="line">    <span class="selector-class">.tk-replies</span> <span class="selector-class">.tk-avatar</span> <span class="selector-class">.tk-avatar-img</span> &#123;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">2rem</span> <span class="meta">!important</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-nick</span>,</span><br><span class="line"><span class="selector-class">.tk-meta</span> <span class="selector-tag">a</span> <span class="selector-tag">strong</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#409eff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-tag-green</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">0.2rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-time</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">0.4rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-extras</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> dashed <span class="built_in">var</span>(--hr-border);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-extra</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">4px</span> <span class="number">6px</span> <span class="number">4px</span> <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-expand</span> &#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--daliyuer-background);</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--daliyuer-fontcolor);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-footer</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-footer</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#999999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-footer</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#409eff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-comment-item</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--global-bg);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-comment-meta</span>,</span><br><span class="line"><span class="selector-class">.tk-content</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--daliyuer-fontcolor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-actions</span> &#123;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">0</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">0</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 评论管理 */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-panel</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-config-groups</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--global-bg);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-config-groups</span> <span class="selector-class">.tk-admin-config-group-title</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--daliyuer-background) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--daliyuer-fontcolor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-config-item</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--daliyuer-fontcolor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 配置管理 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 评论区样式 */</span></span><br><span class="line"><span class="comment">/* Twikoo 评论美化 end*/</span></span><br></pre></td></tr></table></figure>
+
+<p>全局css变量：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attr">--daliyuer-background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attr">--daliyuer-fontcolor</span>: <span class="number">#363636</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&#x27;dark&#x27;</span>]</span> &#123;</span><br><span class="line">    <span class="attr">--daliyuer-fontcolor</span>: <span class="number">#F7F7FA</span>;</span><br><span class="line">    <span class="attr">--daliyuer-background</span>: <span class="number">#18171d</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>技术教程</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Butterfly</tag>
+        <tag>Butterfly魔改</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
+    <url>/archives/c920ed04.html</url>
+    <content><![CDATA[<blockquote>
+<p>由于某些原因，jsdelivr项目的中国域名cdn.jsdelivr.net经历了备案注销，这直接导致了国内用户访问该服务时线路质量变得极不稳定。对于众多依赖jsdelivr作为静态资源加速服务的网站和应用而言，这意味着加载速度显著下降，稳定性也大打折扣。相比备案期间的表现，当前的服务水平确实难以匹敌。</p>
+<p>值得注意的是，在构建自己的jsdelivr镜像时，建议同时配置防盗链措施，以保护您的资源免受未经授权的使用，从而确保仅限内部或授权用户能够享受加速服务。通过这样的策略，不仅能够有效提升用户体验，还能在一定程度上减轻原服务的压力，促进网络资源的合理分配与利用。</p>
+<p>实施上述解决方案不仅能为您的用户提供更加流畅、稳定的访问体验，而且从长远来看，有助于提高您网站的整体性能表现及搜索引擎排名，进而吸引更多的流量与关注。</p>
+</blockquote>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318230931.png"></p>
+<h2 id="Nginx反代配置文件"><a href="#Nginx反代配置文件" class="headerlink" title="Nginx反代配置文件"></a>Nginx反代配置文件</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> cdn.yourdomain.com;</span><br><span class="line">    </span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /npm/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/npm/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /gh/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/gh/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	 </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#WP可选</span></span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /wp/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/wp/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用的是宝塔或者1Panel等其他面板程序可直接在<strong>反向代理</strong>中添加一条配置即可，如图下（以宝塔为例），发域名必备设置为<code>cdn.jsdelivr.net</code>：</p>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318224800.png"></p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将项目引用链接中的cdn.jsdelivr.net替换为你绑定的反代域名即可</p>
+]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>Npm镜像</tag>
+        <tag>Github镜像</tag>
+        <tag>Jsdelivr</tag>
+        <tag>自建Npm镜像</tag>
+        <tag>Jsdelivr反代</tag>
+        <tag>Jsdelivr加速</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
+    <url>/archives/12986.html</url>
+    <content><![CDATA[<blockquote>
+<p>在当今数字化时代，网络安全已成为我们每个人关心的重点。域名系统（DNS）作为互联网的电话簿，其安全性至关重要。传统的DNS查询缺乏加密保护，容易遭受各种形式的网络攻击，如DNS劫持和DNS污染。为了解决这些问题，DoT（DNS over TLS）和DoH（DNS over HTTPS）应运而生，它们通过加密技术来确保DNS查询的安全性和隐私性。</p>
+</blockquote>
+<p>今天给大家分享一些国内知名免费公共DoT&#x2F;DoH加密DNS服务器。</p>
+<h2 id="国内主流DNS服务器"><a href="#国内主流DNS服务器" class="headerlink" title="国内主流DNS服务器"></a>国内主流DNS服务器</h2><h3 id="1-腾讯-DNS-DNSPod"><a href="#1-腾讯-DNS-DNSPod" class="headerlink" title="1.腾讯 DNS (DNSPod)"></a>1.<strong>腾讯 DNS (DNSPod)</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoH地址(国密SM2)基于腾讯云政企国密解决方案</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.pub/dns-query</code></li>
+<li><code>https://1.12.12.12/dns-query</code></li>
+<li><code>https://120.53.53.53/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>https://sm2.doh.pub/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.pub</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>1.12.12.12</code></li>
+<li><code>120.53.53.53</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="阿里云公共-DNS"><a href="#阿里云公共-DNS" class="headerlink" title="阿里云公共 DNS"></a><strong>阿里云公共 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.alidns.com/dns-query</code></li>
+<li><code>https://223.5.5.5/dns-query</code></li>
+<li><code>https://223.6.6.6/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.alidns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>223.5.5.5</code></li>
+<li><code>223.6.6.6</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="360-Secure-安全-DNS"><a href="#360-Secure-安全-DNS" class="headerlink" title="360 Secure(安全) DNS"></a><strong>360 Secure(安全) DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.360.cn/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.360.cn</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>101.226.4.6</code></li>
+<li><code>218.30.118.6</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="信风公共-DNS"><a href="#信风公共-DNS" class="headerlink" title="信风公共 DNS"></a>信风公共 DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.114dns.com/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>tls.dns114.cn</code></li>
+</ul></div><div class="tab-item-content"><p><code>114.11.114.114</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="TWNIC-DNS-Quad-101"><a href="#TWNIC-DNS-Quad-101" class="headerlink" title="TWNIC DNS Quad 101"></a>TWNIC DNS Quad 101</h3><p>由台湾网络资讯中心提供的免费公共 DNS 服务，以台湾地区为人熟悉的地标 台北 101 作为地址。</p>
+<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.twnic.tw/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.twnic.tw</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h2 id="国外主流DNS服务器"><a href="#国外主流DNS服务器" class="headerlink" title="国外主流DNS服务器"></a>国外主流DNS服务器</h2><h3 id="Google-Public-DNS"><a href="#Google-Public-DNS" class="headerlink" title="Google Public DNS"></a>Google Public DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.google/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.google</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>8.8.8.8</code></li>
+<li><code>8.8.4.4</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Cloudflare-DNS"><a href="#Cloudflare-DNS" class="headerlink" title="Cloudflare DNS"></a>Cloudflare DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">安全版 (拦截恶意代码)</button><button type="button" class="tab">家庭版(拦截恶意代码和成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://cloudflare-dns.com/dns-query</code></li>
+<li><code>https://dns.cloudflare.com/dns-query</code></li>
+<li><code>https://1.1.1.1/dns-query</code></li>
+<li><code>https://1.0.0.1/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>cloudflare-dns.com</code></li>
+<li><code>dns.cloudflare.com</code></li>
+<li><code>one.one.one.one</code></li>
+<li><code>1dot1dot1dot1.cloudflare-dns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>1.1.1.1</code></li>
+<li><code>1.0.0.1</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
+<ul>
+<li><code>https://security.cloudflare-dns.com/dns-query</code></li>
+</ul>
+<p><strong>DoT：</strong></p>
+<ul>
+<li><code>security.cloudflare-dns.com</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
+<ul>
+<li><code>https://family.cloudflare-dns.com/dns-query</code></li>
+</ul>
+<p><strong>DoT:</strong></p>
+<ul>
+<li><code>family.cloudflare-dns.com</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Quad9-DNS"><a href="#Quad9-DNS" class="headerlink" title="Quad9 DNS"></a><strong>Quad9 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.quad9.net/dns-query</code></li>
+<li><code>https://dns9.quad9.net/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.quad9.net</code></li>
+<li><code>dns9.quad9.net</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>9.9.9.9</code></li>
+<li><code>149.112.112.112</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="AdGuard-DNS"><a href="#AdGuard-DNS" class="headerlink" title="AdGuard DNS"></a><strong>AdGuard DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">家庭保护服务器 (拦截成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.adguard.com/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.adguard-dns.com</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>94.140.14.14</code></li>
+<li><code>94.140.15.15</code></li>
+</ul></div><div class="tab-item-content"><p><strong>DoT</strong>：</p>
+<ul>
+<li><code>family.adguard.com</code></li>
+</ul>
+<p><strong>DoH</strong>：</p>
+<ul>
+<li><code>https://family.adguard.com/dns-query</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="NextDNS"><a href="#NextDNS" class="headerlink" title="NextDNS"></a><strong>NextDNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://dns.nextdns.io</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dns.nextdns.io</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="DNS-SB"><a href="#DNS-SB" class="headerlink" title="DNS.SB"></a><strong>DNS.SB</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://doh.dns.sb/dns-query</code></li>
+<li><code>https://doh.sb/dns-query</code></li>
+<li><code>https://dns.sb/dns-query</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>dot.sb</code></li>
+<li><code>dns.sb</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<h3 id="Cisco-OpenDNS-Cisco-Umbrella"><a href="#Cisco-OpenDNS-Cisco-Umbrella" class="headerlink" title="Cisco OpenDNS&#x2F;Cisco Umbrella"></a><strong>Cisco OpenDNS&#x2F;Cisco Umbrella</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">OpenDNS FamilyShield</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><a href="https://doh.opendns.com/dns-query" rel="external nofollow noreferrer">https://doh.opendns.com/dns-query</a></li>
+<li><a href="https://dns.opendns.com/dns-query" rel="external nofollow noreferrer">https://dns.opendns.com/dns-query</a></li>
+<li><a href="https://doh.umbrella.com/dns-query" rel="external nofollow noreferrer">https://doh.umbrella.com/dns-query</a></li>
+<li><a href="https://dns.umbrella.com/dns-query" rel="external nofollow noreferrer">https://dns.umbrella.com/dns-query</a></li>
+<li><a href="https://dns.sse.cisco.com/dns-query" rel="external nofollow noreferrer">https://dns.sse.cisco.com/dns-query</a></li>
+</ul></div><div class="tab-item-content"><ul>
+<li>dns.opendns.com</li>
+<li>dns.umbrella.com</li>
+<li>dns.sse.cisco.com</li>
+</ul></div><div class="tab-item-content"><p><strong>OpenDNS 家庭盾版 DNS，官方介绍是 block adult content 阻止成人内容。</strong><br><strong>DoH:</strong></p>
+<ul>
+<li><code>https://familyshield.opendns.com/dns-query</code></li>
+<li><code>https://doh.familyshield.opendns.com/dns-query</code></li>
+<li><code>https://familyshield.sse.cisco.com/dns-query</code></li>
+</ul>
+<p><strong>DoT:</strong></p>
+<ul>
+<li><code>familyshield.opendns.com</code></li>
+<li><code>familyshield.sse.cisco.com</code></li>
+</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+
+
+<h3 id="Yandex-DNS"><a href="#Yandex-DNS" class="headerlink" title="Yandex DNS"></a>Yandex DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">安全版（病毒和钓鱼防御）</button><button type="button" class="tab">家庭版（拦截成人内容）</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
+<li><code>https://common.dot.dns.yandex.net</code></li>
+<li><code>https://77.88.8.8</code></li>
+<li><code>https://2a02:6b8::feed:0ff</code></li>
+</ul></div><div class="tab-item-content"><ul>
+<li><code>common.dot.dns.yandex.net</code></li>
+<li><code>77.88.8.8</code></li>
+<li><code>2a02:6b8::feed:0ff</code></li>
+</ul></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://safe.dot.dns.yandex.net</code></p>
+<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>safe.dot.dns.yandex.net</code></p></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://family.dot.dns.yandex.net</code></p>
+<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>family.dot.dns.yandex.net</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+]]></content>
+      <categories>
+        <category>技术干货</category>
+      </categories>
+      <tags>
+        <tag>全球公共DNS</tag>
+        <tag>加密DNS</tag>
+        <tag>国内加密DNS</tag>
+        <tag>国外加密DNS</tag>
+        <tag>国外DNS</tag>
+        <tag>国内DNS</tag>
+        <tag>公共DNS</tag>
+        <tag>安全DNS</tag>
+        <tag>CloudflareDNS</tag>
+        <tag>GoogleDNS</tag>
+        <tag>360DNS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo+Butterfly主题更详细的Front-matter</title>
     <url>/archives/d2f6e5e8.html</url>
     <content><![CDATA[<blockquote>
@@ -206,113 +520,12 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>教程</tag>
         <tag>Hexo</tag>
+        <tag>Butterfly</tag>
+        <tag>教程</tag>
         <tag>Hexo Blog</tag>
         <tag>主题</tag>
-        <tag>Butterfly</tag>
         <tag>Butterfly主题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Butterfly主题博客魔改美化教程总览（一）</title>
-    <url>/archives/2fff1258.html</url>
-    <content><![CDATA[<div class="note orange no-icon modern"><p>本帖教程基于<strong>Hexo博客</strong>程序的 <strong>Butterfly主题</strong>编写 ，其中魔改&#x2F;美化内容大部分收集至各位大神的博客以及网络。</p>
-<p>由于每位用户的根目录名称各不相同，本文中博客的根目录将统一使用<code>[BlogRoot]</code>这一标识符表示。</p>
-<p>其中配置文件<code>_config.yml</code>，其路径为【BlogRoot&#x2F;_config.yml】。</p>
-<p>主题的配置文件<code>_config.butterfly.yml</code>进行相应修改，该文件位于【BlogRoot&#x2F;_config.butterfly.yml】路径下。</p>
-</div>
-
-<div class="note warning flat"><p>本文包含有关修改源代码的内容，将会使用<code>diff</code>代码块来标记变更。在复制这些代码段时，请记得移除前面的加号（+）和减号（-）符号，其中（+）号代码添加的代码，（-）代表这整行代码需要删除。</p>
-</div>
-
-<h2 id="自定义CSS-JS方法"><a href="#自定义CSS-JS方法" class="headerlink" title="自定义CSS&#x2F;JS方法"></a>自定义CSS&#x2F;JS方法</h2><p>CSS：在<code>[BlogRoot]/source/css/</code>目录下新建：daliyuer.css，名称可自定义。</p>
-<p>JS：在<code>[BlogRoot]/source/js/</code>目录下新建：daliyuer.js，名称可自定义。</p>
-<p>如没有 <strong>css</strong>跟 <strong>js</strong> 目录需自建。</p>
-<details class="toggle" ><summary class="toggle-button" style="">点击查看教程</summary><div class="toggle-content"><p>编辑主题配置文件<code>_config.butterfly.yml</code>在<code>inject-&gt;head</code> or <code>inject-&gt;bottom</code>添加如下两行。</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/daliyuer.css&quot;&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">bottom:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">type=&quot;text/javascript&quot;</span> <span class="string">src=&quot;/js/daliyuer.js&quot;&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
-</div></details>
-
-<h2 id="文章页调整"><a href="#文章页调整" class="headerlink" title="文章页调整"></a>文章页调整</h2><h3 id="文章顶部添加波浪效果"><a href="#文章顶部添加波浪效果" class="headerlink" title="文章顶部添加波浪效果"></a>文章顶部添加波浪效果</h3><p>教程地址：</p>
-<a href="https://blog.3ms.run/archives/f9a47848.html" target="_blank" title="给Butterfly主题文章顶部添加波浪效果" referrerPolicy="no-referrer" class="yqlink_card"><div class="yqlink_icon"><img src="https://blog.3ms.run/img/avatar-icon.jpg" class="no-lightbox"></div><div class="yqlink_content"><div class="yqlink_title">给Butterfly主题文章顶部添加波浪效果</div><div class="yqlink_desc">ZeroLatency</div></div></a>
-
-<h3 id="文章版权样式微调"><a href="#文章版权样式微调" class="headerlink" title="文章版权样式微调"></a>文章版权样式微调</h3><p>在自建的CSS文件内 [blogRoot]&#x2F;source&#x2F;css&#x2F;daliyuer.css 里新增如下内容</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 版权样式调整 */</span></span><br><span class="line"><span class="selector-id">#post</span> <span class="selector-class">.post-copyright</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--daliyuer-card-bg);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1rem</span> <span class="number">1.3rem</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border);</span><br><span class="line">    <span class="attribute">border-width</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">transition</span>: <span class="number">0.3s</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">1.5rem</span> <span class="number">0px</span> <span class="number">0.5rem</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#post</span> <span class="selector-class">.post-copyright</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">22px</span>;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">77px</span>;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;\e039&quot;</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">180px</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;iconfont&quot;</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--icat-fontcolor);</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0.1</span>;</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">7px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 版权样式调整end */</span></span><br></pre></td></tr></table></figure>
-
-<p>全局Css变量：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">       <span class="attr">--daliyuer-card-bg</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&#x27;dark&#x27;</span>]</span> &#123;</span><br><span class="line">       <span class="attr">--daliyuer-card-bg</span>: <span class="number">#1b1c20</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Twikoo评论表情包放大效果"><a href="#Twikoo评论表情包放大效果" class="headerlink" title="Twikoo评论表情包放大效果"></a>Twikoo评论表情包放大效果</h3><p><strong>效果图：</strong></p>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.25/image/2025/an1/20250325133103.png"></p>
-<details class="toggle" style="border: 1px solid #49b1f5"><summary class="toggle-button" style="background-color: #49b1f5;color: #fff">点击查看教程</summary><div class="toggle-content"><ol>
-<li><p>粘贴以下js内容到自定义js文件内即可</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 表情包放大 end */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果当前页有评论就执行函数</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;post-comment&#x27;</span>)) <span class="title function_">owoBig</span>();</span><br><span class="line"><span class="comment">// 表情放大</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">owoBig</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> flag = <span class="number">1</span>, <span class="comment">// 设置节流阀</span></span><br><span class="line">        owo_time = <span class="string">&#x27;&#x27;</span>, <span class="comment">// 设置计时器</span></span><br><span class="line">        m = <span class="number">3</span>; <span class="comment">// 设置放大倍数</span></span><br><span class="line">    <span class="comment">// 创建盒子</span></span><br><span class="line">    <span class="keyword">let</span> div = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>),</span><br><span class="line">        body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;body&#x27;</span>);</span><br><span class="line">    <span class="comment">// 设置ID</span></span><br><span class="line">    div.<span class="property">id</span> = <span class="string">&#x27;owo-big&#x27;</span>;</span><br><span class="line">    <span class="comment">// 插入盒子</span></span><br><span class="line">    body.<span class="title function_">appendChild</span>(div)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造observer</span></span><br><span class="line">    <span class="keyword">let</span> observer = <span class="keyword">new</span> <span class="title class_">MutationObserver</span>(<span class="function"><span class="params">mutations</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; mutations.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">let</span> dom = mutations[i].<span class="property">addedNodes</span>,</span><br><span class="line">                owo_body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (dom.<span class="property">length</span> == <span class="number">2</span> &amp;&amp; dom[<span class="number">1</span>].<span class="property">className</span> == <span class="string">&#x27;OwO-body&#x27;</span>) owo_body = dom[<span class="number">1</span>];</span><br><span class="line">            <span class="comment">// 如果需要在评论内容中启用此功能请解除下面的注释</span></span><br><span class="line">            <span class="comment">// else if (dom.length == 1 &amp;&amp; dom[0].className == &#x27;tk-comment&#x27;) owo_body = dom[0];</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 禁用右键（手机端长按会出现右键菜单，为了体验给禁用掉）</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientWidth</span> &lt;= <span class="number">768</span>) owo_body.<span class="title function_">addEventListener</span>(<span class="string">&#x27;contextmenu&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> e.<span class="title function_">preventDefault</span>());</span><br><span class="line">            <span class="comment">// 鼠标移入</span></span><br><span class="line">            owo_body.<span class="property">onmouseover</span> = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="comment">// 检查父元素的 className 是否包含 &#x27;OwO-packages&#x27;</span></span><br><span class="line">                <span class="keyword">if</span> (e.<span class="property">target</span>.<span class="property">parentElement</span>.<span class="property">parentElement</span>.<span class="property">parentElement</span> &amp;&amp; e.<span class="property">target</span>.<span class="property">parentElement</span>.<span class="property">parentElement</span>.<span class="property">parentElement</span>.<span class="property">className</span>.<span class="title function_">includes</span>(<span class="string">&#x27;OwO-packages&#x27;</span>)) <span class="keyword">return</span>;</span><br><span class="line">                <span class="keyword">if</span> (flag &amp;&amp; e.<span class="property">target</span>.<span class="property">tagName</span> == <span class="string">&#x27;IMG&#x27;</span>) &#123;</span><br><span class="line">                    flag = <span class="number">0</span>;</span><br><span class="line">                    <span class="comment">// 移入300毫秒后显示盒子</span></span><br><span class="line">                    owo_time = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                        <span class="keyword">let</span> height = e.<span class="property">target</span>.<span class="property">clientHeight</span> * m, <span class="comment">// 盒子高 2023-02-16更新</span></span><br><span class="line">                            width = e.<span class="property">target</span>.<span class="property">clientWidth</span> * m, <span class="comment">// 盒子宽 2023-02-16更新</span></span><br><span class="line">                            left = (e.<span class="property">x</span> - e.<span class="property">offsetX</span>) - (width - e.<span class="property">target</span>.<span class="property">clientWidth</span>) / <span class="number">2</span>, <span class="comment">// 盒子与屏幕左边距离 2023-02-16更新</span></span><br><span class="line">                            top = e.<span class="property">y</span> - e.<span class="property">offsetY</span>; <span class="comment">// 盒子与屏幕顶部距离</span></span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> ((left + width) &gt; body.<span class="property">clientWidth</span>) left -= ((left + width) - body.<span class="property">clientWidth</span> + <span class="number">10</span>); <span class="comment">// 右边缘检测，防止超出屏幕</span></span><br><span class="line">                        <span class="keyword">if</span> (left &lt; <span class="number">0</span>) left = <span class="number">10</span>; <span class="comment">// 左边缘检测，防止超出屏幕</span></span><br><span class="line">                        <span class="comment">// 设置盒子样式</span></span><br><span class="line">                        div.<span class="property">style</span>.<span class="property">cssText</span> = <span class="string">`display:flex; height:<span class="subst">$&#123;height&#125;</span>px; width:<span class="subst">$&#123;width&#125;</span>px; left:<span class="subst">$&#123;left&#125;</span>px; top:<span class="subst">$&#123;top&#125;</span>px;`</span>;</span><br><span class="line">                        <span class="comment">// 在盒子中插入图片</span></span><br><span class="line">                        div.<span class="property">innerHTML</span> = <span class="string">`&lt;img src=&quot;<span class="subst">$&#123;e.target.src&#125;</span>&quot;&gt;`</span></span><br><span class="line">                    &#125;, <span class="number">300</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="comment">// 鼠标移出隐藏盒子</span></span><br><span class="line">            owo_body.<span class="property">onmouseout</span> = <span class="function">() =&gt;</span> &#123; div.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>, flag = <span class="number">1</span>, <span class="built_in">clearTimeout</span>(owo_time); &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">    observer.<span class="title function_">observe</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;post-comment&#x27;</span>), &#123; <span class="attr">subtree</span>: <span class="literal">true</span>, <span class="attr">childList</span>: <span class="literal">true</span> &#125;) <span class="comment">// 监听的 元素 和 配置项</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 表情包放大 end */</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在将以下CSS内容粘贴到自定义CSS中即可</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#owo-big</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>);</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaa</span> solid;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">9999</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>, -<span class="number">105%</span>);</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">animation</span>: owoIn <span class="number">0.3s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.42</span>, <span class="number">0</span>, <span class="number">0.3</span>, <span class="number">1.11</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[data-theme=dark]</span> <span class="selector-id">#owo-big</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#4a4a4a</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#owo-big</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 动画效果代码由 Heo：https://blog.zhheo.com/ 提供 */</span></span><br><span class="line"><span class="keyword">@keyframes</span> owoIn &#123;</span><br><span class="line">    <span class="number">0%</span> &#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>, -<span class="number">95%</span>);</span><br><span class="line">        <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0</span>, -<span class="number">105%</span>);</span><br><span class="line">        <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>参考文章：</p>
-<a class="tag-Link" target="_blank" href="https://blog.leonus.cn/2022/owo-big.html" rel="external nofollow noreferrer">
-    <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
-    <div class="tag-link-bottom">
-        <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/blog.leonus.cn/2022/owo-big.html.png);"><i class="iconfont icon-link"></i></div>
-        <div class="tag-link-right">
-            <div class="tag-link-title">评论表情包放大功能，超实用</div>
-            <div class="tag-link-sitename">Leonus</div>
-        </div>
-        <i class="fa-solid fa-angle-right"></i>
-    </div>
-    </a>
-
-   
-
-</div></details>
-
-<h3 id="本站同款Twikoo自定义表情包（持续更新）"><a href="#本站同款Twikoo自定义表情包（持续更新）" class="headerlink" title="本站同款Twikoo自定义表情包（持续更新）"></a>本站同款Twikoo自定义表情包（持续更新）</h3><p><img src="/20250325134646.png"></p>
-<details class="toggle" style="border: 1px solid #49b1f5"><summary class="toggle-button" style="background-color: #49b1f5;color: #fff">点击查看详细教程</summary><div class="toggle-content"><ol>
-<li>输入暗号进入评论<code>管理界面</code>-&gt;<code>配置管理</code>-&gt;<code>插件</code>-&gt;<code>EMOTION_CDN</code>将<code>EMOTION_CDN</code>内的内容替换成：<code>https://cdn.cbd.int/daliyuer-static@latest/bq/twikoo.json</code> <img src="/20250325135418.png"></li>
-<li>如果你想自定义自己的表情包可参考：<a class="tag-Link" target="_blank" href="https://github.com/noionion/Twikoo-Magic" rel="external nofollow noreferrer"> <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
- <div class="tag-link-bottom">
-     <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/github.com/noionion/Twikoo-Magic.png);"><i class="iconfont icon-link"></i></div>
-     <div class="tag-link-right">
-         <div class="tag-link-title">Twikoo自定义表情列表 |HexoPlusPlus自定义表情列表（其实基于OwO的项目都可以用的啦</div>
-         <div class="tag-link-sitename">GitHub</div>
-     </div>
-     <i class="fa-solid fa-angle-right"></i>
- </div>
- </a><a class="tag-Link" target="_blank" href="https://emotion.xiaokang.me" rel="external nofollow noreferrer">
- <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
- <div class="tag-link-bottom">
-     <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/emotion.xiaokang.me.png);"><i class="iconfont icon-link"></i></div>
-     <div class="tag-link-right">
-         <div class="tag-link-title">表情速查</div>
-         <div class="tag-link-sitename">Twikoo</div>
-     </div>
-     <i class="fa-solid fa-angle-right"></i>
- </div>
- </a></li>
-</ol>
-</div></details>
-
-
-
-<h3 id="Twikoo评论区美化"><a href="#Twikoo评论区美化" class="headerlink" title="Twikoo评论区美化"></a>Twikoo评论区美化</h3><p>自定义css中添加以下内容即可：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Twikoo 评论美化 */</span></span><br><span class="line"><span class="selector-id">#post-comment</span> <span class="selector-class">.comment-privacy</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#409eff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#post-comment</span> <span class="selector-class">.comment-headline</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#post-comment</span> <span class="selector-class">.comment-headline</span>&gt;<span class="selector-tag">i</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">blockquote</span>&gt; <span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-input--small</span> <span class="selector-class">.el-input__inner</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-input-group__prepend</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">8px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-input__inner</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">8px</span> <span class="number">0</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-textarea__inner</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-textarea</span>&gt;<span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">120px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-button--small</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 评论编辑块调整 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* .tk-submit-action-icon.__markdown &#123;</span></span><br><span class="line"><span class="comment">    display: none;</span></span><br><span class="line"><span class="comment">&#125; */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* markdown编辑快隐藏 */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-avatar</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-comment</span> <span class="selector-class">.tk-submit</span> <span class="selector-class">.tk-avatar</span>,</span><br><span class="line"><span class="selector-class">.tk-replies</span> <span class="selector-class">.tk-avatar</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2.5rem</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">2.5rem</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-comment</span> <span class="selector-class">.tk-submit</span> <span class="selector-class">.tk-avatar</span> <span class="selector-class">.tk-avatar-img</span>,</span><br><span class="line"><span class="selector-class">.tk-replies</span> <span class="selector-class">.tk-avatar</span> <span class="selector-class">.tk-avatar-img</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2.5rem</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-ruser</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#409eff</span>;</span><br><span class="line">    <span class="attribute">opacity</span>: .<span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.tk-comment</span> <span class="selector-class">.tk-submit</span> <span class="selector-class">.tk-avatar</span>,</span><br><span class="line">    <span class="selector-class">.tk-replies</span> <span class="selector-class">.tk-avatar</span> &#123;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">2rem</span> <span class="meta">!important</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">2rem</span> <span class="meta">!important</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.tk-comment</span> <span class="selector-class">.tk-submit</span> <span class="selector-class">.tk-avatar</span> <span class="selector-class">.tk-avatar-img</span>,</span><br><span class="line">    <span class="selector-class">.tk-replies</span> <span class="selector-class">.tk-avatar</span> <span class="selector-class">.tk-avatar-img</span> &#123;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">2rem</span> <span class="meta">!important</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-nick</span>,</span><br><span class="line"><span class="selector-class">.tk-meta</span> <span class="selector-tag">a</span> <span class="selector-tag">strong</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#409eff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-tag-green</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">0.2rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-time</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">0.4rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-extras</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> dashed <span class="built_in">var</span>(--hr-border);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-extra</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">4px</span> <span class="number">6px</span> <span class="number">4px</span> <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-expand</span> &#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--daliyuer-background);</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--daliyuer-fontcolor);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-footer</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-footer</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#999999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-footer</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#409eff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-comment-item</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--global-bg);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-comment-meta</span>,</span><br><span class="line"><span class="selector-class">.tk-content</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--daliyuer-fontcolor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-actions</span> &#123;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">0</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">0</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 评论管理 */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-panel</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-config-groups</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--global-bg);</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-config-groups</span> <span class="selector-class">.tk-admin-config-group-title</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--daliyuer-background) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="built_in">var</span>(--style-border-always);</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--daliyuer-fontcolor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tk-admin-config-item</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--daliyuer-fontcolor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 配置管理 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 评论区样式 */</span></span><br><span class="line"><span class="comment">/* Twikoo 评论美化 end*/</span></span><br></pre></td></tr></table></figure>
-
-<p>全局css变量：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attr">--daliyuer-background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attr">--daliyuer-fontcolor</span>: <span class="number">#363636</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&#x27;dark&#x27;</span>]</span> &#123;</span><br><span class="line">    <span class="attr">--daliyuer-fontcolor</span>: <span class="number">#F7F7FA</span>;</span><br><span class="line">    <span class="attr">--daliyuer-background</span>: <span class="number">#18171d</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>技术教程</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Butterfly</tag>
-        <tag>Butterfly魔改</tag>
       </tags>
   </entry>
   <entry>
@@ -597,192 +810,6 @@
       </tags>
   </entry>
   <entry>
-    <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
-    <url>/archives/12986.html</url>
-    <content><![CDATA[<blockquote>
-<p>在当今数字化时代，网络安全已成为我们每个人关心的重点。域名系统（DNS）作为互联网的电话簿，其安全性至关重要。传统的DNS查询缺乏加密保护，容易遭受各种形式的网络攻击，如DNS劫持和DNS污染。为了解决这些问题，DoT（DNS over TLS）和DoH（DNS over HTTPS）应运而生，它们通过加密技术来确保DNS查询的安全性和隐私性。</p>
-</blockquote>
-<p>今天给大家分享一些国内知名免费公共DoT&#x2F;DoH加密DNS服务器。</p>
-<h2 id="国内主流DNS服务器"><a href="#国内主流DNS服务器" class="headerlink" title="国内主流DNS服务器"></a>国内主流DNS服务器</h2><h3 id="1-腾讯-DNS-DNSPod"><a href="#1-腾讯-DNS-DNSPod" class="headerlink" title="1.腾讯 DNS (DNSPod)"></a>1.<strong>腾讯 DNS (DNSPod)</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoH地址(国密SM2)基于腾讯云政企国密解决方案</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.pub/dns-query</code></li>
-<li><code>https://1.12.12.12/dns-query</code></li>
-<li><code>https://120.53.53.53/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>https://sm2.doh.pub/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.pub</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>1.12.12.12</code></li>
-<li><code>120.53.53.53</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="阿里云公共-DNS"><a href="#阿里云公共-DNS" class="headerlink" title="阿里云公共 DNS"></a><strong>阿里云公共 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.alidns.com/dns-query</code></li>
-<li><code>https://223.5.5.5/dns-query</code></li>
-<li><code>https://223.6.6.6/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.alidns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>223.5.5.5</code></li>
-<li><code>223.6.6.6</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="360-Secure-安全-DNS"><a href="#360-Secure-安全-DNS" class="headerlink" title="360 Secure(安全) DNS"></a><strong>360 Secure(安全) DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.360.cn/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.360.cn</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>101.226.4.6</code></li>
-<li><code>218.30.118.6</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="信风公共-DNS"><a href="#信风公共-DNS" class="headerlink" title="信风公共 DNS"></a>信风公共 DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.114dns.com/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>tls.dns114.cn</code></li>
-</ul></div><div class="tab-item-content"><p><code>114.11.114.114</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="TWNIC-DNS-Quad-101"><a href="#TWNIC-DNS-Quad-101" class="headerlink" title="TWNIC DNS Quad 101"></a>TWNIC DNS Quad 101</h3><p>由台湾网络资讯中心提供的免费公共 DNS 服务，以台湾地区为人熟悉的地标 台北 101 作为地址。</p>
-<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.twnic.tw/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.twnic.tw</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h2 id="国外主流DNS服务器"><a href="#国外主流DNS服务器" class="headerlink" title="国外主流DNS服务器"></a>国外主流DNS服务器</h2><h3 id="Google-Public-DNS"><a href="#Google-Public-DNS" class="headerlink" title="Google Public DNS"></a>Google Public DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.google/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.google</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>8.8.8.8</code></li>
-<li><code>8.8.4.4</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Cloudflare-DNS"><a href="#Cloudflare-DNS" class="headerlink" title="Cloudflare DNS"></a>Cloudflare DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">安全版 (拦截恶意代码)</button><button type="button" class="tab">家庭版(拦截恶意代码和成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://cloudflare-dns.com/dns-query</code></li>
-<li><code>https://dns.cloudflare.com/dns-query</code></li>
-<li><code>https://1.1.1.1/dns-query</code></li>
-<li><code>https://1.0.0.1/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>cloudflare-dns.com</code></li>
-<li><code>dns.cloudflare.com</code></li>
-<li><code>one.one.one.one</code></li>
-<li><code>1dot1dot1dot1.cloudflare-dns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>1.1.1.1</code></li>
-<li><code>1.0.0.1</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
-<ul>
-<li><code>https://security.cloudflare-dns.com/dns-query</code></li>
-</ul>
-<p><strong>DoT：</strong></p>
-<ul>
-<li><code>security.cloudflare-dns.com</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoH:</strong></p>
-<ul>
-<li><code>https://family.cloudflare-dns.com/dns-query</code></li>
-</ul>
-<p><strong>DoT:</strong></p>
-<ul>
-<li><code>family.cloudflare-dns.com</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Quad9-DNS"><a href="#Quad9-DNS" class="headerlink" title="Quad9 DNS"></a><strong>Quad9 DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.quad9.net/dns-query</code></li>
-<li><code>https://dns9.quad9.net/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.quad9.net</code></li>
-<li><code>dns9.quad9.net</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>9.9.9.9</code></li>
-<li><code>149.112.112.112</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="AdGuard-DNS"><a href="#AdGuard-DNS" class="headerlink" title="AdGuard DNS"></a><strong>AdGuard DNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">IPv4地址</button><button type="button" class="tab">家庭保护服务器 (拦截成人内容)</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.adguard.com/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.adguard-dns.com</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>94.140.14.14</code></li>
-<li><code>94.140.15.15</code></li>
-</ul></div><div class="tab-item-content"><p><strong>DoT</strong>：</p>
-<ul>
-<li><code>family.adguard.com</code></li>
-</ul>
-<p><strong>DoH</strong>：</p>
-<ul>
-<li><code>https://family.adguard.com/dns-query</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="NextDNS"><a href="#NextDNS" class="headerlink" title="NextDNS"></a><strong>NextDNS</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://dns.nextdns.io</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dns.nextdns.io</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="DNS-SB"><a href="#DNS-SB" class="headerlink" title="DNS.SB"></a><strong>DNS.SB</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://doh.dns.sb/dns-query</code></li>
-<li><code>https://doh.sb/dns-query</code></li>
-<li><code>https://dns.sb/dns-query</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>dot.sb</code></li>
-<li><code>dns.sb</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<h3 id="Cisco-OpenDNS-Cisco-Umbrella"><a href="#Cisco-OpenDNS-Cisco-Umbrella" class="headerlink" title="Cisco OpenDNS&#x2F;Cisco Umbrella"></a><strong>Cisco OpenDNS&#x2F;Cisco Umbrella</strong></h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">OpenDNS FamilyShield</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><a href="https://doh.opendns.com/dns-query" rel="external nofollow noreferrer">https://doh.opendns.com/dns-query</a></li>
-<li><a href="https://dns.opendns.com/dns-query" rel="external nofollow noreferrer">https://dns.opendns.com/dns-query</a></li>
-<li><a href="https://doh.umbrella.com/dns-query" rel="external nofollow noreferrer">https://doh.umbrella.com/dns-query</a></li>
-<li><a href="https://dns.umbrella.com/dns-query" rel="external nofollow noreferrer">https://dns.umbrella.com/dns-query</a></li>
-<li><a href="https://dns.sse.cisco.com/dns-query" rel="external nofollow noreferrer">https://dns.sse.cisco.com/dns-query</a></li>
-</ul></div><div class="tab-item-content"><ul>
-<li>dns.opendns.com</li>
-<li>dns.umbrella.com</li>
-<li>dns.sse.cisco.com</li>
-</ul></div><div class="tab-item-content"><p><strong>OpenDNS 家庭盾版 DNS，官方介绍是 block adult content 阻止成人内容。</strong><br><strong>DoH:</strong></p>
-<ul>
-<li><code>https://familyshield.opendns.com/dns-query</code></li>
-<li><code>https://doh.familyshield.opendns.com/dns-query</code></li>
-<li><code>https://familyshield.sse.cisco.com/dns-query</code></li>
-</ul>
-<p><strong>DoT:</strong></p>
-<ul>
-<li><code>familyshield.opendns.com</code></li>
-<li><code>familyshield.sse.cisco.com</code></li>
-</ul></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-
-
-<h3 id="Yandex-DNS"><a href="#Yandex-DNS" class="headerlink" title="Yandex DNS"></a>Yandex DNS</h3><div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">DoH地址</button><button type="button" class="tab">DoT地址</button><button type="button" class="tab">安全版（病毒和钓鱼防御）</button><button type="button" class="tab">家庭版（拦截成人内容）</button></div><div class="tab-contents"><div class="tab-item-content active"><ul>
-<li><code>https://common.dot.dns.yandex.net</code></li>
-<li><code>https://77.88.8.8</code></li>
-<li><code>https://2a02:6b8::feed:0ff</code></li>
-</ul></div><div class="tab-item-content"><ul>
-<li><code>common.dot.dns.yandex.net</code></li>
-<li><code>77.88.8.8</code></li>
-<li><code>2a02:6b8::feed:0ff</code></li>
-</ul></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://safe.dot.dns.yandex.net</code></p>
-<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>safe.dot.dns.yandex.net</code></p></div><div class="tab-item-content"><p><strong><mark class="hl-label green">DoH地址</mark>:</strong> <code>https://family.dot.dns.yandex.net</code></p>
-<p><strong><mark class="hl-label red">DoH地址</mark>:</strong><code>family.dot.dns.yandex.net</code></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>全球公共DNS</tag>
-        <tag>加密DNS</tag>
-        <tag>国内加密DNS</tag>
-        <tag>国外加密DNS</tag>
-        <tag>国外DNS</tag>
-        <tag>国内DNS</tag>
-        <tag>公共DNS</tag>
-        <tag>安全DNS</tag>
-        <tag>CloudflareDNS</tag>
-        <tag>GoogleDNS</tag>
-        <tag>360DNS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>给Butterfly主题文章顶部添加波浪效果</title>
     <url>/archives/f9a47848.html</url>
     <content><![CDATA[<p>本文简要介绍如何在Hexo博客的Butterfly主题中，为每篇文章顶部添加一个动态波浪效果。</p>
@@ -811,33 +838,6 @@
         <tag>Hexo</tag>
         <tag>Butterfly</tag>
         <tag>Butterfly魔改</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
-    <url>/archives/c920ed04.html</url>
-    <content><![CDATA[<blockquote>
-<p>由于某些原因，jsdelivr项目的中国域名cdn.jsdelivr.net经历了备案注销，这直接导致了国内用户访问该服务时线路质量变得极不稳定。对于众多依赖jsdelivr作为静态资源加速服务的网站和应用而言，这意味着加载速度显著下降，稳定性也大打折扣。相比备案期间的表现，当前的服务水平确实难以匹敌。</p>
-<p>值得注意的是，在构建自己的jsdelivr镜像时，建议同时配置防盗链措施，以保护您的资源免受未经授权的使用，从而确保仅限内部或授权用户能够享受加速服务。通过这样的策略，不仅能够有效提升用户体验，还能在一定程度上减轻原服务的压力，促进网络资源的合理分配与利用。</p>
-<p>实施上述解决方案不仅能为您的用户提供更加流畅、稳定的访问体验，而且从长远来看，有助于提高您网站的整体性能表现及搜索引擎排名，进而吸引更多的流量与关注。</p>
-</blockquote>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318230931.png"></p>
-<h2 id="Nginx反代配置文件"><a href="#Nginx反代配置文件" class="headerlink" title="Nginx反代配置文件"></a>Nginx反代配置文件</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> cdn.yourdomain.com;</span><br><span class="line">    </span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /npm/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/npm/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /gh/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/gh/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	 </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#WP可选</span></span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /wp/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/wp/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果你使用的是宝塔或者1Panel等其他面板程序可直接在<strong>反向代理</strong>中添加一条配置即可，如图下（以宝塔为例），发域名必备设置为<code>cdn.jsdelivr.net</code>：</p>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318224800.png"></p>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将项目引用链接中的cdn.jsdelivr.net替换为你绑定的反代域名即可</p>
-]]></content>
-      <categories>
-        <category>技术干货</category>
-      </categories>
-      <tags>
-        <tag>Npm镜像</tag>
-        <tag>Github镜像</tag>
-        <tag>Jsdelivr</tag>
-        <tag>自建Npm镜像</tag>
-        <tag>Jsdelivr反代</tag>
-        <tag>Jsdelivr加速</tag>
       </tags>
   </entry>
   <entry>
@@ -2246,8 +2246,8 @@ title 产品X的关键要素
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>教程</tag>
         <tag>Hexo</tag>
+        <tag>教程</tag>
         <tag>Hexo Blog</tag>
         <tag>主题</tag>
       </tags>
