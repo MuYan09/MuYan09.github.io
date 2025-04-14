@@ -1,1 +1,360 @@
-"use strict";function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function _toConsumableArray(e){return _arrayWithoutHoles(e)||_iterableToArray(e)||_unsupportedIterableToArray(e)||_nonIterableSpread()}function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function _iterableToArray(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}function _arrayWithoutHoles(e){if(Array.isArray(e))return _arrayLikeToArray(e)}function _slicedToArray(e,t){return _arrayWithHoles(e)||_iterableToArrayLimit(e,t)||_unsupportedIterableToArray(e,t)||_nonIterableRest()}function _nonIterableRest(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function _iterableToArrayLimit(e,t){var r=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=r){var n,o,a,i,l=[],c=!0,s=!1;try{if(a=(r=r.call(e)).next,0===t){if(Object(r)!==r)return;c=!1}else for(;!(c=(n=a.call(r)).done)&&(l.push(n.value),l.length!==t);c=!0);}catch(e){s=!0,o=e}finally{try{if(!c&&null!=r.return&&(i=r.return(),Object(i)!==i))return}finally{if(s)throw o}}return l}}function _arrayWithHoles(e){if(Array.isArray(e))return e}function _createForOfIteratorHelper(e,t){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(!r){if(Array.isArray(e)||(r=_unsupportedIterableToArray(e))||t&&e&&"number"==typeof e.length){r&&(e=r);var n=0,o=function(){};return{s:o,n:function(){return n>=e.length?{done:!0}:{done:!1,value:e[n++]}},e:function(e){throw e},f:o}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var a,i=!0,l=!1;return{s:function(){r=r.call(e)},n:function(){var e=r.next();return i=e.done,e},e:function(e){l=!0,a=e},f:function(){try{i||null==r.return||r.return()}finally{if(l)throw a}}}}function _unsupportedIterableToArray(e,t){if(e){if("string"==typeof e)return _arrayLikeToArray(e,t);var r={}.toString.call(e).slice(8,-1);return"Object"===r&&e.constructor&&(r=e.constructor.name),"Map"===r||"Set"===r?Array.from(e):"Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)?_arrayLikeToArray(e,t):void 0}}function _arrayLikeToArray(e,t){(null==t||t>e.length)&&(t=e.length);for(var r=0,n=Array(t);r<t;r++)n[r]=e[r];return n}function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _defineProperties(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,_toPropertyKey(n.key),n)}}function _createClass(e,t,r){return t&&_defineProperties(e.prototype,t),r&&_defineProperties(e,r),Object.defineProperty(e,"prototype",{writable:!1}),e}function _toPropertyKey(e){var t=_toPrimitive(e,"string");return"symbol"==_typeof(t)?t:t+""}function _toPrimitive(e,t){if("object"!=_typeof(e)||!e)return e;var r=e[Symbol.toPrimitive];if(void 0===r)return("string"===t?String:Number)(e);var n=r.call(e,t||"default");if("object"!=_typeof(n))return n;throw new TypeError("@@toPrimitive must return a primitive value.")}var LocalSearch=function(){return _createClass(function e(t){var r=t.path,n=void 0===r?"":r,o=t.unescape,a=void 0!==o&&o,i=t.top_n_per_article,l=void 0===i?1:i;_classCallCheck(this,e),this.path=n,this.unescape=a,this.top_n_per_article=l,this.isfetched=!1,this.datas=null},[{key:"getIndexByWord",value:function(e,a,t){var i=this,l=2<arguments.length&&void 0!==t&&t,c=[],s=new Set;return l||(a=a.toLowerCase()),e.forEach(function(e){var t;i.unescape&&((t=document.createElement("div")).innerText=e,e=t.innerHTML);var r=e.length;if(0!==r){var n,o=0;for(l||(e=e.toLowerCase());-1<(n=a.indexOf(e,o));)c.push({position:n,word:e}),s.add(e),o=n+r}}),c.sort(function(e,t){return e.position!==t.position?e.position-t.position:t.word.length-e.word.length}),[c,s]}},{key:"mergeIntoSlice",value:function(e,t,r){for(var n=r[0],o=n.position,a=n.word,i=[],l=new Set;o+a.length<=t&&0!==r.length;){l.add(a),i.push({position:o,length:a.length});var c=o+a.length;for(r.shift();0!==r.length&&(o=(n=r[0]).position,a=n.word,o<c);)r.shift()}return{hits:i,start:e,end:t,count:l.size}}},{key:"highlightKeyword",value:function(e,t){var r,n="",o=t.start,a=_createForOfIteratorHelper(t.hits);try{for(a.s();!(r=a.n()).done;){var i=r.value,l=i.position,c=i.length;n+=e.substring(o,l),o=l+c,n+='<mark class="search-keyword">'.concat(e.substr(l,c),"</mark>")}}catch(e){a.e(e)}finally{a.f()}return n+=e.substring(o,t.end)}},{key:"getResultItems",value:function(b){var _=this,w=[];return this.datas.forEach(function(e){var t=e.title,r=e.content,n=e.url,o=_slicedToArray(_.getIndexByWord(b,t),2),a=o[0],i=o[1],l=_slicedToArray(_.getIndexByWord(b,r),2),c=l[0],s=l[1],u=new Set([].concat(_toConsumableArray(i),_toConsumableArray(s))).size,h=a.length+c.length;if(0!==h){var d=[];0!==a.length&&d.push(_.mergeIntoSlice(0,t.length,a));for(var f=[];0!==c.length;){var y=c[0].position,p=Math.max(0,y-20),m=Math.min(r.length,y+100);f.push(_.mergeIntoSlice(p,m,c))}f.sort(function(e,t){return e.count!==t.count?t.count-e.count:e.hits.length!==t.hits.length?t.hits.length-e.hits.length:e.start-t.start});var g=parseInt(_.top_n_per_article,10);0<=g&&(f=f.slice(0,g));var v="";(n=new URL(n,location.origin)).searchParams.append("highlight",b.join(" ")),0!==d.length?v+='<li class="local-search-hit-item"><a href="'.concat(n.href,'"><span class="search-result-title">').concat(_.highlightKeyword(t,d[0]),"</span>"):v+='<li class="local-search-hit-item"><a href="'.concat(n.href,'"><span class="search-result-title">').concat(t,"</span>"),f.forEach(function(e){v+='<p class="search-result">'.concat(_.highlightKeyword(r,e),"...</p></a>")}),v+="</li>",w.push({item:v,id:w.length,hitCount:h,includedCount:u})}}),w}},{key:"fetchData",value:function(){var t=this,r=!this.path.endsWith("json");fetch(this.path).then(function(e){return e.text()}).then(function(e){t.isfetched=!0,t.datas=r?_toConsumableArray((new DOMParser).parseFromString(e,"text/xml").querySelectorAll("entry")).map(function(e){return{title:e.querySelector("title").textContent,content:e.querySelector("content").textContent,url:e.querySelector("url").textContent}}):JSON.parse(e),t.datas=t.datas.filter(function(e){return e.title}).map(function(e){return e.title=e.title.trim(),e.content=e.content?e.content.trim().replace(/<[^>]+>/g,""):"",e.url=decodeURIComponent(e.url).replace(/\/{2,}/g,"/"),e}),window.dispatchEvent(new Event("search:loaded"))})}},{key:"highlightText",value:function(t,e,r){var n,o=t.nodeValue,a=e.start,i=[],l=_createForOfIteratorHelper(e.hits);try{for(l.s();!(n=l.n()).done;){var c=n.value,s=c.position,u=c.length,h=document.createTextNode(o.substring(a,s)),a=s+u,d=document.createElement("mark");d.className=r,d.appendChild(document.createTextNode(o.substr(s,u))),i.push(h,d)}}catch(e){l.e(e)}finally{l.f()}t.nodeValue=o.substring(a,e.end),i.forEach(function(e){t.parentNode.insertBefore(e,t)})}},{key:"highlightSearchWords",value:function(e){var n=this,t=new URL(location.href).searchParams.get("highlight"),o=t?t.split(" "):[];if(o.length&&e){for(var r=document.createTreeWalker(e,NodeFilter.SHOW_TEXT,null),a=[];r.nextNode();)r.currentNode.parentNode.matches("button, select, textarea, .mermaid")||a.push(r.currentNode);a.forEach(function(e){var t,r=_slicedToArray(n.getIndexByWord(o,e.nodeValue),1)[0];r.length&&(t=n.mergeIntoSlice(0,e.nodeValue.length,r),n.highlightText(e,t,"search-keyword"))})}}}])}();window.addEventListener("load",function(){function e(){var e,t,r,n,o,a;s.isfetched&&(e=u.value.trim().toLowerCase(),f&&(e=e.replace(/</g,"&lt;").replace(/>/g,"&gt;")),""!==e&&(d.innerHTML='<i class="fas fa-spinner fa-pulse"></i>'),t=e.split(/[-\s]+/),r=document.getElementById("local-search-results"),n=[],0<e.length&&(n=s.getResultItems(t)),1===t.length&&""===t[0]?(r.textContent="",h.textContent=""):0===n.length?(r.textContent="",(o=document.createElement("div")).className="search-result-stats",o.textContent=c.hits_empty.replace(/\$\{query}/,e),h.innerHTML=o.outerHTML):(n.sort(function(e,t){return e.includedCount!==t.includedCount?t.includedCount-e.includedCount:e.hitCount!==t.hitCount?t.hitCount-e.hitCount:t.id-e.id}),a=c.hits_stats.replace(/\$\{hits}/,n.length),r.innerHTML='<ol class="search-result-list">'.concat(n.map(function(e){return e.item}).join(""),"</ol>"),h.innerHTML='<hr><div class="search-result-stats">'.concat(a,"</div>"),window.pjax&&window.pjax.refresh(r)),d.textContent="")}function t(){window.innerWidth<768&&m.style.setProperty("--search-height",window.innerHeight+"px")}function r(){btf.overflowPaddingR.add(),btf.animateIn(p,"to_show 0.5s"),btf.animateIn(m,"titleScale 0.5s"),setTimeout(function(){u.focus()},300),y||(s.isfetched||s.fetchData(),u.addEventListener("input",e),y=!0),document.addEventListener("keydown",function e(t){"Escape"===t.code&&(g(),document.removeEventListener("keydown",e))}),t(),window.addEventListener("resize",t)}function n(){btf.addEventListenerPjax(document.querySelector("#search-button > .search"),"click",r)}var o=GLOBAL_CONFIG.localSearch,a=o.path,i=o.top_n_per_article,l=o.unescape,c=o.languages,s=new LocalSearch({path:a,top_n_per_article:i,unescape:l}),u=document.querySelector("#local-search-input input"),h=document.getElementById("local-search-stats-wrap"),d=document.getElementById("loading-status"),f=!a.endsWith("json"),y=!1,p=document.getElementById("search-mask"),m=document.querySelector("#local-search .search-dialog"),g=function(){btf.overflowPaddingR.remove(),btf.animateOut(m,"search_close .5s"),btf.animateOut(p,"to_hide 0.5s"),window.removeEventListener("resize",t)};window.addEventListener("search:loaded",function(){var e=document.getElementById("loading-database");e.nextElementSibling.style.display="block",e.remove()}),n(),document.querySelector("#local-search .search-close-button").addEventListener("click",g),p.addEventListener("click",g),GLOBAL_CONFIG.localSearch.preload&&s.fetchData(),s.highlightSearchWords(document.getElementById("article-container")),window.addEventListener("pjax:complete",function(){btf.isHidden(p)||g(),s.highlightSearchWords(document.getElementById("article-container")),n()})});
+/**
+ * Refer to hexo-generator-searchdb
+ * https://github.com/next-theme/hexo-generator-searchdb/blob/main/dist/search.js
+ * Modified by hexo-theme-butterfly
+ */
+
+class LocalSearch {
+  constructor ({
+    path = '',
+    unescape = false,
+    top_n_per_article = 1
+  }) {
+    this.path = path
+    this.unescape = unescape
+    this.top_n_per_article = top_n_per_article
+    this.isfetched = false
+    this.datas = null
+  }
+
+  getIndexByWord (words, text, caseSensitive = false) {
+    const index = []
+    const included = new Set()
+
+    if (!caseSensitive) {
+      text = text.toLowerCase()
+    }
+    words.forEach(word => {
+      if (this.unescape) {
+        const div = document.createElement('div')
+        div.innerText = word
+        word = div.innerHTML
+      }
+      const wordLen = word.length
+      if (wordLen === 0) return
+      let startPosition = 0
+      let position = -1
+      if (!caseSensitive) {
+        word = word.toLowerCase()
+      }
+      while ((position = text.indexOf(word, startPosition)) > -1) {
+        index.push({ position, word })
+        included.add(word)
+        startPosition = position + wordLen
+      }
+    })
+    // Sort index by position of keyword
+    index.sort((left, right) => {
+      if (left.position !== right.position) {
+        return left.position - right.position
+      }
+      return right.word.length - left.word.length
+    })
+    return [index, included]
+  }
+
+  // Merge hits into slices
+  mergeIntoSlice (start, end, index) {
+    let item = index[0]
+    let { position, word } = item
+    const hits = []
+    const count = new Set()
+    while (position + word.length <= end && index.length !== 0) {
+      count.add(word)
+      hits.push({
+        position,
+        length: word.length
+      })
+      const wordEnd = position + word.length
+
+      // Move to next position of hit
+      index.shift()
+      while (index.length !== 0) {
+        item = index[0]
+        position = item.position
+        word = item.word
+        if (wordEnd > position) {
+          index.shift()
+        } else {
+          break
+        }
+      }
+    }
+    return {
+      hits,
+      start,
+      end,
+      count: count.size
+    }
+  }
+
+  // Highlight title and content
+  highlightKeyword (val, slice) {
+    let result = ''
+    let index = slice.start
+    for (const { position, length } of slice.hits) {
+      result += val.substring(index, position)
+      index = position + length
+      result += `<mark class="search-keyword">${val.substr(position, length)}</mark>`
+    }
+    result += val.substring(index, slice.end)
+    return result
+  }
+
+  getResultItems (keywords) {
+    const resultItems = []
+    this.datas.forEach(({ title, content, url }) => {
+      // The number of different keywords included in the article.
+      const [indexOfTitle, keysOfTitle] = this.getIndexByWord(keywords, title)
+      const [indexOfContent, keysOfContent] = this.getIndexByWord(keywords, content)
+      const includedCount = new Set([...keysOfTitle, ...keysOfContent]).size
+
+      // Show search results
+      const hitCount = indexOfTitle.length + indexOfContent.length
+      if (hitCount === 0) return
+
+      const slicesOfTitle = []
+      if (indexOfTitle.length !== 0) {
+        slicesOfTitle.push(this.mergeIntoSlice(0, title.length, indexOfTitle))
+      }
+
+      let slicesOfContent = []
+      while (indexOfContent.length !== 0) {
+        const item = indexOfContent[0]
+        const { position } = item
+        // Cut out 120 characters. The maxlength of .search-input is 80.
+        const start = Math.max(0, position - 20)
+        const end = Math.min(content.length, position + 100)
+        slicesOfContent.push(this.mergeIntoSlice(start, end, indexOfContent))
+      }
+
+      // Sort slices in content by included keywords' count and hits' count
+      slicesOfContent.sort((left, right) => {
+        if (left.count !== right.count) {
+          return right.count - left.count
+        } else if (left.hits.length !== right.hits.length) {
+          return right.hits.length - left.hits.length
+        }
+        return left.start - right.start
+      })
+
+      // Select top N slices in content
+      const upperBound = parseInt(this.top_n_per_article, 10)
+      if (upperBound >= 0) {
+        slicesOfContent = slicesOfContent.slice(0, upperBound)
+      }
+
+      let resultItem = ''
+
+      url = new URL(url, location.origin)
+      url.searchParams.append('highlight', keywords.join(' '))
+
+      if (slicesOfTitle.length !== 0) {
+        resultItem += `<li class="local-search-hit-item"><a href="${url.href}"><span class="search-result-title">${this.highlightKeyword(title, slicesOfTitle[0])}</span>`
+      } else {
+        resultItem += `<li class="local-search-hit-item"><a href="${url.href}"><span class="search-result-title">${title}</span>`
+      }
+
+      slicesOfContent.forEach(slice => {
+        resultItem += `<p class="search-result">${this.highlightKeyword(content, slice)}...</p></a>`
+      })
+
+      resultItem += '</li>'
+      resultItems.push({
+        item: resultItem,
+        id: resultItems.length,
+        hitCount,
+        includedCount
+      })
+    })
+    return resultItems
+  }
+
+  fetchData () {
+    const isXml = !this.path.endsWith('json')
+    fetch(this.path)
+      .then(response => response.text())
+      .then(res => {
+        // Get the contents from search data
+        this.isfetched = true
+        this.datas = isXml
+          ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(element => ({
+              title: element.querySelector('title').textContent,
+              content: element.querySelector('content').textContent,
+              url: element.querySelector('url').textContent
+            }))
+          : JSON.parse(res)
+        // Only match articles with non-empty titles
+        this.datas = this.datas.filter(data => data.title).map(data => {
+          data.title = data.title.trim()
+          data.content = data.content ? data.content.trim().replace(/<[^>]+>/g, '') : ''
+          data.url = decodeURIComponent(data.url).replace(/\/{2,}/g, '/')
+          return data
+        })
+        // Remove loading animation
+        window.dispatchEvent(new Event('search:loaded'))
+      })
+  }
+
+  // Highlight by wrapping node in mark elements with the given class name
+  highlightText (node, slice, className) {
+    const val = node.nodeValue
+    let index = slice.start
+    const children = []
+    for (const { position, length } of slice.hits) {
+      const text = document.createTextNode(val.substring(index, position))
+      index = position + length
+      const mark = document.createElement('mark')
+      mark.className = className
+      mark.appendChild(document.createTextNode(val.substr(position, length)))
+      children.push(text, mark)
+    }
+    node.nodeValue = val.substring(index, slice.end)
+    children.forEach(element => {
+      node.parentNode.insertBefore(element, node)
+    })
+  }
+
+  // Highlight the search words provided in the url in the text
+  highlightSearchWords (body) {
+    const params = new URL(location.href).searchParams.get('highlight')
+    const keywords = params ? params.split(' ') : []
+    if (!keywords.length || !body) return
+    const walk = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null)
+    const allNodes = []
+    while (walk.nextNode()) {
+      if (!walk.currentNode.parentNode.matches('button, select, textarea, .mermaid')) allNodes.push(walk.currentNode)
+    }
+    allNodes.forEach(node => {
+      const [indexOfNode] = this.getIndexByWord(keywords, node.nodeValue)
+      if (!indexOfNode.length) return
+      const slice = this.mergeIntoSlice(0, node.nodeValue.length, indexOfNode)
+      this.highlightText(node, slice, 'search-keyword')
+    })
+  }
+}
+
+window.addEventListener('load', () => {
+// Search
+  const { path, top_n_per_article, unescape, languages } = GLOBAL_CONFIG.localSearch
+  const localSearch = new LocalSearch({
+    path,
+    top_n_per_article,
+    unescape
+  })
+
+  const input = document.querySelector('#local-search-input input')
+  const statsItem = document.getElementById('local-search-stats-wrap')
+  const $loadingStatus = document.getElementById('loading-status')
+  const isXml = !path.endsWith('json')
+
+  const inputEventFunction = () => {
+    if (!localSearch.isfetched) return
+    let searchText = input.value.trim().toLowerCase()
+    isXml && (searchText = searchText.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+    if (searchText !== '') $loadingStatus.innerHTML = '<i class="fas fa-spinner fa-pulse"></i>'
+    const keywords = searchText.split(/[-\s]+/)
+    const container = document.getElementById('local-search-results')
+    let resultItems = []
+    if (searchText.length > 0) {
+    // Perform local searching
+      resultItems = localSearch.getResultItems(keywords)
+    }
+    if (keywords.length === 1 && keywords[0] === '') {
+      container.textContent = ''
+      statsItem.textContent = ''
+    } else if (resultItems.length === 0) {
+      container.textContent = ''
+      const statsDiv = document.createElement('div')
+      statsDiv.className = 'search-result-stats'
+      statsDiv.textContent = languages.hits_empty.replace(/\$\{query}/, searchText)
+      statsItem.innerHTML = statsDiv.outerHTML
+    } else {
+      resultItems.sort((left, right) => {
+        if (left.includedCount !== right.includedCount) {
+          return right.includedCount - left.includedCount
+        } else if (left.hitCount !== right.hitCount) {
+          return right.hitCount - left.hitCount
+        }
+        return right.id - left.id
+      })
+
+      const stats = languages.hits_stats.replace(/\$\{hits}/, resultItems.length)
+
+      container.innerHTML = `<ol class="search-result-list">${resultItems.map(result => result.item).join('')}</ol>`
+      statsItem.innerHTML = `<hr><div class="search-result-stats">${stats}</div>`
+      window.pjax && window.pjax.refresh(container)
+    }
+
+    $loadingStatus.textContent = ''
+  }
+
+  let loadFlag = false
+  const $searchMask = document.getElementById('search-mask')
+  const $searchDialog = document.querySelector('#local-search .search-dialog')
+
+  // fix safari
+  const fixSafariHeight = () => {
+    if (window.innerWidth < 768) {
+      $searchDialog.style.setProperty('--search-height', window.innerHeight + 'px')
+    }
+  }
+
+  const openSearch = () => {
+    btf.overflowPaddingR.add()
+    btf.animateIn($searchMask, 'to_show 0.5s')
+    btf.animateIn($searchDialog, 'titleScale 0.5s')
+    setTimeout(() => { input.focus() }, 300)
+    if (!loadFlag) {
+      !localSearch.isfetched && localSearch.fetchData()
+      input.addEventListener('input', inputEventFunction)
+      loadFlag = true
+    }
+    // shortcut: ESC
+    document.addEventListener('keydown', function f (event) {
+      if (event.code === 'Escape') {
+        closeSearch()
+        document.removeEventListener('keydown', f)
+      }
+    })
+
+    fixSafariHeight()
+    window.addEventListener('resize', fixSafariHeight)
+  }
+
+  const closeSearch = () => {
+    btf.overflowPaddingR.remove()
+    btf.animateOut($searchDialog, 'search_close .5s')
+    btf.animateOut($searchMask, 'to_hide 0.5s')
+    window.removeEventListener('resize', fixSafariHeight)
+  }
+
+  const searchClickFn = () => {
+    btf.addEventListenerPjax(document.querySelector('#search-button > .search'), 'click', openSearch)
+  }
+
+  const searchFnOnce = () => {
+    document.querySelector('#local-search .search-close-button').addEventListener('click', closeSearch)
+    $searchMask.addEventListener('click', closeSearch)
+    if (GLOBAL_CONFIG.localSearch.preload) {
+      localSearch.fetchData()
+    }
+    localSearch.highlightSearchWords(document.getElementById('article-container'))
+  }
+
+  window.addEventListener('search:loaded', () => {
+    const $loadDataItem = document.getElementById('loading-database')
+    $loadDataItem.nextElementSibling.style.display = 'block'
+    $loadDataItem.remove()
+  })
+
+  searchClickFn()
+  searchFnOnce()
+
+  // pjax
+  window.addEventListener('pjax:complete', () => {
+    !btf.isHidden($searchMask) && closeSearch()
+    localSearch.highlightSearchWords(document.getElementById('article-container'))
+    searchClickFn()
+  })
+})
