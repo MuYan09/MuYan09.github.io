@@ -287,7 +287,7 @@
   </url>
   
   <url>
-    <loc>https://blog.3ms.run/tags/Butterfly%E9%AD%94%E6%94%B9/</loc>
+    <loc>https://blog.3ms.run/tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2025-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -336,13 +336,6 @@
   </url>
   
   <url>
-    <loc>https://blog.3ms.run/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2025-04-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.3ms.run/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2025-04-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -379,6 +372,13 @@
   
   <url>
     <loc>https://blog.3ms.run/tags/GitHub-Pages/</loc>
+    <lastmod>2025-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.3ms.run/tags/Butterfly%E9%AD%94%E6%94%B9/</loc>
     <lastmod>2025-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -478,14 +478,14 @@
   </url>
   
   <url>
-    <loc>https://blog.3ms.run/categories/%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
+    <loc>https://blog.3ms.run/categories/%E9%97%B2%E8%81%8A%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2025-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.3ms.run/categories/%E9%97%B2%E8%81%8A%E6%9D%82%E8%B0%88/</loc>
+    <loc>https://blog.3ms.run/categories/%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2025-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
