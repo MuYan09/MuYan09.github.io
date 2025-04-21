@@ -308,15 +308,15 @@
     <category term="博客相关" scheme="https://blog.3ms.run/categories/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3/"/>
     
     
-    <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
-    
     <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
+    
+    <category term="Butterfly" scheme="https://blog.3ms.run/tags/Butterfly/"/>
+    
+    <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
     
     <category term="Hexo Blog" scheme="https://blog.3ms.run/tags/Hexo-Blog/"/>
     
     <category term="主题" scheme="https://blog.3ms.run/tags/%E4%B8%BB%E9%A2%98/"/>
-    
-    <category term="Butterfly" scheme="https://blog.3ms.run/tags/Butterfly/"/>
     
     <category term="Butterfly主题" scheme="https://blog.3ms.run/tags/Butterfly%E4%B8%BB%E9%A2%98/"/>
     
@@ -346,9 +346,9 @@
     <category term="博客相关" scheme="https://blog.3ms.run/categories/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3/"/>
     
     
-    <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
-    
     <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
+    
+    <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
     
     <category term="Hexo Blog" scheme="https://blog.3ms.run/tags/Hexo-Blog/"/>
     
