@@ -6,7 +6,7 @@
   <link href="https://blog.3ms.run/atom.xml" rel="self"/>
   
   <link href="https://blog.3ms.run/"/>
-  <updated>2025-04-17T15:13:25.621Z</updated>
+  <updated>2025-04-21T16:31:14.014Z</updated>
   <id>https://blog.3ms.run/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>绕过 CDN 获取真实 IP 的方法</title>
+    <link href="https://blog.3ms.run/archives/89144030.html"/>
+    <id>https://blog.3ms.run/archives/89144030.html</id>
+    <published>2025-04-21T15:49:23.000Z</published>
+    <updated>2025-04-21T16:31:14.014Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>虽然 CDN（内容分发网络）极大提升了网站访问速度与安全性，但同时也给网络取证工作带来了新的挑战。由于 CDN 会将请求分发至各个节点，通常获取到的 IP 地址是 CDN 节点的虚拟地址，而非网站服务器的真实 IP。因此，在某些调查场景中，我们需要绕过 CDN，探寻目标网站的真实地址。</p></blockquote><h2 id="常见-CDN-服务商"><a href="#常见-CDN-服务商" class="headerlink" title="常见 CDN 服务商"></a>常见 CDN 服务商</h2><h3 id="国内-CDN-提供商"><a href="#国内-CDN-提供商" class="headerlink" title="国内 CDN 提供商"></a>国内 CDN 提供商</h3><p>阿里云 CDN，百度云加速，七牛云，又拍云，腾讯云 CDN，UCloud，360 网站卫士，网宿科技，ChinaCache（蓝汛），帝联科技，等</p><h3 id="国外-CDN-提供商"><a href="#国外-CDN-提供商" class="headerlink" title="国外 CDN 提供商"></a>国外 CDN 提供商</h3><p>Cloudflare，StackPathFastlyAkamai，Amazon CloudFront，Edgecast，CDNetworks，Google Cloud CDN，CacheFly，KeyCDN，UDomain，CDN77，等</p><h2 id="如何判断网站是否启用-CDN？"><a href="#如何判断网站是否启用-CDN？" class="headerlink" title="如何判断网站是否启用 CDN？"></a>如何判断网站是否启用 CDN？</h2><h3 id="方法一：多地-Ping-测试"><a href="#方法一：多地-Ping-测试" class="headerlink" title="方法一：多地 Ping 测试"></a>方法一：多地 Ping 测试</h3><p>使用多地 Ping 工具检测域名的解析 IP 地址是否唯一。如果不同地点的解析 IP 不一致，很可能是部署了 CDN。推荐工具：</p><ul><li><a href="http://ping.chinaz.com/">站长之家 Ping</a></li><li><a href="http://ping.aizhan.com/">爱站 Ping</a></li><li><a href="http://ce.cloud.360.cn/">360 网站测速</a></li></ul><hr><p><img src="https://img.muooy.com/img/1/2025/04/22/68066ebf3dbf8.webp" alt="绕过 CDN 获取真实 IP 的方法"></p><h3 id="方法二：使用-nslookup"><a href="#方法二：使用-nslookup" class="headerlink" title="方法二：使用 nslookup"></a>方法二：使用 <code>nslookup</code></h3><p>通过 <code>nslookup</code> 查看域名解析结果，若返回多个不同 IP，也可能为 CDN 所致。</p><p><img src="https://img.muooy.com/img/1/2025/04/22/68066f49e1375.webp" alt="绕过 CDN 获取真实 IP 的方法"></p><h2 id="绕过-CDN-查找真实-IP-的方法"><a href="#绕过-CDN-查找真实-IP-的方法" class="headerlink" title="绕过 CDN 查找真实 IP 的方法"></a>绕过 CDN 查找真实 IP 的方法</h2><h3 id="方法一：查询历史-DNS-记录"><a href="#方法一：查询历史-DNS-记录" class="headerlink" title="方法一：查询历史 DNS 记录"></a>方法一：查询历史 DNS 记录</h3><p>可以尝试查看域名历史解析记录，可能找到部署 CDN 前的真实 IP。推荐网站：</p><ul><li><a href="https://dnsdb.io/zh-cn/">dnsdb.io</a></li><li><a href="https://x.threatbook.cn/">微步在线</a></li><li><a href="http://toolbar.netcraft.com/site_report?url=">Netcraft</a></li><li><a href="http://viewdns.info/">ViewDNS</a></li><li><a href="https://tools.ipip.net/cdn.php">IPIP CDN 检测</a></li></ul><h3 id="方法二：子域名信息挖掘"><a href="#方法二：子域名信息挖掘" class="headerlink" title="方法二：子域名信息挖掘"></a>方法二：子域名信息挖掘</h3><p>部分二级域名未部署 CDN，因此可能泄露真实 IP。常用工具与平台：</p><ol><li><strong>微步在线</strong>：查询目标域名的子域名信息</li><li><strong>DNSDB</strong>：查询子域名及其 A 记录</li><li><strong>子域名挖掘工具</strong>（如 SubDomainsBrute、OneForAll、Sublist3r 等）</li></ol><p>此外，开发者在部署测试环境时，可能未清理调试信息（如 phpinfo 文件），通过 Google dork 如 <code>inurl:phpinfo.php</code> 可进一步挖掘。</p><p><img src="https://img.muooy.com/img/1/2025/04/22/68067045255ae.webp" alt="绕过 CDN 查找真实 IP 的方法"></p><h3 id="方法三：利用网络空间搜索引擎"><a href="#方法三：利用网络空间搜索引擎" class="headerlink" title="方法三：利用网络空间搜索引擎"></a>方法三：利用网络空间搜索引擎</h3><p>使用如 <strong>FOFA、Shodan、Censys</strong> 等搜索引擎，通过网站特征（title、body、icon hash 等）反查真实 IP：</p><ul><li>示例：<code>title=&quot;网站名称&quot;</code>、<code>body=&quot;特征代码&quot;</code></li></ul><p><img src="https://img.muooy.com/img/1/2025/04/22/680670882e87b.webp" alt="绕过 CDN 获取真实 IP 的方法"></p><h3 id="方法四：使用国外-DNS-或多地-Ping"><a href="#方法四：使用国外-DNS-或多地-Ping" class="headerlink" title="方法四：使用国外 DNS 或多地 Ping"></a>方法四：使用国外 DNS 或多地 Ping</h3><p>部分 CDN 仅在国内部署，使用国外的 DNS 或多地 Ping 工具可能解析出原始服务器 IP：</p><ul><li><a href="https://asm.ca.com/zh_cn/ping.php">ASM Ping 测试</a></li><li><a href="http://host-tracker.com/">Host-Tracker</a></li><li><a href="http://www.webpagetest.org/">WebPageTest</a></li><li><a href="https://dnscheck.pingdom.com/">Pingdom DNSCheck</a></li></ul><h3 id="方法五：分析网站发送的邮件头信息"><a href="#方法五：分析网站发送的邮件头信息" class="headerlink" title="方法五：分析网站发送的邮件头信息"></a>方法五：分析网站发送的邮件头信息</h3><p>如果目标网站支持注册、找回密码、邮件订阅等功能，可以尝试注册账号并查看邮件头部信息，邮件服务器地址往往是未经过 CDN 的真实 IP。</p><p><img src="https://img.muooy.com/img/1/2025/04/22/680670f05703d.webp" alt="绕过 CDN 获取真实 IP 的方法"></p><h3 id="方法六：利用-SSL-证书信息"><a href="#方法六：利用-SSL-证书信息" class="headerlink" title="方法六：利用 SSL 证书信息"></a>方法六：利用 SSL 证书信息</h3><p>证书日志中常记录有服务器的域名、IP 和相关子域信息。通过 SSL 证书平台可反查：</p><ul><li><a href="https://censys.io/ipv4?q=github.com">Censys 证书搜索</a></li></ul><p><img src="https://img.muooy.com/img/1/2025/04/22/68067146eaf8f.webp" alt="绕过 CDN 获取真实 IP 的方法"></p><h3 id="方法七：利用信息泄露或漏洞"><a href="#方法七：利用信息泄露或漏洞" class="headerlink" title="方法七：利用信息泄露或漏洞"></a>方法七：利用信息泄露或漏洞</h3><ul><li><strong>敏感文件暴露</strong>：如 phpinfo、git 配置等</li><li><strong>漏洞利用</strong>：如 SSRF、XSS、命令执行等</li><li><strong>社会工程学</strong>：获取 CDN 控制台权限，查看真实 IP</li></ul><h3 id="方法八：全网扫描比对"><a href="#方法八：全网扫描比对" class="headerlink" title="方法八：全网扫描比对"></a>方法八：全网扫描比对</h3><p>使用 Zmap 或 Masscan 扫描整个公网，并结合网站特征过滤结果：</p><ul><li><a href="https://github.com/zmap/zmap">Zmap GitHub</a></li><li><a href="https://github.com/robertdavidgraham/masscan">Masscan GitHub</a></li></ul><h3 id="方法九：F5-LTM-Cookie-解码"><a href="#方法九：F5-LTM-Cookie-解码" class="headerlink" title="方法九：F5 LTM Cookie 解码"></a>方法九：F5 LTM Cookie 解码</h3><p>F5 LTM 负载均衡设备会在 Cookie 中写入后端服务器地址，可通过 Cookie 值解码出真实 IP。例如：</p><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: BIGipServerpool_xxx=605532106.22012.0000</span><br></pre></td></tr></table></figure><ol><li>先把第一小节的十进制数，即 <code>605532106</code> 取出来</li><li>将其转为十六进制数 <code>2417afca</code></li><li>接着从后至前，取四个字节出来：<code>CA AF 17 24</code></li><li>最后依次转为十进制数 <code>202.175.23.36</code>，即是服务器的真实 ip 地址。</li></ol><h3 id="方法十：HTTP-请求头分析"><a href="#方法十：HTTP-请求头分析" class="headerlink" title="方法十：HTTP 请求头分析"></a>方法十：HTTP 请求头分析</h3><p>某些 HTTP 响应头（如 <code>Server</code>）可能暴露真实服务信息。通过搜索引擎如 Censys 查询特定标头也有机会发现原始 IP：</p><p>示例查询：</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">80.</span>http.<span class="keyword">get</span>.headers.<span class="keyword">server</span>:cloudflare</span><br></pre></td></tr></table></figure><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>CDN 作为一种加速与防护机制，本质上是提升访问体验与网站安全。然而在某些调查与取证需求下，它也成为信息获取的一道“屏障”。通过上述方法，我们可以从多个维度尝试绕过 CDN，定位背后的真实服务器 IP。在执法或合规场景中，若确认使用了国内 CDN 服务，还可考虑通过法律途径申请调证以获取真实信息。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;虽然 CDN（内容分发网络）极大提升了网站访问速度与安全性，但同时也给网络取证工作带来了新的挑战。由于 CDN 会将请求分发至各个节点，通常获取到的 IP 地址是 CDN 节点的虚拟地址，而非网站服务器的真实 IP。因此，在某些调查场景中，我们需要</summary>
+      
+    
+    
+    
+    
+    <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="DNS查询" scheme="https://blog.3ms.run/tags/DNS%E6%9F%A5%E8%AF%A2/"/>
+    
+    <category term="IP溯源" scheme="https://blog.3ms.run/tags/IP%E6%BA%AF%E6%BA%90/"/>
+    
+    <category term="CDN绕过" scheme="https://blog.3ms.run/tags/CDN%E7%BB%95%E8%BF%87/"/>
+    
+    <category term="网络安全" scheme="https://blog.3ms.run/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+    <category term="DNS分析" scheme="https://blog.3ms.run/tags/DNS%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
   
   <entry>
     <title>玻璃与蜗牛</title>
@@ -273,15 +306,15 @@
     <category term="博客相关" scheme="https://blog.3ms.run/categories/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3/"/>
     
     
-    <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
-    
-    <category term="Butterfly" scheme="https://blog.3ms.run/tags/Butterfly/"/>
-    
     <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
     
     <category term="Hexo Blog" scheme="https://blog.3ms.run/tags/Hexo-Blog/"/>
     
     <category term="主题" scheme="https://blog.3ms.run/tags/%E4%B8%BB%E9%A2%98/"/>
+    
+    <category term="Butterfly" scheme="https://blog.3ms.run/tags/Butterfly/"/>
     
     <category term="Butterfly主题" scheme="https://blog.3ms.run/tags/Butterfly%E4%B8%BB%E9%A2%98/"/>
     
@@ -311,9 +344,9 @@
     <category term="博客相关" scheme="https://blog.3ms.run/categories/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3/"/>
     
     
-    <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
-    
     <category term="教程" scheme="https://blog.3ms.run/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Hexo" scheme="https://blog.3ms.run/tags/Hexo/"/>
     
     <category term="Hexo Blog" scheme="https://blog.3ms.run/tags/Hexo-Blog/"/>
     
