@@ -121,33 +121,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
-    <url>/archives/c920ed04.html</url>
-    <content><![CDATA[<blockquote>
-<p>由于某些原因，jsdelivr项目的中国域名cdn.jsdelivr.net经历了备案注销，这直接导致了国内用户访问该服务时线路质量变得极不稳定。对于众多依赖jsdelivr作为静态资源加速服务的网站和应用而言，这意味着加载速度显著下降，稳定性也大打折扣。相比备案期间的表现，当前的服务水平确实难以匹敌。</p>
-<p>值得注意的是，在构建自己的jsdelivr镜像时，建议同时配置防盗链措施，以保护您的资源免受未经授权的使用，从而确保仅限内部或授权用户能够享受加速服务。通过这样的策略，不仅能够有效提升用户体验，还能在一定程度上减轻原服务的压力，促进网络资源的合理分配与利用。</p>
-<p>实施上述解决方案不仅能为您的用户提供更加流畅、稳定的访问体验，而且从长远来看，有助于提高您网站的整体性能表现及搜索引擎排名，进而吸引更多的流量与关注。</p>
-</blockquote>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318230931.png"></p>
-<h2 id="Nginx反代配置文件"><a href="#Nginx反代配置文件" class="headerlink" title="Nginx反代配置文件"></a>Nginx反代配置文件</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> cdn.yourdomain.com;</span><br><span class="line">    </span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /npm/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/npm/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /gh/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/gh/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	 </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#WP可选</span></span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /wp/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/wp/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="宝塔反代教程"><a href="#宝塔反代教程" class="headerlink" title="宝塔反代教程"></a>宝塔反代教程</h2><p>如果你使用的是宝塔或者1Panel等其他面板程序可直接在<strong>反向代理</strong>中添加一条配置即可，如图下（以宝塔为例），域名必备设置为<code>cdn.jsdelivr.net</code>，路径<code>/gh</code>也是如此。</p>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318224800.png"></p>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将项目引用链接中的cdn.jsdelivr.net替换为你绑定的反代域名即可</p>
-]]></content>
-      <categories>
-        <category>实用教程</category>
-      </categories>
-      <tags>
-        <tag>Npm镜像</tag>
-        <tag>Github镜像</tag>
-        <tag>Jsdelivr</tag>
-        <tag>自建Npm镜像</tag>
-        <tag>Jsdelivr反代</tag>
-        <tag>Jsdelivr加速</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Butterfly主题博客魔改美化教程总览（一）</title>
     <url>/archives/2fff1258.html</url>
     <content><![CDATA[<blockquote>
@@ -648,257 +621,31 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo+Butterfly主题更详细的Front-matter</title>
-    <url>/archives/d2f6e5e8.html</url>
+    <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
+    <url>/archives/c920ed04.html</url>
     <content><![CDATA[<blockquote>
-<p>Front-matter 是文件开头的 YAML 或 JSON 代码块，用于配置写作设置。 以 YAML 格式书写时，Front-matter 以三个破折号结束；以 JSON 格式书写时，Front-matter 以三个分号结束。</p>
+<p>由于某些原因，jsdelivr项目的中国域名cdn.jsdelivr.net经历了备案注销，这直接导致了国内用户访问该服务时线路质量变得极不稳定。对于众多依赖jsdelivr作为静态资源加速服务的网站和应用而言，这意味着加载速度显著下降，稳定性也大打折扣。相比备案期间的表现，当前的服务水平确实难以匹敌。</p>
+<p>值得注意的是，在构建自己的jsdelivr镜像时，建议同时配置防盗链措施，以保护您的资源免受未经授权的使用，从而确保仅限内部或授权用户能够享受加速服务。通过这样的策略，不仅能够有效提升用户体验，还能在一定程度上减轻原服务的压力，促进网络资源的合理分配与利用。</p>
+<p>实施上述解决方案不仅能为您的用户提供更加流畅、稳定的访问体验，而且从长远来看，有助于提高您网站的整体性能表现及搜索引擎排名，进而吸引更多的流量与关注。</p>
 </blockquote>
-<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318230931.png"></p>
+<h2 id="Nginx反代配置文件"><a href="#Nginx反代配置文件" class="headerlink" title="Nginx反代配置文件"></a>Nginx反代配置文件</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> cdn.yourdomain.com;</span><br><span class="line">    </span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /npm/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/npm/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /gh/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/gh/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	 </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#WP可选</span></span><br><span class="line">	<span class="section">location</span><span class="regexp"> ^~</span> /wp/</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="attribute">proxy_pass</span> https://cdn.jsdelivr.net/wp/;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Host cdn.jsdelivr.net;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">	    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">	    </span><br><span class="line">	    <span class="attribute">add_header</span> X-Cache <span class="variable">$upstream_cache_status</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="attribute">if</span> ( <span class="variable">$uri</span> <span class="regexp">~* &quot;\.(gif|png|jpg|css|js|woff|woff2)$&quot;</span> )</span><br><span class="line">	    &#123;</span><br><span class="line">	        <span class="attribute">expires</span> <span class="number">1m</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="attribute">proxy_ignore_headers</span> Set-Cookie Cache-Control expires;</span><br><span class="line">	    <span class="attribute">proxy_cache</span> cache_one;</span><br><span class="line">	    <span class="attribute">proxy_cache_key</span> <span class="variable">$host</span><span class="variable">$uri</span><span class="variable">$is_args</span><span class="variable">$args</span>;</span><br><span class="line">	    <span class="attribute">proxy_cache_valid</span> <span class="number">200</span> <span class="number">304</span> <span class="number">301</span> <span class="number">302</span> <span class="number">1440m</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;title&quot;: &quot;Hello World&quot;,</span><br><span class="line">&quot;date&quot;: &quot;2013/7/13 20:46:25&quot;</span><br><span class="line">;;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="文章的-Front-matter"><a href="#文章的-Front-matter" class="headerlink" title="文章的 Front-matter"></a>文章的 Front-matter</h2><table>
-<thead>
-<tr>
-<th>写法</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>title</td>
-<td>【必需】文章标题 文章的文件名</td>
-</tr>
-<tr>
-<td>date</td>
-<td>【必需】文章创建日期</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>【可选】文章更新日期</td>
-</tr>
-<tr>
-<td>tags</td>
-<td>【可选】文章标签</td>
-</tr>
-<tr>
-<td>categories</td>
-<td>【可选】文章分类</td>
-</tr>
-<tr>
-<td>sticky</td>
-<td>【可选】文章置顶，sticky: 1属性来把这篇文章置顶。数值越大，置顶的优先级越大。</td>
-</tr>
-<tr>
-<td>keywords</td>
-<td>【可选】文章关键字</td>
-</tr>
-<tr>
-<td>description</td>
-<td>【可选】文章描述</td>
-</tr>
-<tr>
-<td>top_img</td>
-<td>【可选】文章顶部图片</td>
-</tr>
-<tr>
-<td>cover</td>
-<td>【可选】文章缩略图(如果没有设置 top_img,文章页顶部将显示缩略图，可设为 false&#x2F;图片地址&#x2F;留空)</td>
-</tr>
-<tr>
-<td>comments</td>
-<td>【可选】显示文章评论模块(默认 true)</td>
-</tr>
-<tr>
-<td>toc</td>
-<td>【可选】显示文章 TOC(默认为设置中 toc 的 enable 配置)</td>
-</tr>
-<tr>
-<td>toc_number</td>
-<td>【可选】显示 toc_number(默认为设置中 toc 的 number 配置)</td>
-</tr>
-<tr>
-<td>toc_style_simple</td>
-<td>【可选】显示 toc 简洁模式</td>
-</tr>
-<tr>
-<td>copyright</td>
-<td>【可选】显示文章版权模块(默认为设置中 post_copyright 的 enable 配置)</td>
-</tr>
-<tr>
-<td>copyright_author</td>
-<td>【可选】文章版权模块的<code>文章作者</code></td>
-</tr>
-<tr>
-<td>copyright_author_href</td>
-<td>【可选】文章版权模块的<code>文章作者</code>链接</td>
-</tr>
-<tr>
-<td>copyright_url</td>
-<td>【可选】文章版权模块的<code>文章连结</code>链接</td>
-</tr>
-<tr>
-<td>copyright_info</td>
-<td>【可选】文章版权模块的<code>版权声明</code>文字</td>
-</tr>
-<tr>
-<td>mathjax</td>
-<td>【可选】显示 mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false )</td>
-</tr>
-<tr>
-<td>katex</td>
-<td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false )</td>
-</tr>
-<tr>
-<td>aplayer</td>
-<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的<code>音乐</code> 配置</td>
-</tr>
-<tr>
-<td>highlight_shrink</td>
-<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中 highlight_shrink 的配置)</td>
-</tr>
-<tr>
-<td>aside</td>
-<td>【可选】显示侧边栏 (默认 true)</td>
-</tr>
-<tr>
-<td>abcjs</td>
-<td>【可选】加载 abcjs (当设置 abcjs 的 per_page: false 时，才需要配置，默认 false )</td>
-</tr>
-<tr>
-<td>noticeOutdate</td>
-<td>【可选】文章过期提醒 (默认为设置中 noticeOutdate 的 enable 配置)</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<h2 id="页面的-Front-matter"><a href="#页面的-Front-matter" class="headerlink" title="页面的 Front-matter"></a>页面的 Front-matter</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>title</td>
-<td>【必需】页面标题</td>
-</tr>
-<tr>
-<td>date</td>
-<td>【必需】页面创建日期</td>
-</tr>
-<tr>
-<td>type</td>
-<td>【必需】标签、分类和友情链接三个页面需要配置</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>【可选】页面更新日期</td>
-</tr>
-<tr>
-<td>description</td>
-<td>【可选】页面描述</td>
-</tr>
-<tr>
-<td>keywords</td>
-<td>【可选】页面关键字</td>
-</tr>
-<tr>
-<td>comments</td>
-<td>【可选】显示页面评论模块 (默认 true)</td>
-</tr>
-<tr>
-<td>top_img</td>
-<td>【可选】页面顶部图片</td>
-</tr>
-<tr>
-<td>mathjax</td>
-<td>【可选】显示 mathjax (当设置 mathjax 的 per_page: false 时，才需要配置，默认 false)</td>
-</tr>
-<tr>
-<td>katex</td>
-<td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false)</td>
-</tr>
-<tr>
-<td>aside</td>
-<td>【可选】显示侧边栏 (默认 true)</td>
-</tr>
-<tr>
-<td>aplayer</td>
-<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的<code>音乐</code> 配置</td>
-</tr>
-<tr>
-<td>highlight_shrink</td>
-<td>【可选】配置代码框是否展开 (true&#x2F;false) (默认为设置中 highlight_shrink 的配置)</td>
-</tr>
-<tr>
-<td>random</td>
-<td>【可选】配置友情链接是否随机排序（默认为 false）</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>【可选】配置説説显示数量</td>
-</tr>
-<tr>
-<td>limit.type</td>
-<td>【可选】配置説説显示数量的类型 （date 或者 num）</td>
-</tr>
-<tr>
-<td>limit.value</td>
-<td>【可选】配置説説显示数量的值</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2018-01-05 00:00:00</span><br><span class="line">type: &#x27;tags&#x27;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h2 id="宝塔反代教程"><a href="#宝塔反代教程" class="headerlink" title="宝塔反代教程"></a>宝塔反代教程</h2><p>如果你使用的是宝塔或者1Panel等其他面板程序可直接在<strong>反向代理</strong>中添加一条配置即可，如图下（以宝塔为例），域名必备设置为<code>cdn.jsdelivr.net</code>，路径<code>/gh</code>也是如此。</p>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.21/img/archives/20250318224800.png"></p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将项目引用链接中的cdn.jsdelivr.net替换为你绑定的反代域名即可</p>
 ]]></content>
       <categories>
-        <category>博客相关</category>
+        <category>实用教程</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Butterfly</tag>
-        <tag>教程</tag>
-        <tag>Hexo Blog</tag>
-        <tag>主题</tag>
-        <tag>Butterfly主题</tag>
+        <tag>Npm镜像</tag>
+        <tag>Github镜像</tag>
+        <tag>Jsdelivr</tag>
+        <tag>自建Npm镜像</tag>
+        <tag>Jsdelivr反代</tag>
+        <tag>Jsdelivr加速</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>《铅笔盒里的刺猬》</title>
-    <url>/archives/b118e53.html</url>
-    <content><![CDATA[<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.27/img/cover/33.jpg"></p>
-<p>课桌第三道刻痕加深时，我正用美工刀削尖第六支铅笔。木屑雪花般落在泛黄试卷上，盖住了那个用红笔画的猪头。后桌男生踹椅子的力度精准如钟摆，每半小时一次，震得铁质笔盒发出癌症病人般的咳嗽。</p>
-<h2 id="第一章：锋利的棱角"><a href="#第一章：锋利的棱角" class="headerlink" title="第一章：锋利的棱角"></a>第一章：锋利的棱角</h2><p>那时候我的校服口袋总藏着图钉。当隔壁组胖子第五次”不小心”撞翻我的午饭，我默数着他回到座位的步数，在第三步时弹出那枚银色小刺。他抱着脚踝嚎叫的模样，像极了老家过年待宰的公猪。班主任的指甲陷进我胳膊：”以暴制暴只会招来更多暴力”，可她没看见我锁骨处的淤青正在校服领口下溃烂。</p>
-<p>办公室罚站的下午，阳光把奖状墙晒出胶水味。我盯着”文明班级”铜牌上的倒影，里面扭曲着一张张嬉笑的脸。直到班主任把戒尺拍出裂痕，才惊觉自己把橡皮擦抠成了月球表面。</p>
-<h2 id="第二章：沉默的茧房"><a href="#第二章：沉默的茧房" class="headerlink" title="第二章：沉默的茧房"></a>第二章：沉默的茧房</h2><p>​	梅雨季的清晨，我在操场角落埋掉了所有图钉。青苔顺着指缝爬上手腕时，后颈突然传来冰凉的触感——有人把吃剩的雪糕筒扣在我衣领里。这次我没回头，只是更用力地把生锈铁铲插进泥土，仿佛能挖通通往地心的隧道。</p>
-<p>走廊公告栏每月更新”心理互助之星”照片，我的背影总在取景框边缘模糊成灰调。心理咨询室飘出的薰衣草香里，我数着墙纸上的鸢尾花图案，直到老师叹气的声音与空调杂音融为一体。窗台上的多肉植物正在雨季疯长，而我缩在藤椅里，把自己折叠成一张被揉皱的请假条。</p>
-<h2 id="第三章：锈蚀的春天"><a href="#第三章：锈蚀的春天" class="headerlink" title="第三章：锈蚀的春天"></a>第三章：锈蚀的春天</h2><p>​	转机出现在某个停电的晚自习。当那个总撕我作业本的女生摸黑经过时，我伸出左脚。她栽进卫生角的瞬间，拖把桶发出教堂钟声般的轰鸣。月光突然穿透云层，我看见三十年后的自己正站在时光尽头摇头。</p>
-<p>​	第二天清晨，我在她抽屉塞了创可贴。她撕开包装时的表情，像在拆解一颗定时炸弹。午后的生物课上，显微镜下的草履虫突然幻化成缩小版的我们，在玻璃片上徒劳地相互冲撞。</p>
-<p>毕业典礼那天，我在储物柜发现匿名纸条：”你眼里有把生锈的锁”。礼堂放飞的气球中，有个写着歪扭的”对不起”。我握紧口袋里那把陈年图钉，金属锈味混着掌心的汗，竟酿出了奇异的酒香。</p>
-<p>​	如今路过中学校园，总会在围墙外停留片刻。爬山虎掩映的旧课桌上，不知是否还留着那些深浅不一的刻痕。偶尔在深夜整理旧物，当年埋图钉处挖出的鹅卵石正在月光下闪烁——原来最坚硬的棱角，早已在时光里包浆成温润的琥珀。</p>
-]]></content>
-      <categories>
-        <category>闲聊杂谈</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>玻璃与蜗牛</title>
-    <url>/archives/1d243e1c.html</url>
-    <content><![CDATA[<p>储物柜最深处藏着的玻璃瓶又多了道裂痕，那是我收集的第七块窗户碎片。母亲搬走那夜砸碎的落地窗，此刻正以尖锐的形态蛰伏在书包夹层，每当有人扯我后领，玻璃与帆布摩擦的沙沙声便代替我发出警报。</p>
-<h2 id="碎镜效应"><a href="#碎镜效应" class="headerlink" title="碎镜效应"></a>碎镜效应</h2><p>父母在教务处签完离婚协议那天，我的课桌里爬满了蜗牛。它们在离婚证书复印件上留下银色黏液，后排男生用圆珠笔戳爆蜗牛壳的脆响，与我胸腔的震颤形成奇妙共鸣。当班主任把湿淋淋的蜗牛尸体扫进簸箕时，粉笔灰正簌簌落在我未干的泪痕上。</p>
-<p>我开始在手工课收集碎玻璃。美术刀划破包装纸的瞬间，总会想起母亲撕碎全家福的姿势。当霸凌者第三次把我锁进清洁工具间，月光正透过气窗铁栏，把玻璃瓶照成水晶宫灯的模样。那些嵌在掌纹里的细碎伤口，成为我最早学会破译的疼痛密码。</p>
-<h2 id="静默螺旋"><a href="#静默螺旋" class="headerlink" title="静默螺旋"></a>静默螺旋</h2><p>初中部走廊的监控摄像头像巨型蜗牛探头。我学会在挨打时数对方球鞋的条纹数量，十六次呼吸后他们就会失去兴致。心理咨询室的沙盘里，我总用贝壳筑起环形堡垒，心理老师记录的”创伤后应激反应”在档案柜里与飞蛾标本叠在一起。</p>
-<p>梅雨季的黄昏，我在生物教室喂养被解剖的青蛙。福尔马林雾气中，那个总撕我作业本的女生突然闯进来，她潮湿的刘海贴着额角，手里攥着被雨淋糊的离家信。我们沉默地并排坐着，看青蛙的神经在电流刺激下抽搐，玻璃柜里的标本瓶突然齐齐泛起涟漪。</p>
-<h2 id="珍珠质层"><a href="#珍珠质层" class="headerlink" title="珍珠质层"></a>珍珠质层</h2><p>毕业体检X光片显示，我的第六根肋骨有贝壳状增生。校医说这是长期蜷缩睡觉的印记，我却看见十七岁的自己正用黏液把碎玻璃黏合成铠甲。当那个总踹我椅子的男生在篮球赛骨折时，我掌心的旧伤突然开始发烫——原来有些疼痛会在时差里形成闭环。</p>
-<p>十年后重返母校，发现当年刻满求救信号的梧桐树被制成礼堂长椅。某个暴雨突降的午后，我撞见穿校服的女孩正往树瘤缝隙塞玻璃片，她的耳骨钉在阴天里闪着冷光。我们隔着二十年时光对望，直到她指间的血珠与我的旧疤痕在雨水中达成共振。</p>
-<p>如今我的心理咨询室挂着蜗牛壳制成的风铃，每当夜风吹过，那些螺旋纹路里就会飘出细碎的星光。最后一个来访者留下半瓶彩色玻璃碎片，说这是在老校舍拆迁时捡到的月光。我摸着肋骨上的凸起突然明白：所有带着伤痕行走的人，都在用毕生时间把沙粒磨成珍珠的经纬。</p>
-<div class="note warning flat"><p>「本文为虚构作品，如有雷同，纯属巧合」</p>
-</div>
-]]></content>
-      <categories>
-        <category>闲聊杂谈</category>
-      </categories>
   </entry>
   <entry>
     <title>Hexo Butterfly 主题标签外挂</title>
@@ -2313,6 +2060,45 @@ title 产品X的关键要素
       </tags>
   </entry>
   <entry>
+    <title>玻璃与蜗牛</title>
+    <url>/archives/1d243e1c.html</url>
+    <content><![CDATA[<p>储物柜最深处藏着的玻璃瓶又多了道裂痕，那是我收集的第七块窗户碎片。母亲搬走那夜砸碎的落地窗，此刻正以尖锐的形态蛰伏在书包夹层，每当有人扯我后领，玻璃与帆布摩擦的沙沙声便代替我发出警报。</p>
+<h2 id="碎镜效应"><a href="#碎镜效应" class="headerlink" title="碎镜效应"></a>碎镜效应</h2><p>父母在教务处签完离婚协议那天，我的课桌里爬满了蜗牛。它们在离婚证书复印件上留下银色黏液，后排男生用圆珠笔戳爆蜗牛壳的脆响，与我胸腔的震颤形成奇妙共鸣。当班主任把湿淋淋的蜗牛尸体扫进簸箕时，粉笔灰正簌簌落在我未干的泪痕上。</p>
+<p>我开始在手工课收集碎玻璃。美术刀划破包装纸的瞬间，总会想起母亲撕碎全家福的姿势。当霸凌者第三次把我锁进清洁工具间，月光正透过气窗铁栏，把玻璃瓶照成水晶宫灯的模样。那些嵌在掌纹里的细碎伤口，成为我最早学会破译的疼痛密码。</p>
+<h2 id="静默螺旋"><a href="#静默螺旋" class="headerlink" title="静默螺旋"></a>静默螺旋</h2><p>初中部走廊的监控摄像头像巨型蜗牛探头。我学会在挨打时数对方球鞋的条纹数量，十六次呼吸后他们就会失去兴致。心理咨询室的沙盘里，我总用贝壳筑起环形堡垒，心理老师记录的”创伤后应激反应”在档案柜里与飞蛾标本叠在一起。</p>
+<p>梅雨季的黄昏，我在生物教室喂养被解剖的青蛙。福尔马林雾气中，那个总撕我作业本的女生突然闯进来，她潮湿的刘海贴着额角，手里攥着被雨淋糊的离家信。我们沉默地并排坐着，看青蛙的神经在电流刺激下抽搐，玻璃柜里的标本瓶突然齐齐泛起涟漪。</p>
+<h2 id="珍珠质层"><a href="#珍珠质层" class="headerlink" title="珍珠质层"></a>珍珠质层</h2><p>毕业体检X光片显示，我的第六根肋骨有贝壳状增生。校医说这是长期蜷缩睡觉的印记，我却看见十七岁的自己正用黏液把碎玻璃黏合成铠甲。当那个总踹我椅子的男生在篮球赛骨折时，我掌心的旧伤突然开始发烫——原来有些疼痛会在时差里形成闭环。</p>
+<p>十年后重返母校，发现当年刻满求救信号的梧桐树被制成礼堂长椅。某个暴雨突降的午后，我撞见穿校服的女孩正往树瘤缝隙塞玻璃片，她的耳骨钉在阴天里闪着冷光。我们隔着二十年时光对望，直到她指间的血珠与我的旧疤痕在雨水中达成共振。</p>
+<p>如今我的心理咨询室挂着蜗牛壳制成的风铃，每当夜风吹过，那些螺旋纹路里就会飘出细碎的星光。最后一个来访者留下半瓶彩色玻璃碎片，说这是在老校舍拆迁时捡到的月光。我摸着肋骨上的凸起突然明白：所有带着伤痕行走的人，都在用毕生时间把沙粒磨成珍珠的经纬。</p>
+<div class="note warning flat"><p>「本文为虚构作品，如有雷同，纯属巧合」</p>
+</div>
+]]></content>
+      <categories>
+        <category>闲聊杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>《铅笔盒里的刺猬》</title>
+    <url>/archives/b118e53.html</url>
+    <content><![CDATA[<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.27/img/cover/33.jpg"></p>
+<p>课桌第三道刻痕加深时，我正用美工刀削尖第六支铅笔。木屑雪花般落在泛黄试卷上，盖住了那个用红笔画的猪头。后桌男生踹椅子的力度精准如钟摆，每半小时一次，震得铁质笔盒发出癌症病人般的咳嗽。</p>
+<h2 id="第一章：锋利的棱角"><a href="#第一章：锋利的棱角" class="headerlink" title="第一章：锋利的棱角"></a>第一章：锋利的棱角</h2><p>那时候我的校服口袋总藏着图钉。当隔壁组胖子第五次”不小心”撞翻我的午饭，我默数着他回到座位的步数，在第三步时弹出那枚银色小刺。他抱着脚踝嚎叫的模样，像极了老家过年待宰的公猪。班主任的指甲陷进我胳膊：”以暴制暴只会招来更多暴力”，可她没看见我锁骨处的淤青正在校服领口下溃烂。</p>
+<p>办公室罚站的下午，阳光把奖状墙晒出胶水味。我盯着”文明班级”铜牌上的倒影，里面扭曲着一张张嬉笑的脸。直到班主任把戒尺拍出裂痕，才惊觉自己把橡皮擦抠成了月球表面。</p>
+<h2 id="第二章：沉默的茧房"><a href="#第二章：沉默的茧房" class="headerlink" title="第二章：沉默的茧房"></a>第二章：沉默的茧房</h2><p>​	梅雨季的清晨，我在操场角落埋掉了所有图钉。青苔顺着指缝爬上手腕时，后颈突然传来冰凉的触感——有人把吃剩的雪糕筒扣在我衣领里。这次我没回头，只是更用力地把生锈铁铲插进泥土，仿佛能挖通通往地心的隧道。</p>
+<p>走廊公告栏每月更新”心理互助之星”照片，我的背影总在取景框边缘模糊成灰调。心理咨询室飘出的薰衣草香里，我数着墙纸上的鸢尾花图案，直到老师叹气的声音与空调杂音融为一体。窗台上的多肉植物正在雨季疯长，而我缩在藤椅里，把自己折叠成一张被揉皱的请假条。</p>
+<h2 id="第三章：锈蚀的春天"><a href="#第三章：锈蚀的春天" class="headerlink" title="第三章：锈蚀的春天"></a>第三章：锈蚀的春天</h2><p>​	转机出现在某个停电的晚自习。当那个总撕我作业本的女生摸黑经过时，我伸出左脚。她栽进卫生角的瞬间，拖把桶发出教堂钟声般的轰鸣。月光突然穿透云层，我看见三十年后的自己正站在时光尽头摇头。</p>
+<p>​	第二天清晨，我在她抽屉塞了创可贴。她撕开包装时的表情，像在拆解一颗定时炸弹。午后的生物课上，显微镜下的草履虫突然幻化成缩小版的我们，在玻璃片上徒劳地相互冲撞。</p>
+<p>毕业典礼那天，我在储物柜发现匿名纸条：”你眼里有把生锈的锁”。礼堂放飞的气球中，有个写着歪扭的”对不起”。我握紧口袋里那把陈年图钉，金属锈味混着掌心的汗，竟酿出了奇异的酒香。</p>
+<p>​	如今路过中学校园，总会在围墙外停留片刻。爬山虎掩映的旧课桌上，不知是否还留着那些深浅不一的刻痕。偶尔在深夜整理旧物，当年埋图钉处挖出的鹅卵石正在月光下闪烁——原来最坚硬的棱角，早已在时光里包浆成温润的琥珀。</p>
+]]></content>
+      <categories>
+        <category>闲聊杂谈</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>国内外免费公共 DoT/DoH 加密 DNS 服务器地址大全</title>
     <url>/archives/12986.html</url>
     <content><![CDATA[<blockquote>
@@ -2777,6 +2563,220 @@ title 产品X的关键要素
         <tag>Hexo自动化部署</tag>
         <tag>Vercel部署</tag>
         <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo+Butterfly主题更详细的Front-matter</title>
+    <url>/archives/d2f6e5e8.html</url>
+    <content><![CDATA[<blockquote>
+<p>Front-matter 是文件开头的 YAML 或 JSON 代码块，用于配置写作设置。 以 YAML 格式书写时，Front-matter 以三个破折号结束；以 JSON 格式书写时，Front-matter 以三个分号结束。</p>
+</blockquote>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;title&quot;: &quot;Hello World&quot;,</span><br><span class="line">&quot;date&quot;: &quot;2013/7/13 20:46:25&quot;</span><br><span class="line">;;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文章的-Front-matter"><a href="#文章的-Front-matter" class="headerlink" title="文章的 Front-matter"></a>文章的 Front-matter</h2><table>
+<thead>
+<tr>
+<th>写法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>【必需】文章标题 文章的文件名</td>
+</tr>
+<tr>
+<td>date</td>
+<td>【必需】文章创建日期</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>【可选】文章更新日期</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>【可选】文章标签</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>【可选】文章分类</td>
+</tr>
+<tr>
+<td>sticky</td>
+<td>【可选】文章置顶，sticky: 1属性来把这篇文章置顶。数值越大，置顶的优先级越大。</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>【可选】文章关键字</td>
+</tr>
+<tr>
+<td>description</td>
+<td>【可选】文章描述</td>
+</tr>
+<tr>
+<td>top_img</td>
+<td>【可选】文章顶部图片</td>
+</tr>
+<tr>
+<td>cover</td>
+<td>【可选】文章缩略图(如果没有设置 top_img,文章页顶部将显示缩略图，可设为 false&#x2F;图片地址&#x2F;留空)</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>【可选】显示文章评论模块(默认 true)</td>
+</tr>
+<tr>
+<td>toc</td>
+<td>【可选】显示文章 TOC(默认为设置中 toc 的 enable 配置)</td>
+</tr>
+<tr>
+<td>toc_number</td>
+<td>【可选】显示 toc_number(默认为设置中 toc 的 number 配置)</td>
+</tr>
+<tr>
+<td>toc_style_simple</td>
+<td>【可选】显示 toc 简洁模式</td>
+</tr>
+<tr>
+<td>copyright</td>
+<td>【可选】显示文章版权模块(默认为设置中 post_copyright 的 enable 配置)</td>
+</tr>
+<tr>
+<td>copyright_author</td>
+<td>【可选】文章版权模块的<code>文章作者</code></td>
+</tr>
+<tr>
+<td>copyright_author_href</td>
+<td>【可选】文章版权模块的<code>文章作者</code>链接</td>
+</tr>
+<tr>
+<td>copyright_url</td>
+<td>【可选】文章版权模块的<code>文章连结</code>链接</td>
+</tr>
+<tr>
+<td>copyright_info</td>
+<td>【可选】文章版权模块的<code>版权声明</code>文字</td>
+</tr>
+<tr>
+<td>mathjax</td>
+<td>【可选】显示 mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false )</td>
+</tr>
+<tr>
+<td>katex</td>
+<td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false )</td>
+</tr>
+<tr>
+<td>aplayer</td>
+<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的<code>音乐</code> 配置</td>
+</tr>
+<tr>
+<td>highlight_shrink</td>
+<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中 highlight_shrink 的配置)</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>【可选】显示侧边栏 (默认 true)</td>
+</tr>
+<tr>
+<td>abcjs</td>
+<td>【可选】加载 abcjs (当设置 abcjs 的 per_page: false 时，才需要配置，默认 false )</td>
+</tr>
+<tr>
+<td>noticeOutdate</td>
+<td>【可选】文章过期提醒 (默认为设置中 noticeOutdate 的 enable 配置)</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h2 id="页面的-Front-matter"><a href="#页面的-Front-matter" class="headerlink" title="页面的 Front-matter"></a>页面的 Front-matter</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>【必需】页面标题</td>
+</tr>
+<tr>
+<td>date</td>
+<td>【必需】页面创建日期</td>
+</tr>
+<tr>
+<td>type</td>
+<td>【必需】标签、分类和友情链接三个页面需要配置</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>【可选】页面更新日期</td>
+</tr>
+<tr>
+<td>description</td>
+<td>【可选】页面描述</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>【可选】页面关键字</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>【可选】显示页面评论模块 (默认 true)</td>
+</tr>
+<tr>
+<td>top_img</td>
+<td>【可选】页面顶部图片</td>
+</tr>
+<tr>
+<td>mathjax</td>
+<td>【可选】显示 mathjax (当设置 mathjax 的 per_page: false 时，才需要配置，默认 false)</td>
+</tr>
+<tr>
+<td>katex</td>
+<td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false)</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>【可选】显示侧边栏 (默认 true)</td>
+</tr>
+<tr>
+<td>aplayer</td>
+<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的<code>音乐</code> 配置</td>
+</tr>
+<tr>
+<td>highlight_shrink</td>
+<td>【可选】配置代码框是否展开 (true&#x2F;false) (默认为设置中 highlight_shrink 的配置)</td>
+</tr>
+<tr>
+<td>random</td>
+<td>【可选】配置友情链接是否随机排序（默认为 false）</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>【可选】配置説説显示数量</td>
+</tr>
+<tr>
+<td>limit.type</td>
+<td>【可选】配置説説显示数量的类型 （date 或者 num）</td>
+</tr>
+<tr>
+<td>limit.value</td>
+<td>【可选】配置説説显示数量的值</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2018-01-05 00:00:00</span><br><span class="line">type: &#x27;tags&#x27;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>博客相关</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Butterfly</tag>
+        <tag>教程</tag>
+        <tag>Hexo Blog</tag>
+        <tag>主题</tag>
+        <tag>Butterfly主题</tag>
       </tags>
   </entry>
   <entry>
