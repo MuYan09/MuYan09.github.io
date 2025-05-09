@@ -289,144 +289,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo使用gulp压缩博客Html+CSS+JS静态资源</title>
-    <url>/archives/a2264388.html</url>
-    <content><![CDATA[<blockquote>
-<p>Gulp作为前端工作流的自动化工具，能够高效处理各类静态资源压缩任务。通过其丰富的插件生态系统，开发者可以实现：</p>
-<ul>
-<li>CSS文件的极致压缩</li>
-<li>JavaScript代码的智能优化</li>
-<li>HTML文档的轻量化处理</li>
-<li>字体文件的按需提取</li>
-</ul>
-<p><strong>注意</strong>：虽然Gulp支持图片压缩，但相比专业的图片优化工具如imagine、tinypng等，其压缩效果有限（通常仅能减少几十KB），因此本文不包含图片压缩相关内容。</p>
-</blockquote>
-<h2 id="环境准备：Gulp安装与配置"><a href="#环境准备：Gulp安装与配置" class="headerlink" title="环境准备：Gulp安装与配置"></a>环境准备：Gulp安装与配置</h2><h3 id="基础安装步骤"><a href="#基础安装步骤" class="headerlink" title="基础安装步骤"></a>基础安装步骤</h3><ol>
-<li><p>全局安装Gulp命令行工具：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --global gulp-cli <span class="comment">#全局安装gulp指令集</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>项目本地安装Gulp：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装各个下属插件以实现对各类静态资源的压缩</p>
-</li>
-</ol>
-<h2 id="各类资源压缩方案详解"><a href="#各类资源压缩方案详解" class="headerlink" title="各类资源压缩方案详解"></a>各类资源压缩方案详解</h2><h3 id="HTML压缩方案"><a href="#HTML压缩方案" class="headerlink" title="HTML压缩方案"></a>HTML压缩方案</h3><p><strong>推荐插件组合</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-htmlclean --save-dev</span><br><span class="line">npm install gulp-html-minifier-terser --save-dev</span><br><span class="line"><span class="comment"># 用gulp-html-minifier-terser可以压缩HTML中的ES6语法</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>优势</strong>：</p>
-<ul>
-<li>完整保留ES6语法</li>
-<li>支持高级HTML优化选项</li>
-<li>移除注释和空白字符</li>
-</ul>
-<h3 id="CSS压缩方案"><a href="#CSS压缩方案" class="headerlink" title="CSS压缩方案"></a>CSS压缩方案</h3><p><strong>安装插件</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-clean-css --save-dev</span><br></pre></td></tr></table></figure>
-
-<p><strong>特性</strong>：</p>
-<ul>
-<li>自动兼容IE11等老旧浏览器</li>
-<li>智能合并相同规则</li>
-<li>移除无用CSS代码</li>
-</ul>
-<h3 id="JavaScript压缩方案（两种推荐）"><a href="#JavaScript压缩方案（两种推荐）" class="headerlink" title="JavaScript压缩方案（两种推荐）"></a>JavaScript压缩方案（两种推荐）</h3><h4 id="方案一：Babel转译方案（兼容旧浏览器）"><a href="#方案一：Babel转译方案（兼容旧浏览器）" class="headerlink" title="方案一：Babel转译方案（兼容旧浏览器）"></a>方案一：Babel转译方案（兼容旧浏览器）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-uglify --save-dev</span><br><span class="line">npm install gulp-babel @babel/core @babel/preset-env --save-dev</span><br></pre></td></tr></table></figure>
-
-<p><strong>适用场景</strong>：</p>
-<ul>
-<li>需要支持IE等老旧浏览器</li>
-<li>必须将ES6+代码转换为ES5</li>
-</ul>
-<p><strong>潜在问题</strong>：</p>
-<ul>
-<li>变量生命周期变化可能导致bug</li>
-<li>需要手动排除某些文件</li>
-</ul>
-<h4 id="方案二：Terser方案（推荐）"><a href="#方案二：Terser方案（推荐）" class="headerlink" title="方案二：Terser方案（推荐）"></a>方案二：Terser方案（推荐）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-terser --save-dev</span><br></pre></td></tr></table></figure>
-
-<p><strong>优势</strong>：</p>
-<ul>
-<li>保留原始ES6+语法</li>
-<li>无变量作用域问题</li>
-<li>与JsDelivr CDN的.min.js机制一致</li>
-</ul>
-<h3 id="字体文件优化方案"><a href="#字体文件优化方案" class="headerlink" title="字体文件优化方案"></a>字体文件优化方案</h3><p><strong>安装插件</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-fontmin --save-dev</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意事项</strong>：</p>
-<ul>
-<li>仅支持TTF格式字体</li>
-<li>根据实际使用字符提取子集</li>
-<li>可减少字体文件90%以上体积</li>
-</ul>
-<h2 id="完整Gulp任务配置"><a href="#完整Gulp任务配置" class="headerlink" title="完整Gulp任务配置"></a>完整Gulp任务配置</h2><p>为Gulp创建<code>gulpfile.js</code>任务脚本。在博客根目录<code>[Blogroot]</code>下新建<code>gulpfile.js</code>,打开<code>[Blogroot]\gulpfile.js</code>,输入以下内容：</p>
-<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">方案一：babel压缩js</button><button type="button" class="tab">方案二：terser压缩js(推荐)</button></div><div class="tab-contents"><div class="tab-item-content active"><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用到的各个插件</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> cleanCSS = <span class="built_in">require</span>(<span class="string">&#x27;gulp-clean-css&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> htmlmin = <span class="built_in">require</span>(<span class="string">&#x27;gulp-html-minifier-terser&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> htmlclean = <span class="built_in">require</span>(<span class="string">&#x27;gulp-htmlclean&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fontmin = <span class="built_in">require</span>(<span class="string">&#x27;gulp-fontmin&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">&#x27;gulp-uglify&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;gulp-babel&#x27;</span>)</span><br><span class="line"><span class="comment">//压缩js</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;compress&#x27;</span>, <span class="title function_">async</span>() =&gt;&#123;</span><br><span class="line">  gulp.<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.js&#x27;</span>, <span class="string">&#x27;!./public/**/*.min.js&#x27;</span>])</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">babel</span>(&#123;</span><br><span class="line">      <span class="attr">presets</span>: [<span class="string">&#x27;@babel/preset-env&#x27;</span>]</span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">uglify</span>().<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>))</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩css</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;minify-css&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.css&#x27;</span>])</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">cleanCSS</span>(&#123;</span><br><span class="line">            <span class="attr">compatibility</span>: <span class="string">&#x27;ie11&#x27;</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩html</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;minify-html&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;./public/**/*.html&#x27;</span>)</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">htmlclean</span>())</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">htmlmin</span>(&#123;</span><br><span class="line">            <span class="attr">removeComments</span>: <span class="literal">true</span>, <span class="comment">//清除html注释</span></span><br><span class="line">            <span class="attr">collapseWhitespace</span>: <span class="literal">true</span>, <span class="comment">//压缩html</span></span><br><span class="line">            <span class="attr">collapseBooleanAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//省略布尔属性的值，例如：&lt;input checked=&quot;true&quot;/&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">            <span class="attr">removeEmptyAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除所有空格作属性值，例如：&lt;input id=&quot;&quot; /&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">            <span class="attr">removeScriptTypeAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除&lt;script&gt;的type=&quot;text/javascript&quot;</span></span><br><span class="line">            <span class="attr">removeStyleLinkTypeAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除&lt;style&gt;和&lt;link&gt;的 type=&quot;text/css&quot;</span></span><br><span class="line">            <span class="attr">minifyJS</span>: <span class="literal">true</span>, <span class="comment">//压缩页面 JS</span></span><br><span class="line">            <span class="attr">minifyCSS</span>: <span class="literal">true</span>, <span class="comment">//压缩页面 CSS</span></span><br><span class="line">            <span class="attr">minifyURLs</span>: <span class="literal">true</span>  <span class="comment">//压缩页面URL</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>))</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩字体</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">minifyFont</span>(<span class="params">text, cb</span>) &#123;</span><br><span class="line">  gulp</span><br><span class="line">    .<span class="title function_">src</span>(<span class="string">&#x27;./public/fonts/*.ttf&#x27;</span>) <span class="comment">//原字体所在目录</span></span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">fontmin</span>(&#123;</span><br><span class="line">      <span class="attr">text</span>: text</span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public/fontsdest/&#x27;</span>)) <span class="comment">//压缩后的输出目录</span></span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, cb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;mini-font&#x27;</span>, <span class="function">(<span class="params">cb</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> buffers = [];</span><br><span class="line">  gulp</span><br><span class="line">    .<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.html&#x27;</span>]) <span class="comment">//HTML文件所在目录请根据自身情况修改</span></span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">file</span>) &#123;</span><br><span class="line">      buffers.<span class="title function_">push</span>(file.<span class="property">contents</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> text = <span class="title class_">Buffer</span>.<span class="title function_">concat</span>(buffers).<span class="title function_">toString</span>(<span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line">      <span class="title function_">minifyFont</span>(text, cb);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 运行gulp命令时依次执行以下任务</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, gulp.<span class="title function_">parallel</span>(</span><br><span class="line">  <span class="string">&#x27;compress&#x27;</span>, <span class="string">&#x27;minify-css&#x27;</span>, <span class="string">&#x27;minify-html&#x27;</span>,<span class="string">&#x27;mini-font&#x27;</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure></div><div class="tab-item-content"><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用到的各个插件</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> cleanCSS = <span class="built_in">require</span>(<span class="string">&#x27;gulp-clean-css&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> htmlmin = <span class="built_in">require</span>(<span class="string">&#x27;gulp-html-minifier-terser&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> htmlclean = <span class="built_in">require</span>(<span class="string">&#x27;gulp-htmlclean&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fontmin = <span class="built_in">require</span>(<span class="string">&#x27;gulp-fontmin&#x27;</span>);</span><br><span class="line"><span class="comment">// gulp-tester</span></span><br><span class="line"><span class="keyword">var</span> terser = <span class="built_in">require</span>(<span class="string">&#x27;gulp-terser&#x27;</span>);</span><br><span class="line"><span class="comment">// 压缩js</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;compress&#x27;</span>, <span class="title function_">async</span>() =&gt;&#123;</span><br><span class="line">  gulp.<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.js&#x27;</span>, <span class="string">&#x27;!./public/**/*.min.js&#x27;</span>])</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">terser</span>())</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>))</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩css</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;minify-css&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.css&#x27;</span>])</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">cleanCSS</span>(&#123;</span><br><span class="line">            <span class="attr">compatibility</span>: <span class="string">&#x27;ie11&#x27;</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩html</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;minify-html&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;./public/**/*.html&#x27;</span>)</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">htmlclean</span>())</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">htmlmin</span>(&#123;</span><br><span class="line">            <span class="attr">removeComments</span>: <span class="literal">true</span>, <span class="comment">//清除html注释</span></span><br><span class="line">            <span class="attr">collapseWhitespace</span>: <span class="literal">true</span>, <span class="comment">//压缩html</span></span><br><span class="line">            <span class="attr">collapseBooleanAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//省略布尔属性的值，例如：&lt;input checked=&quot;true&quot;/&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">            <span class="attr">removeEmptyAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除所有空格作属性值，例如：&lt;input id=&quot;&quot; /&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">            <span class="attr">removeScriptTypeAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除&lt;script&gt;的type=&quot;text/javascript&quot;</span></span><br><span class="line">            <span class="attr">removeStyleLinkTypeAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除&lt;style&gt;和&lt;link&gt;的 type=&quot;text/css&quot;</span></span><br><span class="line">            <span class="attr">minifyJS</span>: <span class="literal">true</span>, <span class="comment">//压缩页面 JS</span></span><br><span class="line">            <span class="attr">minifyCSS</span>: <span class="literal">true</span>, <span class="comment">//压缩页面 CSS</span></span><br><span class="line">            <span class="attr">minifyURLs</span>: <span class="literal">true</span>  <span class="comment">//压缩页面URL</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>))</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩字体</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">minifyFont</span>(<span class="params">text, cb</span>) &#123;</span><br><span class="line">  gulp</span><br><span class="line">    .<span class="title function_">src</span>(<span class="string">&#x27;./public/fonts/*.ttf&#x27;</span>) <span class="comment">//原字体所在目录</span></span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">fontmin</span>(&#123;</span><br><span class="line">      <span class="attr">text</span>: text</span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public/fontsdest/&#x27;</span>)) <span class="comment">//压缩后的输出目录</span></span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, cb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;mini-font&#x27;</span>, <span class="function">(<span class="params">cb</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> buffers = [];</span><br><span class="line">  gulp</span><br><span class="line">    .<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.html&#x27;</span>]) <span class="comment">//HTML文件所在目录请根据自身情况修改</span></span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">file</span>) &#123;</span><br><span class="line">      buffers.<span class="title function_">push</span>(file.<span class="property">contents</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> text = <span class="title class_">Buffer</span>.<span class="title function_">concat</span>(buffers).<span class="title function_">toString</span>(<span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line">      <span class="title function_">minifyFont</span>(text, cb);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 运行gulp命令时依次执行以下任务</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, gulp.<span class="title function_">parallel</span>(</span><br><span class="line">  <span class="string">&#x27;compress&#x27;</span>, <span class="string">&#x27;minify-css&#x27;</span>, <span class="string">&#x27;minify-html&#x27;</span>,<span class="string">&#x27;mini-font&#x27;</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
-
-<p>在每次运行完<code>hexo generate</code>生成静态页面后，运行<code>gulp</code>对其进行压缩。指令流程如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">gulp</span><br><span class="line">hexo server 或 hexo deploy</span><br></pre></td></tr></table></figure>
-
-<h2 id="常见问题解决方案"><a href="#常见问题解决方案" class="headerlink" title="常见问题解决方案"></a>常见问题解决方案</h2><h3 id="JavaScript压缩异常处理"><a href="#JavaScript压缩异常处理" class="headerlink" title="JavaScript压缩异常处理"></a>JavaScript压缩异常处理</h3><p>若某些JS文件压缩后出现变量未定义错误：</p>
-<ol>
-<li><p><strong>排除特定文件</strong>：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">gulp.<span class="title function_">src</span>([</span><br><span class="line">  <span class="string">&#x27;./public/**/*.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;!./public/**/*.min.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;!./public/js/example.js&#x27;</span> <span class="comment">// 排除问题文件</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>推荐方案</strong>：优先使用Terser而非Babel方案</p>
-</li>
-</ol>
-<h3 id="字体压缩注意事项"><a href="#字体压缩注意事项" class="headerlink" title="字体压缩注意事项"></a>字体压缩注意事项</h3><ul>
-<li>压缩后的字体输出路径为<code>/fontsdest/</code></li>
-<li>开发环境需先运行gulp才能看到字体效果</li>
-<li>生产环境记得更新CSS中的字体引用路径</li>
-</ul>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>通过合理配置Gulp工作流，您可以显著提升网站性能。建议：</p>
-<ol>
-<li>优先使用Terser处理JavaScript</li>
-<li>开发阶段可以先跳过字体压缩</li>
-<li>定期检查压缩后文件的兼容性</li>
-</ol>
-<p><strong>参考原文</strong>：</p>
-<a class="tag-Link" target="_blank" href="https://akilar.top/posts/49b73b87/">
-    <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
-    <div class="tag-link-bottom">
-        <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/akilar.top/posts/49b73b87/.png);"><i class="iconfont icon-link"></i></div>
-        <div class="tag-link-right">
-            <div class="tag-link-title">使用gulp压缩博客静态资源</div>
-            <div class="tag-link-sitename">Akilarの糖果屋</div>
-        </div>
-        <i class="fa-solid fa-angle-right"></i>
-    </div>
-    </a>
-]]></content>
-      <categories>
-        <category>博客相关</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Gulp优化</tag>
-        <tag>静态资源压缩</tag>
-        <tag>前端性能优化</tag>
-        <tag>Hexo博客优化</tag>
-        <tag>静态网站加速</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>玻璃与蜗牛</title>
-    <url>/archives/1d243e1c.html</url>
-    <content><![CDATA[<p>储物柜最深处藏着的玻璃瓶又多了道裂痕，那是我收集的第七块窗户碎片。母亲搬走那夜砸碎的落地窗，此刻正以尖锐的形态蛰伏在书包夹层，每当有人扯我后领，玻璃与帆布摩擦的沙沙声便代替我发出警报。</p>
-<h2 id="碎镜效应"><a href="#碎镜效应" class="headerlink" title="碎镜效应"></a>碎镜效应</h2><p>父母在教务处签完离婚协议那天，我的课桌里爬满了蜗牛。它们在离婚证书复印件上留下银色黏液，后排男生用圆珠笔戳爆蜗牛壳的脆响，与我胸腔的震颤形成奇妙共鸣。当班主任把湿淋淋的蜗牛尸体扫进簸箕时，粉笔灰正簌簌落在我未干的泪痕上。</p>
-<p>我开始在手工课收集碎玻璃。美术刀划破包装纸的瞬间，总会想起母亲撕碎全家福的姿势。当霸凌者第三次把我锁进清洁工具间，月光正透过气窗铁栏，把玻璃瓶照成水晶宫灯的模样。那些嵌在掌纹里的细碎伤口，成为我最早学会破译的疼痛密码。</p>
-<h2 id="静默螺旋"><a href="#静默螺旋" class="headerlink" title="静默螺旋"></a>静默螺旋</h2><p>初中部走廊的监控摄像头像巨型蜗牛探头。我学会在挨打时数对方球鞋的条纹数量，十六次呼吸后他们就会失去兴致。心理咨询室的沙盘里，我总用贝壳筑起环形堡垒，心理老师记录的”创伤后应激反应”在档案柜里与飞蛾标本叠在一起。</p>
-<p>梅雨季的黄昏，我在生物教室喂养被解剖的青蛙。福尔马林雾气中，那个总撕我作业本的女生突然闯进来，她潮湿的刘海贴着额角，手里攥着被雨淋糊的离家信。我们沉默地并排坐着，看青蛙的神经在电流刺激下抽搐，玻璃柜里的标本瓶突然齐齐泛起涟漪。</p>
-<h2 id="珍珠质层"><a href="#珍珠质层" class="headerlink" title="珍珠质层"></a>珍珠质层</h2><p>毕业体检X光片显示，我的第六根肋骨有贝壳状增生。校医说这是长期蜷缩睡觉的印记，我却看见十七岁的自己正用黏液把碎玻璃黏合成铠甲。当那个总踹我椅子的男生在篮球赛骨折时，我掌心的旧伤突然开始发烫——原来有些疼痛会在时差里形成闭环。</p>
-<p>十年后重返母校，发现当年刻满求救信号的梧桐树被制成礼堂长椅。某个暴雨突降的午后，我撞见穿校服的女孩正往树瘤缝隙塞玻璃片，她的耳骨钉在阴天里闪着冷光。我们隔着二十年时光对望，直到她指间的血珠与我的旧疤痕在雨水中达成共振。</p>
-<p>如今我的心理咨询室挂着蜗牛壳制成的风铃，每当夜风吹过，那些螺旋纹路里就会飘出细碎的星光。最后一个来访者留下半瓶彩色玻璃碎片，说这是在老校舍拆迁时捡到的月光。我摸着肋骨上的凸起突然明白：所有带着伤痕行走的人，都在用毕生时间把沙粒磨成珍珠的经纬。</p>
-<div class="note warning flat"><p>「本文为虚构作品，如有雷同，纯属巧合」</p>
-</div>
-]]></content>
-      <categories>
-        <category>闲聊杂谈</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Nginx反代Jsdelivr自建Npm和Github镜像加速服务</title>
     <url>/archives/c920ed04.html</url>
     <content><![CDATA[<blockquote>
@@ -452,6 +314,24 @@
         <tag>Jsdelivr反代</tag>
         <tag>Jsdelivr加速</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>玻璃与蜗牛</title>
+    <url>/archives/1d243e1c.html</url>
+    <content><![CDATA[<p>储物柜最深处藏着的玻璃瓶又多了道裂痕，那是我收集的第七块窗户碎片。母亲搬走那夜砸碎的落地窗，此刻正以尖锐的形态蛰伏在书包夹层，每当有人扯我后领，玻璃与帆布摩擦的沙沙声便代替我发出警报。</p>
+<h2 id="碎镜效应"><a href="#碎镜效应" class="headerlink" title="碎镜效应"></a>碎镜效应</h2><p>父母在教务处签完离婚协议那天，我的课桌里爬满了蜗牛。它们在离婚证书复印件上留下银色黏液，后排男生用圆珠笔戳爆蜗牛壳的脆响，与我胸腔的震颤形成奇妙共鸣。当班主任把湿淋淋的蜗牛尸体扫进簸箕时，粉笔灰正簌簌落在我未干的泪痕上。</p>
+<p>我开始在手工课收集碎玻璃。美术刀划破包装纸的瞬间，总会想起母亲撕碎全家福的姿势。当霸凌者第三次把我锁进清洁工具间，月光正透过气窗铁栏，把玻璃瓶照成水晶宫灯的模样。那些嵌在掌纹里的细碎伤口，成为我最早学会破译的疼痛密码。</p>
+<h2 id="静默螺旋"><a href="#静默螺旋" class="headerlink" title="静默螺旋"></a>静默螺旋</h2><p>初中部走廊的监控摄像头像巨型蜗牛探头。我学会在挨打时数对方球鞋的条纹数量，十六次呼吸后他们就会失去兴致。心理咨询室的沙盘里，我总用贝壳筑起环形堡垒，心理老师记录的”创伤后应激反应”在档案柜里与飞蛾标本叠在一起。</p>
+<p>梅雨季的黄昏，我在生物教室喂养被解剖的青蛙。福尔马林雾气中，那个总撕我作业本的女生突然闯进来，她潮湿的刘海贴着额角，手里攥着被雨淋糊的离家信。我们沉默地并排坐着，看青蛙的神经在电流刺激下抽搐，玻璃柜里的标本瓶突然齐齐泛起涟漪。</p>
+<h2 id="珍珠质层"><a href="#珍珠质层" class="headerlink" title="珍珠质层"></a>珍珠质层</h2><p>毕业体检X光片显示，我的第六根肋骨有贝壳状增生。校医说这是长期蜷缩睡觉的印记，我却看见十七岁的自己正用黏液把碎玻璃黏合成铠甲。当那个总踹我椅子的男生在篮球赛骨折时，我掌心的旧伤突然开始发烫——原来有些疼痛会在时差里形成闭环。</p>
+<p>十年后重返母校，发现当年刻满求救信号的梧桐树被制成礼堂长椅。某个暴雨突降的午后，我撞见穿校服的女孩正往树瘤缝隙塞玻璃片，她的耳骨钉在阴天里闪着冷光。我们隔着二十年时光对望，直到她指间的血珠与我的旧疤痕在雨水中达成共振。</p>
+<p>如今我的心理咨询室挂着蜗牛壳制成的风铃，每当夜风吹过，那些螺旋纹路里就会飘出细碎的星光。最后一个来访者留下半瓶彩色玻璃碎片，说这是在老校舍拆迁时捡到的月光。我摸着肋骨上的凸起突然明白：所有带着伤痕行走的人，都在用毕生时间把沙粒磨成珍珠的经纬。</p>
+<div class="note warning flat"><p>「本文为虚构作品，如有雷同，纯属巧合」</p>
+</div>
+]]></content>
+      <categories>
+        <category>闲聊杂谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Butterfly主题博客魔改美化教程总览（一）</title>
@@ -880,6 +760,126 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo使用gulp压缩博客Html+CSS+JS静态资源</title>
+    <url>/archives/a2264388.html</url>
+    <content><![CDATA[<blockquote>
+<p>Gulp作为前端工作流的自动化工具，能够高效处理各类静态资源压缩任务。通过其丰富的插件生态系统，开发者可以实现：</p>
+<ul>
+<li>CSS文件的极致压缩</li>
+<li>JavaScript代码的智能优化</li>
+<li>HTML文档的轻量化处理</li>
+<li>字体文件的按需提取</li>
+</ul>
+<p><strong>注意</strong>：虽然Gulp支持图片压缩，但相比专业的图片优化工具如imagine、tinypng等，其压缩效果有限（通常仅能减少几十KB），因此本文不包含图片压缩相关内容。</p>
+</blockquote>
+<h2 id="环境准备：Gulp安装与配置"><a href="#环境准备：Gulp安装与配置" class="headerlink" title="环境准备：Gulp安装与配置"></a>环境准备：Gulp安装与配置</h2><h3 id="基础安装步骤"><a href="#基础安装步骤" class="headerlink" title="基础安装步骤"></a>基础安装步骤</h3><ol>
+<li><p>全局安装Gulp命令行工具：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --global gulp-cli <span class="comment">#全局安装gulp指令集</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>项目本地安装Gulp：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装各个下属插件以实现对各类静态资源的压缩</p>
+</li>
+</ol>
+<h2 id="各类资源压缩方案详解"><a href="#各类资源压缩方案详解" class="headerlink" title="各类资源压缩方案详解"></a>各类资源压缩方案详解</h2><h3 id="HTML压缩方案"><a href="#HTML压缩方案" class="headerlink" title="HTML压缩方案"></a>HTML压缩方案</h3><p><strong>推荐插件组合</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-htmlclean --save-dev</span><br><span class="line">npm install gulp-html-minifier-terser --save-dev</span><br><span class="line"><span class="comment"># 用gulp-html-minifier-terser可以压缩HTML中的ES6语法</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>优势</strong>：</p>
+<ul>
+<li>完整保留ES6语法</li>
+<li>支持高级HTML优化选项</li>
+<li>移除注释和空白字符</li>
+</ul>
+<h3 id="CSS压缩方案"><a href="#CSS压缩方案" class="headerlink" title="CSS压缩方案"></a>CSS压缩方案</h3><p><strong>安装插件</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-clean-css --save-dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>特性</strong>：</p>
+<ul>
+<li>自动兼容IE11等老旧浏览器</li>
+<li>智能合并相同规则</li>
+<li>移除无用CSS代码</li>
+</ul>
+<h3 id="JavaScript压缩方案（两种推荐）"><a href="#JavaScript压缩方案（两种推荐）" class="headerlink" title="JavaScript压缩方案（两种推荐）"></a>JavaScript压缩方案（两种推荐）</h3><h4 id="方案一：Babel转译方案（兼容旧浏览器）"><a href="#方案一：Babel转译方案（兼容旧浏览器）" class="headerlink" title="方案一：Babel转译方案（兼容旧浏览器）"></a>方案一：Babel转译方案（兼容旧浏览器）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-uglify --save-dev</span><br><span class="line">npm install gulp-babel @babel/core @babel/preset-env --save-dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>需要支持IE等老旧浏览器</li>
+<li>必须将ES6+代码转换为ES5</li>
+</ul>
+<p><strong>潜在问题</strong>：</p>
+<ul>
+<li>变量生命周期变化可能导致bug</li>
+<li>需要手动排除某些文件</li>
+</ul>
+<h4 id="方案二：Terser方案（推荐）"><a href="#方案二：Terser方案（推荐）" class="headerlink" title="方案二：Terser方案（推荐）"></a>方案二：Terser方案（推荐）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-terser --save-dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>优势</strong>：</p>
+<ul>
+<li>保留原始ES6+语法</li>
+<li>无变量作用域问题</li>
+<li>与JsDelivr CDN的.min.js机制一致</li>
+</ul>
+<h3 id="字体文件优化方案"><a href="#字体文件优化方案" class="headerlink" title="字体文件优化方案"></a>字体文件优化方案</h3><p><strong>安装插件</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp-fontmin --save-dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>仅支持TTF格式字体</li>
+<li>根据实际使用字符提取子集</li>
+<li>可减少字体文件90%以上体积</li>
+</ul>
+<h2 id="完整Gulp任务配置"><a href="#完整Gulp任务配置" class="headerlink" title="完整Gulp任务配置"></a>完整Gulp任务配置</h2><p>为Gulp创建<code>gulpfile.js</code>任务脚本。在博客根目录<code>[Blogroot]</code>下新建<code>gulpfile.js</code>,打开<code>[Blogroot]\gulpfile.js</code>,输入以下内容：</p>
+<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">方案一：babel压缩js</button><button type="button" class="tab">方案二：terser压缩js(推荐)</button></div><div class="tab-contents"><div class="tab-item-content active"><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用到的各个插件</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> cleanCSS = <span class="built_in">require</span>(<span class="string">&#x27;gulp-clean-css&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> htmlmin = <span class="built_in">require</span>(<span class="string">&#x27;gulp-html-minifier-terser&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> htmlclean = <span class="built_in">require</span>(<span class="string">&#x27;gulp-htmlclean&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fontmin = <span class="built_in">require</span>(<span class="string">&#x27;gulp-fontmin&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">&#x27;gulp-uglify&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;gulp-babel&#x27;</span>)</span><br><span class="line"><span class="comment">//压缩js</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;compress&#x27;</span>, <span class="title function_">async</span>() =&gt;&#123;</span><br><span class="line">  gulp.<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.js&#x27;</span>, <span class="string">&#x27;!./public/**/*.min.js&#x27;</span>])</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">babel</span>(&#123;</span><br><span class="line">      <span class="attr">presets</span>: [<span class="string">&#x27;@babel/preset-env&#x27;</span>]</span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">uglify</span>().<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>))</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩css</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;minify-css&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.css&#x27;</span>])</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">cleanCSS</span>(&#123;</span><br><span class="line">            <span class="attr">compatibility</span>: <span class="string">&#x27;ie11&#x27;</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩html</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;minify-html&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;./public/**/*.html&#x27;</span>)</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">htmlclean</span>())</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">htmlmin</span>(&#123;</span><br><span class="line">            <span class="attr">removeComments</span>: <span class="literal">true</span>, <span class="comment">//清除html注释</span></span><br><span class="line">            <span class="attr">collapseWhitespace</span>: <span class="literal">true</span>, <span class="comment">//压缩html</span></span><br><span class="line">            <span class="attr">collapseBooleanAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//省略布尔属性的值，例如：&lt;input checked=&quot;true&quot;/&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">            <span class="attr">removeEmptyAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除所有空格作属性值，例如：&lt;input id=&quot;&quot; /&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">            <span class="attr">removeScriptTypeAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除&lt;script&gt;的type=&quot;text/javascript&quot;</span></span><br><span class="line">            <span class="attr">removeStyleLinkTypeAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除&lt;style&gt;和&lt;link&gt;的 type=&quot;text/css&quot;</span></span><br><span class="line">            <span class="attr">minifyJS</span>: <span class="literal">true</span>, <span class="comment">//压缩页面 JS</span></span><br><span class="line">            <span class="attr">minifyCSS</span>: <span class="literal">true</span>, <span class="comment">//压缩页面 CSS</span></span><br><span class="line">            <span class="attr">minifyURLs</span>: <span class="literal">true</span>  <span class="comment">//压缩页面URL</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>))</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩字体</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">minifyFont</span>(<span class="params">text, cb</span>) &#123;</span><br><span class="line">  gulp</span><br><span class="line">    .<span class="title function_">src</span>(<span class="string">&#x27;./public/fonts/*.ttf&#x27;</span>) <span class="comment">//原字体所在目录</span></span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">fontmin</span>(&#123;</span><br><span class="line">      <span class="attr">text</span>: text</span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public/fontsdest/&#x27;</span>)) <span class="comment">//压缩后的输出目录</span></span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, cb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;mini-font&#x27;</span>, <span class="function">(<span class="params">cb</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> buffers = [];</span><br><span class="line">  gulp</span><br><span class="line">    .<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.html&#x27;</span>]) <span class="comment">//HTML文件所在目录请根据自身情况修改</span></span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">file</span>) &#123;</span><br><span class="line">      buffers.<span class="title function_">push</span>(file.<span class="property">contents</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> text = <span class="title class_">Buffer</span>.<span class="title function_">concat</span>(buffers).<span class="title function_">toString</span>(<span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line">      <span class="title function_">minifyFont</span>(text, cb);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 运行gulp命令时依次执行以下任务</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, gulp.<span class="title function_">parallel</span>(</span><br><span class="line">  <span class="string">&#x27;compress&#x27;</span>, <span class="string">&#x27;minify-css&#x27;</span>, <span class="string">&#x27;minify-html&#x27;</span>,<span class="string">&#x27;mini-font&#x27;</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure></div><div class="tab-item-content"><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用到的各个插件</span></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">&#x27;gulp&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> cleanCSS = <span class="built_in">require</span>(<span class="string">&#x27;gulp-clean-css&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> htmlmin = <span class="built_in">require</span>(<span class="string">&#x27;gulp-html-minifier-terser&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> htmlclean = <span class="built_in">require</span>(<span class="string">&#x27;gulp-htmlclean&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fontmin = <span class="built_in">require</span>(<span class="string">&#x27;gulp-fontmin&#x27;</span>);</span><br><span class="line"><span class="comment">// gulp-tester</span></span><br><span class="line"><span class="keyword">var</span> terser = <span class="built_in">require</span>(<span class="string">&#x27;gulp-terser&#x27;</span>);</span><br><span class="line"><span class="comment">// 压缩js</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;compress&#x27;</span>, <span class="title function_">async</span>() =&gt;&#123;</span><br><span class="line">  gulp.<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.js&#x27;</span>, <span class="string">&#x27;!./public/**/*.min.js&#x27;</span>])</span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">terser</span>())</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>))</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩css</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;minify-css&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.css&#x27;</span>])</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">cleanCSS</span>(&#123;</span><br><span class="line">            <span class="attr">compatibility</span>: <span class="string">&#x27;ie11&#x27;</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩html</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;minify-html&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.<span class="title function_">src</span>(<span class="string">&#x27;./public/**/*.html&#x27;</span>)</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">htmlclean</span>())</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">htmlmin</span>(&#123;</span><br><span class="line">            <span class="attr">removeComments</span>: <span class="literal">true</span>, <span class="comment">//清除html注释</span></span><br><span class="line">            <span class="attr">collapseWhitespace</span>: <span class="literal">true</span>, <span class="comment">//压缩html</span></span><br><span class="line">            <span class="attr">collapseBooleanAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//省略布尔属性的值，例如：&lt;input checked=&quot;true&quot;/&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">            <span class="attr">removeEmptyAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除所有空格作属性值，例如：&lt;input id=&quot;&quot; /&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">            <span class="attr">removeScriptTypeAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除&lt;script&gt;的type=&quot;text/javascript&quot;</span></span><br><span class="line">            <span class="attr">removeStyleLinkTypeAttributes</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="comment">//删除&lt;style&gt;和&lt;link&gt;的 type=&quot;text/css&quot;</span></span><br><span class="line">            <span class="attr">minifyJS</span>: <span class="literal">true</span>, <span class="comment">//压缩页面 JS</span></span><br><span class="line">            <span class="attr">minifyCSS</span>: <span class="literal">true</span>, <span class="comment">//压缩页面 CSS</span></span><br><span class="line">            <span class="attr">minifyURLs</span>: <span class="literal">true</span>  <span class="comment">//压缩页面URL</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public&#x27;</span>))</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//压缩字体</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">minifyFont</span>(<span class="params">text, cb</span>) &#123;</span><br><span class="line">  gulp</span><br><span class="line">    .<span class="title function_">src</span>(<span class="string">&#x27;./public/fonts/*.ttf&#x27;</span>) <span class="comment">//原字体所在目录</span></span><br><span class="line">    .<span class="title function_">pipe</span>(<span class="title function_">fontmin</span>(&#123;</span><br><span class="line">      <span class="attr">text</span>: text</span><br><span class="line">    &#125;))</span><br><span class="line">    .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">&#x27;./public/fontsdest/&#x27;</span>)) <span class="comment">//压缩后的输出目录</span></span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, cb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;mini-font&#x27;</span>, <span class="function">(<span class="params">cb</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> buffers = [];</span><br><span class="line">  gulp</span><br><span class="line">    .<span class="title function_">src</span>([<span class="string">&#x27;./public/**/*.html&#x27;</span>]) <span class="comment">//HTML文件所在目录请根据自身情况修改</span></span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">file</span>) &#123;</span><br><span class="line">      buffers.<span class="title function_">push</span>(file.<span class="property">contents</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> text = <span class="title class_">Buffer</span>.<span class="title function_">concat</span>(buffers).<span class="title function_">toString</span>(<span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line">      <span class="title function_">minifyFont</span>(text, cb);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 运行gulp命令时依次执行以下任务</span></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;default&#x27;</span>, gulp.<span class="title function_">parallel</span>(</span><br><span class="line">  <span class="string">&#x27;compress&#x27;</span>, <span class="string">&#x27;minify-css&#x27;</span>, <span class="string">&#x27;minify-html&#x27;</span>,<span class="string">&#x27;mini-font&#x27;</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>
+
+<p>在每次运行完<code>hexo generate</code>生成静态页面后，运行<code>gulp</code>对其进行压缩。指令流程如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">gulp</span><br><span class="line">hexo server 或 hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见问题解决方案"><a href="#常见问题解决方案" class="headerlink" title="常见问题解决方案"></a>常见问题解决方案</h2><h3 id="JavaScript压缩异常处理"><a href="#JavaScript压缩异常处理" class="headerlink" title="JavaScript压缩异常处理"></a>JavaScript压缩异常处理</h3><p>若某些JS文件压缩后出现变量未定义错误：</p>
+<ol>
+<li><p><strong>排除特定文件</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">gulp.<span class="title function_">src</span>([</span><br><span class="line">  <span class="string">&#x27;./public/**/*.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;!./public/**/*.min.js&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;!./public/js/example.js&#x27;</span> <span class="comment">// 排除问题文件</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>推荐方案</strong>：优先使用Terser而非Babel方案</p>
+</li>
+</ol>
+<h3 id="字体压缩注意事项"><a href="#字体压缩注意事项" class="headerlink" title="字体压缩注意事项"></a>字体压缩注意事项</h3><ul>
+<li>压缩后的字体输出路径为<code>/fontsdest/</code></li>
+<li>开发环境需先运行gulp才能看到字体效果</li>
+<li>生产环境记得更新CSS中的字体引用路径</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>通过合理配置Gulp工作流，您可以显著提升网站性能。建议：</p>
+<ol>
+<li>优先使用Terser处理JavaScript</li>
+<li>开发阶段可以先跳过字体压缩</li>
+<li>定期检查压缩后文件的兼容性</li>
+</ol>
+<p><strong>参考原文</strong>：</p>
+<a class="tag-Link" target="_blank" href="https://akilar.top/posts/49b73b87/">
+    <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/akilar.top/posts/49b73b87/.png);"><i class="iconfont icon-link"></i></div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">使用gulp压缩博客静态资源</div>
+            <div class="tag-link-sitename">Akilarの糖果屋</div>
+        </div>
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
+    </a>
+]]></content>
+      <categories>
+        <category>博客相关</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Gulp优化</tag>
+        <tag>静态资源压缩</tag>
+        <tag>前端性能优化</tag>
+        <tag>Hexo博客优化</tag>
+        <tag>静态网站加速</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《铅笔盒里的刺猬》</title>
     <url>/archives/b118e53.html</url>
     <content><![CDATA[<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.27/img/cover/33.jpg"></p>
@@ -898,287 +898,6 @@
       </categories>
       <tags>
         <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Hexo+Github搭建个人博客部署到Vercel并使用Github Action自动化编译部署</title>
-    <url>/archives/Hexo-Github-Vercel-DeploymentTutorial.html</url>
-    <content><![CDATA[<blockquote>
-<p>这篇文章将教大家如何搭建Hexo博客程序，并部署到Github Pages+Vercel并通过Github Action自动化部署编译。</p>
-<p>无需每次重复运行<code>Hexo</code>三件套命令，随着文章越来越多，编译的时间也随之越来越长，所以我们可以通过<code>Github Action</code>实现自动化部署，当我们博客需要更新时，你只需要将改动直接<code>push</code>到远程仓库，之后的编译部署的工作统交给<code>CI</code>来完成即可。</p>
-</blockquote>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>请提前安装（准备）好以下软件，不会的请自行百度，有很多教程。</p>
-<ul>
-<li><p>电脑：Windows或者Mac</p>
-</li>
-<li><p>Node Js(建议使用 Node.js 12.0 及以上版本)：<a class="btn-beautify green" href="https://nodejs.org/" title="点击前往下载"><i class="fas fa-link"></i><span>点击前往下载</span></a></p>
-</li>
-<li><p>Git：<a class="btn-beautify red" href="https://git-scm.com/downloads" title="点击前往下载"><i class="fas fa-link"></i><span>点击前往下载</span></a></p>
-</li>
-<li><p>Guthub账号：<a class="btn-beautify orange" href="https://github.com/" title="点击前往注册"><i class="fas fa-link"></i><span>点击前往注册</span></a></p>
-</li>
-<li><p>Vercel：<a class="btn-beautify blue" href="https://vercel.com" title="点击前往注册"><i class="fas fa-link"></i><span>点击前往注册</span></a></p>
-</li>
-<li><p>域名一个（可选）</p>
-</li>
-</ul>
-<h2 id="本地安装Hexo"><a href="#本地安装Hexo" class="headerlink" title="本地安装Hexo"></a>本地安装Hexo</h2><ol>
-<li>打开 <strong>CMD（终端）</strong> 命令框输入如下命令安装</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250312221925.png"><br>2. 安装完后输入<strong>hexo -v</strong>验证是否安装成功。<br><img src="/../img/archives/20250312222327.png"></p>
-<ol start="3">
-<li>在硬盘中创建一个用于搭建<strong>Hexo</strong>程序的目录</li>
-</ol>
-<p>如：我创建的目录是：<code>E:\HexoBlogTest\DaliyuerBlog</code></p>
-<p><img src="/../img/archives/20250312222509.png"></p>
-<ol start="4">
-<li>在刚刚创建好的目录中鼠标右键，选择**<code>Open Git Bash here</code>**打开Git终端界面</li>
-</ol>
-<p><img src="/../img/archives/20250312223243.png"></p>
-<ol start="5">
-<li>配置Git户名和邮箱，终端中输入以下内容</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;你的用户名&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;你的邮箱&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/../img/archives/20250312224908.png"></p>
-<ol start="6">
-<li>终端中输入：<code>hexo init</code>初始化<strong>Hexo博客</strong>，确保目录与之前创建的目录一样</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo init #在当前目录下存放Hexo文件</span><br><span class="line">hexo init 项目名 #会创新创建一个目录用于存放Hexo文件</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../img/archives/20250312225308.png"></p>
-<ol start="7">
-<li>初始化成功后输入<code>npm i</code>安装相关依赖。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd DaliyuerBlog  //进入Hexo Blog文件夹 如果你使用的是hexo init命令，则此命令可不用输</span><br><span class="line">npm i</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../img/archives/20250312225947.png"></p>
-<p><strong>Hexo</strong>的目录结构如下：</p>
-<p><img src="/../img/archives/20250312230041.png"></p>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>描叙</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>node_modules</td>
-<td>依赖包</td>
-</tr>
-<tr>
-<td>scaffolds</td>
-<td>生成文章的一些模板</td>
-</tr>
-<tr>
-<td>source</td>
-<td>文章页面存放文件</td>
-</tr>
-<tr>
-<td>themes</td>
-<td>主题</td>
-</tr>
-<tr>
-<td>_config.landscape.yml</td>
-<td>发主题的配置文件</td>
-</tr>
-<tr>
-<td>config.yml</td>
-<td>博客的配置文件</td>
-</tr>
-<tr>
-<td>package.json</td>
-<td>项目名称、描述、版本、运行和开发等信息</td>
-</tr>
-</tbody></table>
-<ol start="8">
-<li>之后终端中输入 <code>hexo g</code>生成静态文件，<code>hexo g</code>启动项目</li>
-</ol>
-<p><img src="/../img/archives/20250312231148.png"></p>
-<ol start="9">
-<li>打开浏览器，输入地址：<a href="http://localhost:4000/">http://localhost:4000/</a> ，看到下面的效果，说明你的博客已经构建成功了。</li>
-</ol>
-<p><img src="/../img/archives/20250312231307.png"></p>
-<h2 id="将静态博客部署到GitHub-Pages"><a href="#将静态博客部署到GitHub-Pages" class="headerlink" title="将静态博客部署到GitHub Pages"></a>将静态博客部署到GitHub Pages</h2><h3 id="配置GitHub-SSH密钥"><a href="#配置GitHub-SSH密钥" class="headerlink" title="配置GitHub SSH密钥"></a>配置GitHub SSH密钥</h3><p>打开Git终端执行以下命令生成SSH密钥</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
-
-<p>打开C盘用户目录下的<code>.ssh</code>：<strong>C:\Users\用户名\.ssh</strong> 找到<code>id_rsa.pub</code>文件用记事本打开，复制里面的内容，之后需要在github中配置ssh密钥</p>
-<p><img src="/../img/archives/20250312234947.png"></p>
-<p>打开<strong>Github</strong>，点击右上角头像 选择settings，进入设置页后选择 <a href="https://github.com/settings/keys">SSH and GPG keys</a>，名字随便起，将刚刚复制的内容公钥填到Key那一栏。</p>
-<p><img src="/../img/archives/20250312235726.png"></p>
-<p><img src="/../img/archives/20250312235840.png"></p>
-<p>Ok到这里就已经配置好<strong>GitHub</strong>连接ssh了</p>
-<p>测试连接，终端输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
-<p>出现以下内容就说明已经配置成功了</p>
-<p><img src="/../img/archives/20250313000142.png"></p>
-<h3 id="创建GitHub仓库并部署Pages"><a href="#创建GitHub仓库并部署Pages" class="headerlink" title="创建GitHub仓库并部署Pages"></a>创建GitHub仓库并部署Pages</h3><ol>
-<li>打开GitHub创建一个仓库，点击右上角的<code>+</code>按钮，选择<code>New repository</code>，创建一个<code>&lt;用户名&gt;.github.io</code>的仓库。</li>
-</ol>
-<p><img src="/../img/archives/20250312232143.png"></p>
-<p>仓库的格式必须为：<code>&lt;用户名&gt;.github.io</code> (注意：前缀必须为用户名，不要等后面无法打开网页)</p>
-<p>仓库可见性选择<code>Public</code>，并勾选<code>Add a README file</code></p>
-<p>点击 Creat repository 进行创建即可</p>
-<ol start="2">
-<li>之后回到Git终端，输入<code>npm install hexo-deployer-git --save</code> 命令安装 hexo-deployer-git</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>打开修改博客目录下的 <code>_config.yml</code> 文件</li>
-</ol>
-<div class="note info flat"><p>_config.yml，就是整个Hexo框架的配置文件了。可以在里面修改大部分的配置。详细可参考官方的<a href="https://hexo.io/zh-cn/docs/configuration">配置描述</a>。</p>
-</div>
-<p>修改最后一行的<code>deploy</code>配置，将<code>repo</code>修改为你自己的github项目地址即可，<code>branch</code>为分支默认main即可</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:daliyuer/daliyuer.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">Site</span> <span class="string">updated:&#123;&#123;</span> <span class="string">now(&#x27;YYYY-MM-DD</span> <span class="string">HH:mm:ss&#x27;)</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/../img/archives/20250312234126.png"></p>
-<ol start="4">
-<li>修改配置之后终端运行如下命令，将代码部署到 GitHub Pages</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo cl &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../img/archives/20250313001105.png"></p>
-<p>等待命令跑完出现<code>Deploy done: git</code>即部署成功</p>
-<p><img src="/../img/archives/20250313001229.png"></p>
-<p>等待5分钟左右，浏览器访问<code>&lt;你的用户名&gt;.github.io</code>即可查看到你博客的内容</p>
-<div class="note primary flat"><p>注意每次更新博客都需要运行以上三件套命令，下面我会教大家使用<strong>Github Action</strong>自动化部署，无需使用上面的三件套命令。</p>
-</div>
-
-<p><img src="/../img/archives/20250313001617.png"></p>
-<h2 id="部署到Vercel"><a href="#部署到Vercel" class="headerlink" title="部署到Vercel"></a>部署到Vercel</h2><h3 id="注册Vercel"><a href="#注册Vercel" class="headerlink" title="注册Vercel"></a>注册Vercel</h3><p>打开<a href="https://vercel.com/">Vercel</a>-&gt;选择<code>I&#39;m working on personal projects</code>-&gt;输入用户名-&gt; 继续<code>Continue</code>-&gt;使用<code>Continue with GitHub</code>注册，在新弹出的窗口授权<strong>github</strong>即可</p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314205228.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314205418.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314205606.png"></p>
-<h3 id="新建项目将Hexo部署到Vercel"><a href="#新建项目将Hexo部署到Vercel" class="headerlink" title="新建项目将Hexo部署到Vercel"></a>新建项目将Hexo部署到Vercel</h3><ol>
-<li>注册之后来到首页，点击·<code>Add New...</code>-&gt;<code>Project</code></li>
-</ol>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314210220.png"></p>
-<ol start="2">
-<li>点击<code>install</code>在新弹出的窗口授权github</li>
-</ol>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314210530.png"></p>
-<ol start="3">
-<li>之后页面会出现之前创建的<strong>Github Pages</strong>仓库，点击<code>Import</code>，参数全部默认，点击<code>Deploy</code>部署</li>
-</ol>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314210649.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314210944.png"></p>
-<ol start="4">
-<li>部署成功后点击<code>Continue to Dashboard</code>来到项目控制面板，出现如下图就代表部署成功了。</li>
-</ol>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314211300.png"></p>
-<p>之后你就可以通过 github<code>用户名.github.io</code>和Vercel上的<code>项目名.vercel.app</code>访问你的博客了。</p>
-<p>但是由于GFW把Vercel的vercel.app屏蔽了所以需要绑定自己的域名才能访问。</p>
-<h3 id="Vercel绑定自定义域名（可选）"><a href="#Vercel绑定自定义域名（可选）" class="headerlink" title="Vercel绑定自定义域名（可选）"></a>Vercel绑定自定义域名（可选）</h3><ol>
-<li>项目控制台点击-&gt;<code>Settings</code>-&gt;<code>Domains</code>-&gt;<code>Add</code>-&gt;输入你的域名，这里我已<code>bk.3ms.run</code>为例，其他保持默认-&gt;点击<code>Add Domain</code>。</li>
-</ol>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314211757.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314211918.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212208.png"></p>
-<ol start="2">
-<li>之后会要求验证域名所有权，打开你域名注册商的管理界面添加一条解析记录，如下图</li>
-</ol>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212359.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212508.png"></p>
-<ol start="3">
-<li>验证成功之后在添加一条解析技能，如图</li>
-</ol>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212604.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212702.png"></p>
-<p>等待几分钟之后你就可以通过添加的自定义域名访问了。</p>
-<h2 id="Github-Action自动化部署"><a href="#Github-Action自动化部署" class="headerlink" title="Github Action自动化部署"></a><strong>Github Action</strong>自动化部署</h2><p>由于每次部署写文章修改配置后都需要运行<strong>Hexo</strong>的三件套指令，随着文章越来越多，编译的时间也随之越来越长，通过<strong>Github Action</strong>，我们只需要在每次完成博客的编写或修改以后，将改动直接push到远程仓库，之后的编译部署的工作统统交给Github Action CI来完成即可。</p>
-<a class="tag-Link" target="_blank" href="https://akilar.top/posts/f752c86d/">
-    <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
-    <div class="tag-link-bottom">
-        <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/akilar.top/posts/f752c86d/.png);"><i class="iconfont icon-link"></i></div>
-        <div class="tag-link-right">
-            <div class="tag-link-title">使用Github Action实现全自动部署</div>
-            <div class="tag-link-sitename">参考文章-Akila</div>
-        </div>
-        <i class="fa-solid fa-angle-right"></i>
-    </div>
-    </a>
-
-<h3 id="创建Hexo源码仓库"><a href="#创建Hexo源码仓库" class="headerlink" title="创建Hexo源码仓库"></a>创建Hexo源码仓库</h3><ol>
-<li>继续创建一个<strong>Github</strong>仓库用于存放<strong>HexoBlog</strong>的全部文件，Repository name仓库名称可随意填。仓库选择私有Private，其他保持默认创建即可。</li>
-</ol>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314214326.png"></p>
-<p>创建完成后，需要把博客的源码push到这给仓库，之后会教大家如何弄。</p>
-<ol start="2">
-<li>在本地博客目录下依次新建文件夹&#x2F;文件：<code>[BlogRoot]/.github/workflows/autodeploy.yml</code>如下图，在<code>autodeploy.yml</code>文件中并输入以下内容</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当有改动推送到master分支时，启动Action</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">自动部署</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span> <span class="comment">#2020年10月后github新建仓库默认分支改为main，注意更改</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">release:</span></span><br><span class="line">    <span class="attr">types:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">published</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">检查分支</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/checkout@v4</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">ref:</span> <span class="string">main</span> <span class="comment">#2020年10月后github新建仓库默认分支改为main，注意更改</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装</span> <span class="string">Node</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/setup-node@v4</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">node-version:</span> <span class="string">&quot;18.19.0&quot;</span> <span class="comment">#action使用的node版本，建议大版本和本地保持一致。可以在本地用node -v查询版本号。</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装</span> <span class="string">Hexo</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        export TZ=&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"><span class="string">        npm install hexo-cli -g</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">缓存</span> <span class="string">Hexo</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/cache@v4</span></span><br><span class="line">      <span class="attr">id:</span> <span class="string">cache</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">        <span class="attr">key:</span> <span class="string">$&#123;&#123;runner.OS&#125;&#125;-$&#123;&#123;hashFiles(&#x27;**/package-lock.json&#x27;)&#125;&#125;</span></span><br><span class="line">    </span><br><span class="line">          </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装依赖</span></span><br><span class="line">      <span class="attr">if:</span> <span class="string">steps.cache.outputs.cache-hit</span> <span class="type">!=</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        npm install --save</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">生成静态文件</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        hexo clean</span></span><br><span class="line"><span class="string">        hexo generate</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">部署</span> <span class="comment">#此处master:master 指从本地的master分支提交到远程仓库的master分支，若远程仓库没有对应分支则新建一个。如有其他需要，可以根据自己的需求更改。</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        cd ./public</span></span><br><span class="line"><span class="string">        git init</span></span><br><span class="line"><span class="string">        git config --global user.name &#x27;$&#123;&#123; secrets.GITHUBUSERNAME &#125;&#125;&#x27;</span></span><br><span class="line"><span class="string">        git config --global user.email &#x27;$&#123;&#123; secrets.GITHUBEMAIL &#125;&#125;&#x27;</span></span><br><span class="line"><span class="string">        git add .</span></span><br><span class="line"><span class="string">        git commit -m &quot;$&#123;&#123; github.event.head_commit.message &#125;&#125; $(date +&quot;%Z %Y-%m-%d %A %H:%M:%S&quot;) Updated By Github Actions&quot;</span></span><br><span class="line"><span class="string">        git push --force --quiet &quot;https://$&#123;&#123; secrets.GITHUBUSERNAME &#125;&#125;:$&#123;&#123; secrets.GITHUBTOKEN &#125;&#125;@github.com/$&#123;&#123; secrets.GITHUBUSERNAME &#125;&#125;/$&#123;&#123; secrets.GITHUBUSERNAME &#125;&#125;.github.io.git&quot; master:main</span></span><br><span class="line"><span class="string">        #git push --force --quiet &quot;https://$&#123;&#123; secrets.TOKENUSER &#125;&#125;:$&#123;&#123; secrets.CODINGTOKEN &#125;&#125;@e.coding.net/$&#123;&#123; secrets.CODINGUSERNAME &#125;&#125;/$&#123;&#123;  secrets.CODINGBLOGREPO &#125;&#125;.git&quot; master:master #coding部署写法，需要的自行取消注释</span></span><br><span class="line"><span class="string">        #git push --force --quiet &quot;https://$&#123;&#123; secrets.GITEEUSERNAME &#125;&#125;:$&#123;&#123; secrets.GITEETOKEN &#125;&#125;@gitee.com/$&#123;&#123; secrets.GITEEUSERNAME &#125;&#125;/$&#123;&#123; secrets.GITEEUSERNAME &#125;&#125;.git&quot; master:master #gitee部署写法，需要的自行取消注释</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314215220.png"></p>
-<h3 id="获取Token"><a href="#获取Token" class="headerlink" title="获取Token"></a>获取Token</h3><p>为了确保交由<code>Github Action</code>来持续部署时，<code>Github Action</code>具备足够的权限来进行<code>hexo deploy</code>操作,需要先获取<code>Token</code>，</p>
-<p>访问Github-&gt;头像（右上角）-&gt;Settings-&gt;Developer Settings-&gt;Personal access tokens-&gt;Tokens (classic)-&gt;generate new token-&gt;Generate new token(classic),创建的Token名称随意，但必须勾选repo项和workflows项,最后点击<code>Generate token</code>创建即可</p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314220538.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314220618.png"></p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314220733.png"></p>
-<div class="note info flat"><p><code>token</code>只会显示这一次，之后将无法查看，所以务必保证你已经记录下了<code>Token</code>。之后如果忘记了就只能重新生成重新配置了。如上图</p>
-</div>
-
-<h3 id="配置Github-Action"><a href="#配置Github-Action" class="headerlink" title="配置Github Action"></a>配置Github Action</h3><ol>
-<li><p>继续打开刚刚创建用于存放<strong>Hexo</strong>博客源码的<strong>Github</strong>仓库依次打开<code>Settings-&gt;Secrets-&gt;actions-&gt;New repository secret</code>添加环境变量，依次添加以下变量名称。</p>
-<table>
-<thead>
-<tr>
-<th>变量名</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>GITHUBUSERNAME</td>
-<td>GitHub用户名</td>
-</tr>
-<tr>
-<td>GITHUBEMAIL</td>
-<td>Github邮箱</td>
-</tr>
-<tr>
-<td>GITHUBTOKEN</td>
-<td>刚刚申请的Github的tken</td>
-</tr>
-</tbody></table>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314221949.png"></p>
-</li>
-<li><p>将本地<strong>Hexo博客</strong>源码上传到Github仓库推荐使用<code>Visual Studio Code</code>操作，用vs code 打开hexo博客目录，CTRL+~打开终端。<img src="/20250314222406.png"></p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#依次输入以下命令</span></span><br><span class="line">git init</span><br><span class="line">git branch -M main </span><br><span class="line">git remote add origin git@github.com:[Github用户名]/[Github仓库名].git <span class="comment">#自行更改Github用户名/Github仓库名</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314222931.png"></p>
-</li>
-<li><p>博客根目录创建（如无）<code>.gitignore</code>，输入如下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">.deploy_git*/</span><br><span class="line">.idea</span><br><span class="line">themes/butterfly/.git</span><br></pre></td></tr></table></figure>
-
-<p>表示不上传到github上。这样可以显著减少需要提交的文件量和加快提交速度。</p>
-<p>如果不是<code>butterfly</code>主题，记得替换最后一行内容为你自己当前使用的主题。</p>
-</li>
-<li><p>之后再运行git提交指令，将博客源码提交到github上。牢记下方的三行指令，以后都是通过这个指令进行提交。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;github action update&quot;</span> <span class="comment">#引号内的内容可以自行更改作为提交记录。</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314223639.png"></p>
-</li>
-</ol>
-<div class="note info flat"><p>到这基本上已经完成所有的配置了，每次发布文章修改配置只需要将文件push到github上就可以了。</p>
-</div>
-
-<h3 id="查看Github-Action部署情况"><a href="#查看Github-Action部署情况" class="headerlink" title="查看Github Action部署情况"></a>查看Github Action部署情况</h3><p>打开GIthub存放源码的私有仓库，找到action。</p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314224216.png"></p>
-<p>若全部打钩，恭喜你，你现在可以享受自动部署的快感了。</p>
-<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314224301.png"></p>
-]]></content>
-      <categories>
-        <category>博客相关</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hexo博客</tag>
-        <tag>Hexo搭建教程</tag>
-        <tag>Hexo部署</tag>
-        <tag>Hexo自动化部署</tag>
-        <tag>Vercel部署</tag>
-        <tag>GitHub Pages</tag>
       </tags>
   </entry>
   <entry>
@@ -2780,6 +2499,287 @@ title 产品X的关键要素
       </tags>
   </entry>
   <entry>
+    <title>使用Hexo+Github搭建个人博客部署到Vercel并使用Github Action自动化编译部署</title>
+    <url>/archives/Hexo-Github-Vercel-DeploymentTutorial.html</url>
+    <content><![CDATA[<blockquote>
+<p>这篇文章将教大家如何搭建Hexo博客程序，并部署到Github Pages+Vercel并通过Github Action自动化部署编译。</p>
+<p>无需每次重复运行<code>Hexo</code>三件套命令，随着文章越来越多，编译的时间也随之越来越长，所以我们可以通过<code>Github Action</code>实现自动化部署，当我们博客需要更新时，你只需要将改动直接<code>push</code>到远程仓库，之后的编译部署的工作统交给<code>CI</code>来完成即可。</p>
+</blockquote>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>请提前安装（准备）好以下软件，不会的请自行百度，有很多教程。</p>
+<ul>
+<li><p>电脑：Windows或者Mac</p>
+</li>
+<li><p>Node Js(建议使用 Node.js 12.0 及以上版本)：<a class="btn-beautify green" href="https://nodejs.org/" title="点击前往下载"><i class="fas fa-link"></i><span>点击前往下载</span></a></p>
+</li>
+<li><p>Git：<a class="btn-beautify red" href="https://git-scm.com/downloads" title="点击前往下载"><i class="fas fa-link"></i><span>点击前往下载</span></a></p>
+</li>
+<li><p>Guthub账号：<a class="btn-beautify orange" href="https://github.com/" title="点击前往注册"><i class="fas fa-link"></i><span>点击前往注册</span></a></p>
+</li>
+<li><p>Vercel：<a class="btn-beautify blue" href="https://vercel.com" title="点击前往注册"><i class="fas fa-link"></i><span>点击前往注册</span></a></p>
+</li>
+<li><p>域名一个（可选）</p>
+</li>
+</ul>
+<h2 id="本地安装Hexo"><a href="#本地安装Hexo" class="headerlink" title="本地安装Hexo"></a>本地安装Hexo</h2><ol>
+<li>打开 <strong>CMD（终端）</strong> 命令框输入如下命令安装</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250312221925.png"><br>2. 安装完后输入<strong>hexo -v</strong>验证是否安装成功。<br><img src="/../img/archives/20250312222327.png"></p>
+<ol start="3">
+<li>在硬盘中创建一个用于搭建<strong>Hexo</strong>程序的目录</li>
+</ol>
+<p>如：我创建的目录是：<code>E:\HexoBlogTest\DaliyuerBlog</code></p>
+<p><img src="/../img/archives/20250312222509.png"></p>
+<ol start="4">
+<li>在刚刚创建好的目录中鼠标右键，选择**<code>Open Git Bash here</code>**打开Git终端界面</li>
+</ol>
+<p><img src="/../img/archives/20250312223243.png"></p>
+<ol start="5">
+<li>配置Git户名和邮箱，终端中输入以下内容</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;你的用户名&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;你的邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/archives/20250312224908.png"></p>
+<ol start="6">
+<li>终端中输入：<code>hexo init</code>初始化<strong>Hexo博客</strong>，确保目录与之前创建的目录一样</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo init #在当前目录下存放Hexo文件</span><br><span class="line">hexo init 项目名 #会创新创建一个目录用于存放Hexo文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/archives/20250312225308.png"></p>
+<ol start="7">
+<li>初始化成功后输入<code>npm i</code>安装相关依赖。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd DaliyuerBlog  //进入Hexo Blog文件夹 如果你使用的是hexo init命令，则此命令可不用输</span><br><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/archives/20250312225947.png"></p>
+<p><strong>Hexo</strong>的目录结构如下：</p>
+<p><img src="/../img/archives/20250312230041.png"></p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>描叙</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>node_modules</td>
+<td>依赖包</td>
+</tr>
+<tr>
+<td>scaffolds</td>
+<td>生成文章的一些模板</td>
+</tr>
+<tr>
+<td>source</td>
+<td>文章页面存放文件</td>
+</tr>
+<tr>
+<td>themes</td>
+<td>主题</td>
+</tr>
+<tr>
+<td>_config.landscape.yml</td>
+<td>发主题的配置文件</td>
+</tr>
+<tr>
+<td>config.yml</td>
+<td>博客的配置文件</td>
+</tr>
+<tr>
+<td>package.json</td>
+<td>项目名称、描述、版本、运行和开发等信息</td>
+</tr>
+</tbody></table>
+<ol start="8">
+<li>之后终端中输入 <code>hexo g</code>生成静态文件，<code>hexo g</code>启动项目</li>
+</ol>
+<p><img src="/../img/archives/20250312231148.png"></p>
+<ol start="9">
+<li>打开浏览器，输入地址：<a href="http://localhost:4000/">http://localhost:4000/</a> ，看到下面的效果，说明你的博客已经构建成功了。</li>
+</ol>
+<p><img src="/../img/archives/20250312231307.png"></p>
+<h2 id="将静态博客部署到GitHub-Pages"><a href="#将静态博客部署到GitHub-Pages" class="headerlink" title="将静态博客部署到GitHub Pages"></a>将静态博客部署到GitHub Pages</h2><h3 id="配置GitHub-SSH密钥"><a href="#配置GitHub-SSH密钥" class="headerlink" title="配置GitHub SSH密钥"></a>配置GitHub SSH密钥</h3><p>打开Git终端执行以下命令生成SSH密钥</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<p>打开C盘用户目录下的<code>.ssh</code>：<strong>C:\Users\用户名\.ssh</strong> 找到<code>id_rsa.pub</code>文件用记事本打开，复制里面的内容，之后需要在github中配置ssh密钥</p>
+<p><img src="/../img/archives/20250312234947.png"></p>
+<p>打开<strong>Github</strong>，点击右上角头像 选择settings，进入设置页后选择 <a href="https://github.com/settings/keys">SSH and GPG keys</a>，名字随便起，将刚刚复制的内容公钥填到Key那一栏。</p>
+<p><img src="/../img/archives/20250312235726.png"></p>
+<p><img src="/../img/archives/20250312235840.png"></p>
+<p>Ok到这里就已经配置好<strong>GitHub</strong>连接ssh了</p>
+<p>测试连接，终端输入以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>出现以下内容就说明已经配置成功了</p>
+<p><img src="/../img/archives/20250313000142.png"></p>
+<h3 id="创建GitHub仓库并部署Pages"><a href="#创建GitHub仓库并部署Pages" class="headerlink" title="创建GitHub仓库并部署Pages"></a>创建GitHub仓库并部署Pages</h3><ol>
+<li>打开GitHub创建一个仓库，点击右上角的<code>+</code>按钮，选择<code>New repository</code>，创建一个<code>&lt;用户名&gt;.github.io</code>的仓库。</li>
+</ol>
+<p><img src="/../img/archives/20250312232143.png"></p>
+<p>仓库的格式必须为：<code>&lt;用户名&gt;.github.io</code> (注意：前缀必须为用户名，不要等后面无法打开网页)</p>
+<p>仓库可见性选择<code>Public</code>，并勾选<code>Add a README file</code></p>
+<p>点击 Creat repository 进行创建即可</p>
+<ol start="2">
+<li>之后回到Git终端，输入<code>npm install hexo-deployer-git --save</code> 命令安装 hexo-deployer-git</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>打开修改博客目录下的 <code>_config.yml</code> 文件</li>
+</ol>
+<div class="note info flat"><p>_config.yml，就是整个Hexo框架的配置文件了。可以在里面修改大部分的配置。详细可参考官方的<a href="https://hexo.io/zh-cn/docs/configuration">配置描述</a>。</p>
+</div>
+<p>修改最后一行的<code>deploy</code>配置，将<code>repo</code>修改为你自己的github项目地址即可，<code>branch</code>为分支默认main即可</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:daliyuer/daliyuer.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">Site</span> <span class="string">updated:&#123;&#123;</span> <span class="string">now(&#x27;YYYY-MM-DD</span> <span class="string">HH:mm:ss&#x27;)</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../img/archives/20250312234126.png"></p>
+<ol start="4">
+<li>修改配置之后终端运行如下命令，将代码部署到 GitHub Pages</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo cl &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../img/archives/20250313001105.png"></p>
+<p>等待命令跑完出现<code>Deploy done: git</code>即部署成功</p>
+<p><img src="/../img/archives/20250313001229.png"></p>
+<p>等待5分钟左右，浏览器访问<code>&lt;你的用户名&gt;.github.io</code>即可查看到你博客的内容</p>
+<div class="note primary flat"><p>注意每次更新博客都需要运行以上三件套命令，下面我会教大家使用<strong>Github Action</strong>自动化部署，无需使用上面的三件套命令。</p>
+</div>
+
+<p><img src="/../img/archives/20250313001617.png"></p>
+<h2 id="部署到Vercel"><a href="#部署到Vercel" class="headerlink" title="部署到Vercel"></a>部署到Vercel</h2><h3 id="注册Vercel"><a href="#注册Vercel" class="headerlink" title="注册Vercel"></a>注册Vercel</h3><p>打开<a href="https://vercel.com/">Vercel</a>-&gt;选择<code>I&#39;m working on personal projects</code>-&gt;输入用户名-&gt; 继续<code>Continue</code>-&gt;使用<code>Continue with GitHub</code>注册，在新弹出的窗口授权<strong>github</strong>即可</p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314205228.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314205418.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314205606.png"></p>
+<h3 id="新建项目将Hexo部署到Vercel"><a href="#新建项目将Hexo部署到Vercel" class="headerlink" title="新建项目将Hexo部署到Vercel"></a>新建项目将Hexo部署到Vercel</h3><ol>
+<li>注册之后来到首页，点击·<code>Add New...</code>-&gt;<code>Project</code></li>
+</ol>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314210220.png"></p>
+<ol start="2">
+<li>点击<code>install</code>在新弹出的窗口授权github</li>
+</ol>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314210530.png"></p>
+<ol start="3">
+<li>之后页面会出现之前创建的<strong>Github Pages</strong>仓库，点击<code>Import</code>，参数全部默认，点击<code>Deploy</code>部署</li>
+</ol>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314210649.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314210944.png"></p>
+<ol start="4">
+<li>部署成功后点击<code>Continue to Dashboard</code>来到项目控制面板，出现如下图就代表部署成功了。</li>
+</ol>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314211300.png"></p>
+<p>之后你就可以通过 github<code>用户名.github.io</code>和Vercel上的<code>项目名.vercel.app</code>访问你的博客了。</p>
+<p>但是由于GFW把Vercel的vercel.app屏蔽了所以需要绑定自己的域名才能访问。</p>
+<h3 id="Vercel绑定自定义域名（可选）"><a href="#Vercel绑定自定义域名（可选）" class="headerlink" title="Vercel绑定自定义域名（可选）"></a>Vercel绑定自定义域名（可选）</h3><ol>
+<li>项目控制台点击-&gt;<code>Settings</code>-&gt;<code>Domains</code>-&gt;<code>Add</code>-&gt;输入你的域名，这里我已<code>bk.3ms.run</code>为例，其他保持默认-&gt;点击<code>Add Domain</code>。</li>
+</ol>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314211757.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314211918.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212208.png"></p>
+<ol start="2">
+<li>之后会要求验证域名所有权，打开你域名注册商的管理界面添加一条解析记录，如下图</li>
+</ol>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212359.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212508.png"></p>
+<ol start="3">
+<li>验证成功之后在添加一条解析技能，如图</li>
+</ol>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212604.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314212702.png"></p>
+<p>等待几分钟之后你就可以通过添加的自定义域名访问了。</p>
+<h2 id="Github-Action自动化部署"><a href="#Github-Action自动化部署" class="headerlink" title="Github Action自动化部署"></a><strong>Github Action</strong>自动化部署</h2><p>由于每次部署写文章修改配置后都需要运行<strong>Hexo</strong>的三件套指令，随着文章越来越多，编译的时间也随之越来越长，通过<strong>Github Action</strong>，我们只需要在每次完成博客的编写或修改以后，将改动直接push到远程仓库，之后的编译部署的工作统统交给Github Action CI来完成即可。</p>
+<a class="tag-Link" target="_blank" href="https://akilar.top/posts/f752c86d/">
+    <div class="tag-link-tips">引用站外地址，不保证站点的可用性和安全性</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/akilar.top/posts/f752c86d/.png);"><i class="iconfont icon-link"></i></div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">使用Github Action实现全自动部署</div>
+            <div class="tag-link-sitename">参考文章-Akila</div>
+        </div>
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
+    </a>
+
+<h3 id="创建Hexo源码仓库"><a href="#创建Hexo源码仓库" class="headerlink" title="创建Hexo源码仓库"></a>创建Hexo源码仓库</h3><ol>
+<li>继续创建一个<strong>Github</strong>仓库用于存放<strong>HexoBlog</strong>的全部文件，Repository name仓库名称可随意填。仓库选择私有Private，其他保持默认创建即可。</li>
+</ol>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314214326.png"></p>
+<p>创建完成后，需要把博客的源码push到这给仓库，之后会教大家如何弄。</p>
+<ol start="2">
+<li>在本地博客目录下依次新建文件夹&#x2F;文件：<code>[BlogRoot]/.github/workflows/autodeploy.yml</code>如下图，在<code>autodeploy.yml</code>文件中并输入以下内容</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当有改动推送到master分支时，启动Action</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">自动部署</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span> <span class="comment">#2020年10月后github新建仓库默认分支改为main，注意更改</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">release:</span></span><br><span class="line">    <span class="attr">types:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">published</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">检查分支</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/checkout@v4</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">ref:</span> <span class="string">main</span> <span class="comment">#2020年10月后github新建仓库默认分支改为main，注意更改</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装</span> <span class="string">Node</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/setup-node@v4</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">node-version:</span> <span class="string">&quot;18.19.0&quot;</span> <span class="comment">#action使用的node版本，建议大版本和本地保持一致。可以在本地用node -v查询版本号。</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装</span> <span class="string">Hexo</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        export TZ=&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"><span class="string">        npm install hexo-cli -g</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">缓存</span> <span class="string">Hexo</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/cache@v4</span></span><br><span class="line">      <span class="attr">id:</span> <span class="string">cache</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">        <span class="attr">key:</span> <span class="string">$&#123;&#123;runner.OS&#125;&#125;-$&#123;&#123;hashFiles(&#x27;**/package-lock.json&#x27;)&#125;&#125;</span></span><br><span class="line">    </span><br><span class="line">          </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装依赖</span></span><br><span class="line">      <span class="attr">if:</span> <span class="string">steps.cache.outputs.cache-hit</span> <span class="type">!=</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        npm install --save</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">生成静态文件</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        hexo clean</span></span><br><span class="line"><span class="string">        hexo generate</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">部署</span> <span class="comment">#此处master:master 指从本地的master分支提交到远程仓库的master分支，若远程仓库没有对应分支则新建一个。如有其他需要，可以根据自己的需求更改。</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        cd ./public</span></span><br><span class="line"><span class="string">        git init</span></span><br><span class="line"><span class="string">        git config --global user.name &#x27;$&#123;&#123; secrets.GITHUBUSERNAME &#125;&#125;&#x27;</span></span><br><span class="line"><span class="string">        git config --global user.email &#x27;$&#123;&#123; secrets.GITHUBEMAIL &#125;&#125;&#x27;</span></span><br><span class="line"><span class="string">        git add .</span></span><br><span class="line"><span class="string">        git commit -m &quot;$&#123;&#123; github.event.head_commit.message &#125;&#125; $(date +&quot;%Z %Y-%m-%d %A %H:%M:%S&quot;) Updated By Github Actions&quot;</span></span><br><span class="line"><span class="string">        git push --force --quiet &quot;https://$&#123;&#123; secrets.GITHUBUSERNAME &#125;&#125;:$&#123;&#123; secrets.GITHUBTOKEN &#125;&#125;@github.com/$&#123;&#123; secrets.GITHUBUSERNAME &#125;&#125;/$&#123;&#123; secrets.GITHUBUSERNAME &#125;&#125;.github.io.git&quot; master:main</span></span><br><span class="line"><span class="string">        #git push --force --quiet &quot;https://$&#123;&#123; secrets.TOKENUSER &#125;&#125;:$&#123;&#123; secrets.CODINGTOKEN &#125;&#125;@e.coding.net/$&#123;&#123; secrets.CODINGUSERNAME &#125;&#125;/$&#123;&#123;  secrets.CODINGBLOGREPO &#125;&#125;.git&quot; master:master #coding部署写法，需要的自行取消注释</span></span><br><span class="line"><span class="string">        #git push --force --quiet &quot;https://$&#123;&#123; secrets.GITEEUSERNAME &#125;&#125;:$&#123;&#123; secrets.GITEETOKEN &#125;&#125;@gitee.com/$&#123;&#123; secrets.GITEEUSERNAME &#125;&#125;/$&#123;&#123; secrets.GITEEUSERNAME &#125;&#125;.git&quot; master:master #gitee部署写法，需要的自行取消注释</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314215220.png"></p>
+<h3 id="获取Token"><a href="#获取Token" class="headerlink" title="获取Token"></a>获取Token</h3><p>为了确保交由<code>Github Action</code>来持续部署时，<code>Github Action</code>具备足够的权限来进行<code>hexo deploy</code>操作,需要先获取<code>Token</code>，</p>
+<p>访问Github-&gt;头像（右上角）-&gt;Settings-&gt;Developer Settings-&gt;Personal access tokens-&gt;Tokens (classic)-&gt;generate new token-&gt;Generate new token(classic),创建的Token名称随意，但必须勾选repo项和workflows项,最后点击<code>Generate token</code>创建即可</p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314220538.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314220618.png"></p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314220733.png"></p>
+<div class="note info flat"><p><code>token</code>只会显示这一次，之后将无法查看，所以务必保证你已经记录下了<code>Token</code>。之后如果忘记了就只能重新生成重新配置了。如上图</p>
+</div>
+
+<h3 id="配置Github-Action"><a href="#配置Github-Action" class="headerlink" title="配置Github Action"></a>配置Github Action</h3><ol>
+<li><p>继续打开刚刚创建用于存放<strong>Hexo</strong>博客源码的<strong>Github</strong>仓库依次打开<code>Settings-&gt;Secrets-&gt;actions-&gt;New repository secret</code>添加环境变量，依次添加以下变量名称。</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GITHUBUSERNAME</td>
+<td>GitHub用户名</td>
+</tr>
+<tr>
+<td>GITHUBEMAIL</td>
+<td>Github邮箱</td>
+</tr>
+<tr>
+<td>GITHUBTOKEN</td>
+<td>刚刚申请的Github的tken</td>
+</tr>
+</tbody></table>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314221949.png"></p>
+</li>
+<li><p>将本地<strong>Hexo博客</strong>源码上传到Github仓库推荐使用<code>Visual Studio Code</code>操作，用vs code 打开hexo博客目录，CTRL+~打开终端。<img src="/20250314222406.png"></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#依次输入以下命令</span></span><br><span class="line">git init</span><br><span class="line">git branch -M main </span><br><span class="line">git remote add origin git@github.com:[Github用户名]/[Github仓库名].git <span class="comment">#自行更改Github用户名/Github仓库名</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314222931.png"></p>
+</li>
+<li><p>博客根目录创建（如无）<code>.gitignore</code>，输入如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">.deploy_git*/</span><br><span class="line">.idea</span><br><span class="line">themes/butterfly/.git</span><br></pre></td></tr></table></figure>
+
+<p>表示不上传到github上。这样可以显著减少需要提交的文件量和加快提交速度。</p>
+<p>如果不是<code>butterfly</code>主题，记得替换最后一行内容为你自己当前使用的主题。</p>
+</li>
+<li><p>之后再运行git提交指令，将博客源码提交到github上。牢记下方的三行指令，以后都是通过这个指令进行提交。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;github action update&quot;</span> <span class="comment">#引号内的内容可以自行更改作为提交记录。</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314223639.png"></p>
+</li>
+</ol>
+<div class="note info flat"><p>到这基本上已经完成所有的配置了，每次发布文章修改配置只需要将文件push到github上就可以了。</p>
+</div>
+
+<h3 id="查看Github-Action部署情况"><a href="#查看Github-Action部署情况" class="headerlink" title="查看Github Action部署情况"></a>查看Github Action部署情况</h3><p>打开GIthub存放源码的私有仓库，找到action。</p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314224216.png"></p>
+<p>若全部打钩，恭喜你，你现在可以享受自动部署的快感了。</p>
+<p><img src="http://unpkg.com/daliyuer-static@1.0.3/img/archives/20250314224301.png"></p>
+]]></content>
+      <categories>
+        <category>博客相关</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hexo博客</tag>
+        <tag>Hexo搭建教程</tag>
+        <tag>Hexo部署</tag>
+        <tag>Hexo自动化部署</tag>
+        <tag>Vercel部署</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>绕过 CDN 获取真实 IP 的方法</title>
     <url>/archives/89144030.html</url>
     <content><![CDATA[<blockquote>
@@ -2867,6 +2867,37 @@ title 产品X的关键要素
         <tag>CDN绕过</tag>
         <tag>网络安全</tag>
         <tag>DNS分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>给Butterfly主题文章顶部添加波浪效果</title>
+    <url>/archives/f9a47848.html</url>
+    <content><![CDATA[<p>本文简要介绍如何在Hexo博客的Butterfly主题中，为每篇文章顶部添加一个动态波浪效果。</p>
+<p>效果图：</p>
+<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.22/img/archives/20250322001104.png"></p>
+<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>修改主题目录： <code>themes/butterfly/layout/includes/header/index.pug</code> 在：</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br></pre></td></tr></table></figure>
+
+<p>代码后面添加如下代码，<code>+</code>是要添加的部分，记得删除前面的<code>+</code>号。</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br><span class="line"><span class="addition">+   section.main-hero-waves-area.waves-area</span></span><br><span class="line"><span class="addition">+     svg.waves-svg(xmlns=&#x27;http://www.w3.org/2000/svg&#x27;, xlink=&#x27;http://www.w3.org/1999/xlink&#x27;, viewBox=&#x27;0 24 150 28&#x27;, preserveAspectRatio=&#x27;none&#x27;, shape-rendering=&#x27;auto&#x27;)</span></span><br><span class="line"><span class="addition">+       defs</span></span><br><span class="line"><span class="addition">+         path#gentle-wave(d=&#x27;M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z&#x27;)</span></span><br><span class="line"><span class="addition">+       g.parallax</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;0&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;3&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;5&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;7&#x27;)</span></span><br><span class="line">    #post-top-cover</span><br><span class="line">      img#post-top-bg(class=&#x27;nolazyload&#x27; src=bg_img)</span><br><span class="line">  else if is_home()</span><br><span class="line">    #site-info</span><br><span class="line">      h1#site-title=site_title</span><br><span class="line">      if theme.subtitle.enable</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>_config.butterfly.yml</code>配置文件中的 <code>[inject.head]</code> 或者自定义 css 中 引入以下 css</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 波浪css */</span></span><br><span class="line"><span class="selector-class">.main-hero-waves-area</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Animation */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: move-forever <span class="number">25s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.55</span>, <span class="number">0.5</span>, <span class="number">0.45</span>, <span class="number">0.5</span>) infinite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9febd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe82</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe36</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 黑色模式背景 */</span></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171dc8</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d80</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d3e</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move-forever &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-<span class="number">90px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">85px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Shrinking for mobile*/</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">40px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="comment"># 自定义css</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/style.css&quot;&gt;</span> <span class="comment">#改成自己的css地址</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<div class="note primary flat"><p>需要注意的是 css 中<code>fill属性</code>可以控制波浪颜色，最好使其中一个颜色与背景颜色一致，否则会显的有点奇怪。</p>
+</div>
+
+]]></content>
+      <categories>
+        <category>博客相关</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Butterfly</tag>
+        <tag>Butterfly魔改</tag>
       </tags>
   </entry>
   <entry>
@@ -2974,37 +3005,6 @@ title 产品X的关键要素
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">owner:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">since:</span> <span class="number">2024</span></span><br><span class="line"><span class="bullet">-</span>  <span class="attr">custom_text:</span></span><br><span class="line"><span class="string">+</span>  <span class="attr">custom_text:</span> <span class="string">|</span></span><br><span class="line"><span class="string">    &lt;p&gt;</span></span><br><span class="line"><span class="string">    &lt;a target=&quot;_blank&quot; href=&quot;https://hexo.io/&quot; rel=&quot;external nofollow noreferrer noopener&quot;&gt;&lt;img class=&quot;nolazyload&quot;</span></span><br><span class="line"><span class="string">            src=&quot;https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo&quot; title=&quot;博客框架为Hexo&quot; alt=&quot;博客框架为Hexo&quot;&gt;&lt;/a&gt;&amp;nbsp;</span></span><br><span class="line"><span class="string">    &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/jerryc127/hexo-theme-butterfly&quot; rel=&quot;external nofollow noreferrer noopener&quot;&gt;&lt;img class=&quot;nolazyload&quot;</span></span><br><span class="line"><span class="string">            src=&quot;https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender&quot;</span></span><br><span class="line"><span class="string">            title=&quot;主题采用butterfly&quot; alt=&quot;主题采用butterfly&quot;&gt;&lt;/a&gt;&amp;nbsp;</span></span><br><span class="line"><span class="string">    &lt;a target=&quot;_blank&quot; href=&quot;#&quot; rel=&quot;external nofollow noreferrer noopener&quot;&gt;&lt;img class=&quot;nolazyload&quot;</span></span><br><span class="line"><span class="string">            src=&quot;https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr&quot;</span></span><br><span class="line"><span class="string">            title=&quot;本站使用JsDelivr为静态资源提供CDN加速&quot; alt=&quot;本站使用JsDelivr为静态资源提供CDN加速&quot;&gt;&lt;/a&gt; &amp;nbsp;</span></span><br><span class="line"><span class="string">    &lt;a target=&quot;_blank&quot; href=&quot;https://vercel.com/&quot; rel=&quot;external nofollow noreferrer noopener&quot;&gt;&lt;img class=&quot;nolazyload&quot;</span></span><br><span class="line"><span class="string">            src=&quot;https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&amp;logo=Vercel&quot;</span></span><br><span class="line"><span class="string">            title=&quot;本站采用双线部署，默认线路托管于Vercel&quot; alt=&quot;线路托管于Vercel&quot;&gt;&lt;/a&gt;&amp;nbsp;</span></span><br><span class="line"><span class="string">    &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/&quot; rel=&quot;external nofollow noreferrer noopener&quot;&gt;&lt;img class=&quot;nolazyload&quot;</span></span><br><span class="line"><span class="string">            src=&quot;https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub&quot;</span></span><br><span class="line"><span class="string">            title=&quot;本站项目由Gtihub托管&quot; alt=&quot;本站项目由Gtihub托管&quot;&gt;&lt;/a&gt;&amp;nbsp;</span></span><br><span class="line"><span class="string">    &lt;a target=&quot;_blank&quot; href=&quot;http://creativecommons.org/licenses/by-nc-sa/4.0/&quot; rel=&quot;external nofollow noreferrer noopener&quot;&gt;&lt;img class=&quot;nolazyload&quot;</span></span><br><span class="line"><span class="string">            src=&quot;https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris&quot;</span></span><br><span class="line"><span class="string">            title=&quot;本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可&quot; alt=&quot;知识共享署名&quot;&gt;&lt;/a&gt;</span></span><br><span class="line"><span class="string">    &lt;/p&gt;</span></span><br><span class="line"><span class="string"></span>  <span class="comment"># Copyright of theme and framework</span></span><br><span class="line">  <span class="attr">copyright:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>参考原文：<a href="https://fe32.top/articles/hexo1617/">Hexo + Butterfly 自定义页脚 | 唐志远</a></p>
-]]></content>
-      <categories>
-        <category>博客相关</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Butterfly</tag>
-        <tag>Butterfly魔改</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>给Butterfly主题文章顶部添加波浪效果</title>
-    <url>/archives/f9a47848.html</url>
-    <content><![CDATA[<p>本文简要介绍如何在Hexo博客的Butterfly主题中，为每篇文章顶部添加一个动态波浪效果。</p>
-<p>效果图：</p>
-<p><img src="https://jsd.gog.email/npm/daliyuer-static@1.0.22/img/archives/20250322001104.png"></p>
-<h2 id="教程开始"><a href="#教程开始" class="headerlink" title="教程开始"></a>教程开始</h2><p>修改主题目录： <code>themes/butterfly/layout/includes/header/index.pug</code> 在：</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br></pre></td></tr></table></figure>
-
-<p>代码后面添加如下代码，<code>+</code>是要添加的部分，记得删除前面的<code>+</code>号。</p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">if top_img !== false</span><br><span class="line">  if is_post()</span><br><span class="line">    include ./post-info.pug</span><br><span class="line"><span class="addition">+   section.main-hero-waves-area.waves-area</span></span><br><span class="line"><span class="addition">+     svg.waves-svg(xmlns=&#x27;http://www.w3.org/2000/svg&#x27;, xlink=&#x27;http://www.w3.org/1999/xlink&#x27;, viewBox=&#x27;0 24 150 28&#x27;, preserveAspectRatio=&#x27;none&#x27;, shape-rendering=&#x27;auto&#x27;)</span></span><br><span class="line"><span class="addition">+       defs</span></span><br><span class="line"><span class="addition">+         path#gentle-wave(d=&#x27;M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z&#x27;)</span></span><br><span class="line"><span class="addition">+       g.parallax</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;0&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;3&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;5&#x27;)</span></span><br><span class="line"><span class="addition">+         use(href=&#x27;#gentle-wave&#x27;, x=&#x27;48&#x27;, y=&#x27;7&#x27;)</span></span><br><span class="line">    #post-top-cover</span><br><span class="line">      img#post-top-bg(class=&#x27;nolazyload&#x27; src=bg_img)</span><br><span class="line">  else if is_home()</span><br><span class="line">    #site-info</span><br><span class="line">      h1#site-title=site_title</span><br><span class="line">      if theme.subtitle.enable</span><br></pre></td></tr></table></figure>
-
-<p>然后在<code>_config.butterfly.yml</code>配置文件中的 <code>[inject.head]</code> 或者自定义 css 中 引入以下 css</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 波浪css */</span></span><br><span class="line"><span class="selector-class">.main-hero-waves-area</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">11px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Animation */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: move-forever <span class="number">25s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.55</span>, <span class="number">0.5</span>, <span class="number">0.45</span>, <span class="number">0.5</span>) infinite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9febd</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe82</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe36</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#f7f9fe</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 黑色模式背景 */</span></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">7s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171dc8</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">3s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">10s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d80</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">4s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">13s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d3e</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> <span class="selector-class">.parallax</span> &gt; <span class="selector-tag">use</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span><br><span class="line">  <span class="attribute">animation-delay</span>: -<span class="number">5s</span>;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">20s</span>;</span><br><span class="line">  <span class="attribute">fill</span>: <span class="number">#18171d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move-forever &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-<span class="number">90px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">85px</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Shrinking for mobile*/</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.waves-area</span> <span class="selector-class">.waves-svg</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">40px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="comment"># 自定义css</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/style.css&quot;&gt;</span> <span class="comment">#改成自己的css地址</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-<div class="note primary flat"><p>需要注意的是 css 中<code>fill属性</code>可以控制波浪颜色，最好使其中一个颜色与背景颜色一致，否则会显的有点奇怪。</p>
-</div>
-
 ]]></content>
       <categories>
         <category>博客相关</category>
